@@ -17,4 +17,7 @@ I am a 2nd year Computer Science major in Muir, though I'm dorming at Seventh th
 ## [Kaye Falaminiano](https://kayefalaminiano.github.io/cse-110-lab-1/)
 I am a 3rd year Computer Science major in Muir! I love going out and have recently developed a strong interest for Brazilian Jiu-Jitsu!
 
+## [Gautham Prabhakar](https://gauthamp123.github.io/CSE_110_Pages/)
+I am a 4th year Bioengineering: Bioinformatics major. I want to pursue a career in the biotech industry and some of my hobbies include basketball and going to the gym.
+
 # [Team Introductions](https://youtu.be/3jJCrGZnTY0)
