@@ -3,6 +3,12 @@
 
 # Values
 
+Ctrl Alt Elite holds the following core values for its team members
+
+- Communication
+- Positivity
+- Personal and Professional Development
+
 # Members
 
 ## [Daniel Andrews](https://thedonutdan.github.io/daniel/)
