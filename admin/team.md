@@ -26,4 +26,7 @@ I am a 3rd year Computer Science major in Muir! I love going out and have recent
 ## [Gautham Prabhakar](https://gauthamp123.github.io/CSE_110_Pages/)
 I am a 4th year Bioengineering: Bioinformatics major. I want to pursue a career in the biotech industry and some of my hobbies include basketball and going to the gym.
 
+## [Tia Irani](https://tirani427.github.io/cse110ghp/)
+I am a 2nd year Computer Science major in Revelle! I really enjoy reading books, and my favorite novel is probably Mary Shelley's *Frankenstein*. I also really like watching movies.
+
 # [Team Introductions](https://youtu.be/3jJCrGZnTY0)
