@@ -13,3 +13,8 @@ I am a 2nd year Computer Engineering student in Warren! My favorite movie is Int
 
 ## [Joseph Kan](https://person1234565.github.io/cse110labweek1/)
 I am a 2nd year Computer Science major in Muir, though I'm dorming at Seventh this year. Some of my hobbies are speedcubing and reading.  
+
+## [Kaye Falaminiano](https://kayefalaminiano.github.io/cse-110-lab-1/)
+I am a 3rd year Computer Science major in Muir! I love going out and have recently developed a strong interest for Brazilian Jiu-Jitsu!
+
+# [Team Introductions](https://youtu.be/3jJCrGZnTY0)
