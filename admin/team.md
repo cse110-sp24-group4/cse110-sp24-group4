@@ -33,6 +33,6 @@ I am a 2nd year Computer Science major in Revelle! I really enjoy reading books,
 I am a third year Math - Computer Science major in Sixth! I am also currently a RA at Sixth and I _love love_ travelling to new places. Little fact : I have travelled to over 60 cities!!
 
 ## [Kekoa Pickett](https://kekoa-pickett.github.io/Pages/)
-I am a third year Computer Science major in Marshall! I love competing in any fun activities, especially basketball (go Heat) and football. I also spent my second year in North Carolina attending a different college. 
+I am a third year Computer Science major in Marshall! I love competing in any fun activities, especially football and basketball (go Heat). I also spent my second year in North Carolina attending a different college. 
 
 # [Team Introduction Video](https://youtu.be/3jJCrGZnTY0)
