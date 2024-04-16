@@ -32,4 +32,4 @@ I am a 2nd year Computer Science major in Revelle! I really enjoy reading books,
 ## [Anushka Jakhanwal](https://ajakhanwal.github.io/CSE110/)
 I am a third year Math - Computer Science major in Sixth! I am also currently a RA at Sixth and I _love love_ travelling to new places. Little fact : I have travelled to over 60 cities!!
 
-# [Team Introductions](https://youtu.be/3jJCrGZnTY0)
+# [Team Introduction Video](https://youtu.be/3jJCrGZnTY0)
