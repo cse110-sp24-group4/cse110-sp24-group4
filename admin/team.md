@@ -29,4 +29,7 @@ I am a 4th year Bioengineering: Bioinformatics major. I want to pursue a career 
 ## [Tia Irani](https://tirani427.github.io/cse110ghp/)
 I am a 2nd year Computer Science major in Revelle! I really enjoy reading books, and my favorite novel is probably Mary Shelley's *Frankenstein*. I also really like watching movies.
 
+## [Anushka Jakhanwal](https://ajakhanwal.github.io/CSE110/)
+I am a third year Math - Computer Science major in Sixth! I am also currently a RA at Sixth and I _love love_ travelling to new places. Little fact : I have travelled to over 60 cities!!
+
 # [Team Introductions](https://youtu.be/3jJCrGZnTY0)
