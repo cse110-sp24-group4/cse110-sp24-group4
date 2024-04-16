@@ -3,6 +3,12 @@
 
 # Values
 
+Ctrl Alt Elite holds the following core values for its team members
+
+- Communication
+- Positivity
+- Personal and Professional Development
+
 # Members
 
 ## [Daniel Andrews](https://thedonutdan.github.io/daniel/)
@@ -20,4 +26,19 @@ I am a 3rd year Computer Science major in Muir! I love going out and have recent
 ## [Gautham Prabhakar](https://gauthamp123.github.io/CSE_110_Pages/)
 I am a 4th year Bioengineering: Bioinformatics major. I want to pursue a career in the biotech industry and some of my hobbies include basketball and going to the gym.
 
-# [Team Introductions](https://youtu.be/3jJCrGZnTY0)
+## [Tia Irani](https://tirani427.github.io/cse110ghp/)
+I am a 2nd year Computer Science major in Revelle! I really enjoy reading books, and my favorite novel is probably Mary Shelley's *Frankenstein*. I also really like watching movies.
+
+## [Anushka Jakhanwal](https://ajakhanwal.github.io/CSE110/)
+I am a third year Math - Computer Science major in Sixth! I am also currently a RA at Sixth and I _love love_ travelling to new places. Little fact : I have travelled to over 60 cities!!
+
+## [Kekoa Pickett](https://kekoa-pickett.github.io/Pages/)
+I am a third year Computer Science major in Marshall! I love competing in any fun activities, especially football and basketball (go Heat). I also spent my second year in North Carolina attending a different college. 
+
+## [Shang Zhou](https://github.com/zhoushang2003/CSE-110-Lab-1/blob/main/index.md)
+I am a Computer Science major and comptetitive programmer. I have several side projects focusing around game development.
+
+## [Vaibhav Maloo](https://vaibhavmaloo03.github.io/GitHub-Pages-project/)
+I am a second year Computer Engineering Major. I am fluent in Python, JS, and CSS with experience in the React and Django frameworks.
+
+# [Team Introduction Video](https://youtu.be/3jJCrGZnTY0)
