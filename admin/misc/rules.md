@@ -1,4 +1,6 @@
-# Team Working Agreement for Ctl Alt Elite
+# Team Working Agreement for Ctrl Alt Elite
+Term: Spring 2024
+Creation: 04/17/2024
 
 ## Purpose
 This working agreement outlines the norms and expectations for our software engineering team to ensure effective collaboration, communication, and productivity.
@@ -43,3 +45,15 @@ This working agreement outlines the norms and expectations for our software engi
 
 ## Conclusion
 By adhering to this working agreement, we commit to fostering a collaborative, productive, and supportive environment within our software engineering team. We will uphold these principles and values in our daily interactions and endeavors.
+
+## Agreement
+
+Team member name:
+
+
+Team member signature:
+
+By signing this document, the team member agrees to adhere to the working agreement for Ctrl Alt Elite
+
+
+
