@@ -38,7 +38,10 @@ I am a third year Math - Computer Science major in Sixth! I am also currently a 
 ## [Kekoa Pickett](https://kekoa-pickett.github.io/Pages/)
 I am a third year Computer Science major in Marshall! I love competing in any fun activities, especially football and basketball (go Heat). I also spent my second year in North Carolina attending a different college. 
 
-## [Vaibhav Maloo](https://vaibhavmaloo03.github.io/GitHub-Pages-project/)
-I am a second year Computer Engineering Major. I am fluent in Python, JS, and CSS with experience in the React and Django frameworks.
+## [Shang Zhou](https://github.com/zhoushang2003/CSE-110-Lab-1/blob/main/index.md)
+I am a Computer Science major and comptetitive programmer. I have several side projects focusing around game development.
+
+## [Vaibhav Maloo](https://vaibhavmaloo03.github.io/GitHub-Pages-project/index)
+I am a second-year Computer Engineering Major. I enjoy science, philosophy, and traveling. My long-term career goal is to build a startup focused on computer hardware.
 
 # [Team Introduction Video](https://youtu.be/3jJCrGZnTY0)
