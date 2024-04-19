@@ -26,11 +26,14 @@ AI team:
 - Matt
 - Gautham
 - Vaibhav
+- Sean
 
 Non-AI team:
 - Daniel
 - Tia
 - Joseph
+- Kaye
+- Anushka
 
 ### Project Overview
 We are making 2 calendars generally with the 2 different subteams and comparing which method we prefer. After weighing the pros and cons of each approach.
