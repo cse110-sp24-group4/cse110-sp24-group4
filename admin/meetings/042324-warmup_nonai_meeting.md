@@ -28,5 +28,9 @@ Then we started brainstorming/working on the actual code for the calendar widget
 ### Project Progress
 - Got the Month input to work.
 - Made progress on the grid of buttons for the calendar.
+- Close to getting the buttons to pop down with some text.
 
 ### Unfinished Business
+- Getting the Day button to pop down with some text.
+- Check output for when someone clicks on a button for the calendar.
+- Incorporate the .json file for the date/note incorporation.
