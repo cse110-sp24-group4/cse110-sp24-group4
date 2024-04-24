@@ -30,6 +30,8 @@ Then we started brainstorming/working on the actual code for the calendar widget
 - Made progress on the grid of buttons for the calendar.
 - Close to getting the buttons to pop down with some text.
 
+![image](https://github.com/cse110-sp24-group4/cse110-sp24-group4/assets/111078165/78078056-590c-42a2-99c6-9ba776885583)
+
 ### Unfinished Business
 - Getting the Day button to pop down with some text.
 - Check output for when someone clicks on a button for the calendar.
