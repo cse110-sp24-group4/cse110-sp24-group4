@@ -37,3 +37,34 @@ Matt was appointed as the second team lead.
 
 #### Demo Video
 Daniel is going to make the demo video and add it to the repository afterwards.
+
+## SWOT Review
+### Strengths:
+- Responsiveness
+- Portability
+- Flexibility
+- Intuitive Design
+- Simplicity
+
+### Weaknesses:
+- Not following Graceful Degredation.
+    - Apps are heavily reliant on Javascript and if JS was turned off, the app wouldn't work as well.
+- Testing:
+    - not confirmed for non-ai application.
+    - tested with different browsers + phone for ai group.
+
+### Opportunities
+*How can we improve the web app other than on the tech side of the project? Features for the future.*
+- Turning it into a standalone app
+    - **Local focused** -> Using Electron would achieve this.
+- Looking back at the user stories to see the different features wanted from there.
+    - Location Tagging, Social Media Integration, etc.
+
+### Threats
+- Not unique.
+- Lack of standalone
+- Not as much platform support
+- No collaboration feature -> other people can't modify someone else's calendar.
+    - Lack of features which would be helpful within the scope of the problem.
+
+
