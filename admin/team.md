@@ -14,9 +14,6 @@ Ctrl Alt Elite holds the following core values for its team members
 ## [Daniel Andrews](https://thedonutdan.github.io/daniel/)
 I am a third-year Computer Science major. I enjoy working in Cyber Security testing network security and in my free time I like to play piano and hike.
 
-## [Shang Zhou](https://github.com/zhoushang2003/CSE-110-Lab-1/blob/main/index.md)
-I am a Computer Science major and comptetitive programmer. I have several side projects focusing around game development.
-
 ## [Matt Goldberg](https://mattqgoldberg.github.io/MyUserPage/)
 I am a 2nd year Computer Engineering student in Warren! My favorite movie is Interstellar, and I'm on Kendrick's side in the rap beef. 
 
