@@ -1,25 +1,36 @@
 # JavaScript Style Guide for Ctrl Alt Elite Projects
 
+## Content
+
+1. [Introduction](#1-introduction)
+2. [Source file basics](#2-source-file-basics)
+3. [Source file structure](#3-source-file-structure)
+4. [Formatting](#4-formatting)
+5. [Language features](#5-language-features)
+6. [Naming](#6-naming)
+
+
+
 ## 1 Introduction
 This document serves as the complete definition of Ctrl Alt Elite's coding standards for source code in the JavaScript programming language.
 
 Like other programming style guides, the issues covered span not only aesthetic issues of formatting, but other types of conventions or coding standards as well. However, this document focuses primarily on the hard-and-fast rules that we follow universally, and avoids giving advice that isn't clearly enforceable (whether by human or tool).
 
-### 1.1 Terminology Notes
+### 1.1 Terminology notes
 
 1. The term comment always refers to implementation comments. We do not use the phrase documentation comments, instead using the common term “JSDoc” for both human-readable text and machine-readable annotations within `/** … */`.
 
 2. This Style Guide uses [RFC 2119](http://tools.ietf.org/html/rfc2119) terminology when using the phrases *must, must not, should, should not, and may*. The terms prefer and avoid correspond to should and should not, respectively. Imperative and declarative statements are prescriptive and correspond to must.
 
-## 2 Source File Basics
+## 2 Source file basics
 
 ### 2.1 File Names
 
 1. File names *must* be all lowercase and may include hyphens, but no additional punctuation.
 
-### 2.2 Special Characters
+### 2.2 Special characters
 
-#### 2.2.1 Whitespace Characters
+#### 2.2.1 Whitespace characters
 Aside from the line terminator sequence, the ASCII horizontal space character (0x20) is the only whitespace character that appears anywhere in a source file. This implies that
 
 1. All other whitespace characters in string literals are escaped, and
