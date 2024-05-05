@@ -3,11 +3,43 @@
 ## Content
 
 1. [Introduction](#1-introduction)
+    - [Terminology](#11-terminology-notes)
 2. [Source file basics](#2-source-file-basics)
+    - [File names](#21-file-names)
+    - [Special characters](#22-special-characters)
 3. [Source file structure](#3-source-file-structure)
+    - [File overview](#31-top-level-file-overview)
+    - [Imports](#32-imports)
+    - [Implementation](#33-implementation)
 4. [Formatting](#4-formatting)
+    - [Braces](#41-braces)
+    - [Block indentation](#42-block-indentation-2-spaces)
+    - [Statements](#43-statements)
+    - [Column limit](#44-column-limit-80)
+    - [Line wrapping](#45-line-wrapping)
+    - [Whitespace](#46-whitespace)
+    - [Grouping parantheses](#47-grouping-parentheses-recommended)
+    - [Comments](#48-comments)
 5. [Language features](#5-language-features)
+    - [Local variables](#51-local-variable-declarations)
+    - [Array and Object literals](#52-array-and-object-literals)
+    - [Functions](#53-functions)
+    - [String literals](#54-string-literals)
+    - [Control structures](#55-control-structures)
 6. [Naming](#6-naming)
+    - [Common naming rules](#61-rules-common-to-all-identifiers)
+    - [Naming rules by type](#62-rules-by-identifier-type)
+7. [JSDoc](#7-jsdoc)
+    - [General form](#71-general-form)
+    - [Tags](#72-jsdoc-tags)
+    - [Line wrapping](#73-line-wrapping)
+    - [File level comments](#74-file-level-comments)
+    - [Class comments](#75-class-comments)
+    - [Enum and typedef](#76-enum-and-typedef-comments)
+    - [Methods and functions](#77-method-and-function-comments)
+    - [Properties](#78-property-comments)
+    - [Type annotations](#79-type-annotations)
+8. [Policies](#8-policies)
 
 
 
@@ -55,7 +87,7 @@ Non-ASCII characters *must* be followed by a comment explaining what character t
 
  **Exactly one blank line** separates each section that is present, except the file's implementation, which may be preceded by 1 or 2 blank lines.
 
-### 3.1
+### 3.1 Top level file overview
 
 A file should have a top-level file overview. Author information and default visibility level are optional. File overviews are generally recommended whenever a file consists of more than a single class definition. The top level comment is designed to orient readers unfamiliar with the code to what is in this file. If present, it may provide a description of the file's contents and any dependencies or compatibility information. Wrapped lines are not indented.
 
