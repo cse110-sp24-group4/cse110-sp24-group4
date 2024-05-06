@@ -52,7 +52,7 @@ Like other programming style guides, the issues covered span not only aesthetic 
 
 1. The term comment always refers to implementation comments. We do not use the phrase documentation comments, instead using the common term “JSDoc” for both human-readable text and machine-readable annotations within `/** … */`.
 
-2. This Style Guide uses [RFC 2119](http://tools.ietf.org/html/rfc2119) terminology when using the phrases *must, must not, should, should not, and may*. The terms prefer and avoid correspond to should and should not, respectively. Imperative and declarative statements are prescriptive and correspond to must.
+2. This Style Guide uses [RFC 2119](http://tools.ietf.org/html/rfc2119) terminology when using the phrases *must, must not, should, should not, and may*. The terms *prefer* and *avoid* correspond to should and should not, respectively. Imperative and declarative statements are prescriptive and correspond to must.
 
 ## 2 Source file basics
 
@@ -63,7 +63,7 @@ Like other programming style guides, the issues covered span not only aesthetic 
 ### 2.2 Special characters
 
 #### 2.2.1 Whitespace characters
-Aside from the line terminator sequence, the ASCII horizontal space character (0x20) is the only whitespace character that appears anywhere in a source file. This implies that
+Aside from the line terminator sequence, the ASCII horizontal space character (`0x20`) is the only whitespace character that appears anywhere in a source file. This implies that
 
 1. All other whitespace characters in string literals are escaped, and
 
@@ -85,7 +85,7 @@ Non-ASCII characters *must* be followed by a comment explaining what character t
  2. `import` statments
  3. The file's implementation
 
- **Exactly one blank line** separates each section that is present, except the file's implementation, which may be preceded by 1 or 2 blank lines.
+ >**Exactly one blank line** separates each section that is present, except the file's implementation, which may be preceded by 1 or 2 blank lines.
 
 ### 3.1 Top level file overview
 
@@ -121,7 +121,7 @@ The actual implementation follows after all dependency information is declared (
 This may consist of any module-local declarations (constants, variables, classes, functions, etc), as well as any exported symbols.
 
 ## 4 Formatting
-**Terminology Note**: block-like construct refers to the body of a class, function, method, or brace-delimited block of code. Array literals and Object literals may be treated as block-like constructs.
+>**Terminology Note**: block-like construct refers to the body of a class, function, method, or brace-delimited block of code. Array literals and Object literals may be treated as block-like constructs.
 
 ### 4.1 Braces
 
@@ -159,7 +159,7 @@ class InnerClass {
 
 #### 4.1.3 Empty blocks: may be concise
 
-An empty block or block-like construct may be closed immediately after it is opened, with no characters, space, or line break in between (i.e. {}), unless it is a part of a multi-block statement (one that directly contains multiple blocks: if/else or try/catch/finally).
+An empty block or block-like construct may be closed immediately after it is opened, with no characters, space, or line break in between (i.e. `{}`), unless it is a part of a multi-block statement (one that directly contains multiple blocks: `if`/`else` or `try`/`catch`/`finally`).
 
 Example:
 
@@ -255,7 +255,7 @@ some.reallyLongFunctionCall(arg1, arg2, arg3)
 
 As with any other block, the contents of a switch block are indented +2.
 
-After a switch label, a newline appears, and the indentation level is increased +2, exactly as if a block were being opened. An explicit block may be used if required by lexical scoping. The following switch label returns to the previous indentation level, as if a block had been closed.
+After a `switch` label, a newline appears, and the indentation level is increased +2, exactly as if a block were being opened. An explicit block may be used if required by lexical scoping. The following `switch` label returns to the previous indentation level, as if a block had been closed.
 
 A blank line is optional between a `break` and the following case.
 
@@ -335,7 +335,7 @@ When line-wrapping, each line after the first (each continuation line) is indent
 
 When there are multiple continuation lines, indentation may be varied beyond +4 as appropriate. In general, continuation lines at a deeper syntactic level are indented by larger multiples of 4, and two lines use the same indentation level if and only if they begin with syntactically parallel elements.
 
-Refer to [4.6.3 Horizontal alignment: discouraged](#4.6.3-horizontal-alignment:-discouraged) to understand why horizontal alignment is discouraged.
+Refer to [4.6.3 Horizontal alignment: discouraged](#463-horizontal-alignment-discouraged) to understand why horizontal alignment is discouraged.
 
 ### 4.6 Whitespace 
 
@@ -393,9 +393,7 @@ Parentheses are required for type casts: `/** @type {!Foo} */ (foo)`.
 
 ### 4.8 Comments
 
-This section addresses implementation comments. JSDoc is addressed separately.
-
-#### 4.8.1 Block comment style
+>This section addresses implementation comments. JSDoc is addressed separately.
 
 Block comments are indented at the same level as the surrounding code. They may be in `/* … */` or `//-style.` For multi-line `/* … */` comments, subsequent lines must start with `*` aligned with the `*` on the previous line, to make comments obvious with no extra context.
 
@@ -454,6 +452,8 @@ const values = [
 ];
 ```
 
+> Including a trailing comma makes it easier to add more elements if necessary without risking a difficult-to-track-down syntax problem.
+
 #### 5.2.2 `Array` and `Object` constructor
 
 The `Array` constructor is error-prone and *should not* be used. The `Object` constructor is less error-prone, however for consistency it *should not* be used.
@@ -486,6 +486,8 @@ Consistency here helps for the following reasons:
 2. While JavaScript does not differentiate between `"` and `'`, it could be confusing to someone with a background in another language where `'` denotes a character or a string with no support of backslash escapes.
 3. JSON notation is written with double quotes.
 
+> **Note**: While JavaScript makes no distiction between `"` and `'`, as many on our team are first-time JavaScript developers, we will do everything we can to avoid confusion on their part.
+
 #### 5.4.2 No line continuations
 
 *Do not* use line continuations as it reduces readability and can lead to tricky errors. Instead use concatenation of smaller string literals if the 80 column limit is exceeded by a string literal.
@@ -494,7 +496,7 @@ Consistency here helps for the following reasons:
 
 #### 5.5.1 Exceptions
 
-Exceptions should be used whenever exceptional cases occur. 
+Exceptions *should* be used whenever exceptional cases occur. 
 
 ##### 5.5.1.1 Empty catch blocks
 
@@ -507,9 +509,9 @@ try {
 }
 return handleTextResponse(response);
 ```
-```
-Disallowed:
 
+Disallowed:
+```
   try {
     shouldFail();
     fail('expected an error');
@@ -519,17 +521,17 @@ Disallowed:
 
 #### 5.5.2 Switch statements
 
-Within a switch block, each statement group either terminates abruptly (with a `break`, `return` or thrown exception), or is marked with a comment to indicate that execution will or might continue into the next statement group. Any comment that communicates the idea of fall-through is sufficient (typically // `fall through`). This special comment is not required in the last statement group of the switch block.
+Within a `switch` block, each statement group either terminates abruptly (with a `break`, `return` or thrown exception), or is marked with a comment to indicate that execution will or might continue into the next statement group. Any comment that communicates the idea of fall-through is sufficient (typically `// fall through`). This special comment is not required in the last statement group of the switch block.
 
 The `default` case *must* be present, even if it contains no code.
 
 #### 5.5.3 Non-standard features
 
-Do not use non-standard features. This includes old features that have been removed (e.g., `WeakMap.clear`), new features that are not yet standardized (e.g., the current TC39 working draft, proposals at any stage, or proposed but not-yet-complete web standards), or proprietary features that are only implemented in some browsers. Use only features defined in the current ECMA-262 or WHATWG standards.
+*Do not* use non-standard features. This includes old features that have been removed (e.g., `WeakMap.clear`), new features that are not yet standardized (e.g., the current TC39 working draft, proposals at any stage, or proposed but not-yet-complete web standards), or proprietary features that are only implemented in some browsers. Use only features defined in the current ECMA-262 or WHATWG standards.
 
 #### 5.5.4 Frameworks and libraries
 
-In the spirit of this course and to avoid bloated projects, as much code as possible *should* be written in native JavaScript without outside frameworks or libraries. Any use of outside frameworks *must* be approved by a TA or the professor.
+In the spirit of this course and to avoid bloated projects, as much code as possible *should* be written in native JavaScript without outside frameworks or libraries. Any use of outside frameworks *must* be approved by a TA or the professor. If you feel an outside framework would contribute greatly to the productivity or functionality of the project, raise an issue with a team lead and we will get you an answer ASAP.
 
 ## 6 Naming
 
@@ -675,7 +677,7 @@ class Listable {
 
 ### 7.6 Enum and typedef comments
 
-All enums and typedefs *must* be documented with appropriate JSDoc tags (@typedef or @enum) on the preceding line. Public enums and typedefs must also have a description. Individual enum items may be documented with a JSDoc comment on the preceding line.
+All enums and typedefs *must* be documented with appropriate JSDoc tags (`@typedef` or `@enum`) on the preceding line. Public `enum`s and `typedef`s must also have a description. Individual `enum` items may be documented with a JSDoc comment on the preceding line.
 
 ```
 /**
