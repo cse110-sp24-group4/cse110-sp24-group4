@@ -18,9 +18,8 @@
 #### Team Member Check In / Clarification
 Team leads checked in with the rest of the members to see if they know what's going on with the project.
 
-
 #### Task Identification
-- Should have an MVP (Minimum Viable Product) by the end of the week.
+**Should have an MVP (Minimum Viable Product) by the end of the week.**
 - UI
 - 3 HTML Files
     - index
@@ -33,8 +32,7 @@ Team leads checked in with the rest of the members to see if they know what's go
 #### ADRs
 Matt finished the decisions for the submission on 05/12.
 - Prettier for style configuration
-- ESLint to error check
-- JSDoc
+- JSDoc for documentation purposes
 
 #### Task Assignment
 Splitting it up according to the pages:
