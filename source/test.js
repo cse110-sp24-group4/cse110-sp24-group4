@@ -1,5 +1,5 @@
 /**
- * A function written poorly to test github actions.
+ * A function written badly to test github actions.
  *
  * @returns {number} - Should return 3
  */
