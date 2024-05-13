@@ -1,0 +1,34 @@
+name: generate-jsdoc
+on: 
+    push:
+        paths:
+            - '**/*.js'
+    workflow_dispatch:
+
+jobs:
+    jsdoc-job:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Get access to repo
+            uses: actions/checkout@v4
+          - name: Install Dependencies
+            run: |
+                npm install
+                npm install jsdoc docdash
+          - name: Generate JSDoc
+            run: npx jsdoc -c ./jsdoc.json
+          - name: Commit JSDoc
+            if: ${{ github.actor != 'github-actions' }}
+            run: |
+                git config --local user.email "action@github.com"
+                git config --local user.name "GitHub Action"
+                git add .
+                git commit -m "Generate JSDoc"
+          - name: Push JSDoc
+            if: ${{ github.actor != 'github-actions' }}
+            uses: ad-m/github-push-action@master
+            with:
+               github_token: ${{secrets.GITHUB_TOKEN}}
+               branch: ${{ github.ref }}
+
+       

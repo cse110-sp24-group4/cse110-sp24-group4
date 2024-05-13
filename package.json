@@ -1,0 +1,40 @@
+{
+  "name": "devdog",
+  "version": "1.0.0",
+  "description": "Work log for developers",
+  "main": "index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"No tests specified\"",
+    "generate-docs": "node_modules/.bin/jsdoc -c ./.config/jsdoc.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cse110-sp24-group4/warmup-exercise.git"
+  },
+  "authors": [
+    "Daniel Andrews",
+    "Matt Goldberg",
+    "Gautham Prabhakar",
+    "Joseph Kan",
+    "Kaye Falaminiano",
+    "Tia Irani",
+    "Anushka Jakhanwal",
+    "Kekoa Pickett",
+    "Vaibhav Maloo"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cse110-sp24-group4/warmup-exercise/issues"
+  },
+  "homepage": "",
+  "devDependencies": {
+    "@eslint/js": "^9.2.0",
+    "docdash": "^2.0.2",
+    "eslint": "^9.2.0",
+    "globals": "^15.2.0",
+    "jsdoc": "^4.0.3"
+  }
+}
