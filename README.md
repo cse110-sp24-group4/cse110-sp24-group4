@@ -5,3 +5,6 @@ Team page for Team 4 Control Alt Elite
 
 Team page Markdown file:
 [Team Page](admin/team.md)
+
+
+[Project documentation](./docs/README.md)
