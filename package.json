@@ -1,18 +1,18 @@
 {
   "name": "devdog",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Work log for developers",
-  "main": "index.html",
+  "main": "./source/index.html",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "generate-docs": "node_modules/.bin/jsdoc -c ./.config/jsdoc.json"
+    "generate-docs": "node_modules/.bin/jsdoc -c ./jsdoc.json"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cse110-sp24-group4/warmup-exercise.git"
+    "url": "git+https://github.com/cse110-sp24-group4/cse110-sp24-group4.git"
   },
   "authors": [
     "Daniel Andrews",
@@ -27,7 +27,7 @@
   ],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cse110-sp24-group4/warmup-exercise/issues"
+    "url": "https://github.com/cse110-sp24-group4/cse110-sp24-group4.git"
   },
   "homepage": "",
   "devDependencies": {
