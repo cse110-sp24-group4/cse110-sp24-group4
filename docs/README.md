@@ -33,7 +33,6 @@ source/
     README.md
 ```
 
-
 - `/assets` will contain any images we need for our project
 - `/js` will contain all the `.js` scripts we are implementing in our project. All files within this directory should have the `.js` extension.
 - `/css` will contain all the cascading style sheets for our project. All files within this directory should have the `.css` extension
