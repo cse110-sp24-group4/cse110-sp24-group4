@@ -6,6 +6,7 @@ For the MVP in phase 1, the landing page should implement the process described 
 
 ```
 On page load:
+    - get project name from url parameter
     - load all entries corresponding to the specified project
     - add all entries to a list and display them to the user, sorted by most recent
 On clicking "add new entry":
