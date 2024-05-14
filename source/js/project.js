@@ -20,7 +20,6 @@ function init() {
 function loadNotesFromStorage() {
   // if (projectId == null) return;
   notes = JSON.parse(localStorage.getItem(`${projectId}#notes`) ?? "[]") ?? [];
-  console.log(notes);
   for (const note of notes) {
     genNoteElement(note);
   }
@@ -36,7 +35,7 @@ function createNote() {
     content: "new note",
   };
   notes.push(newNote);
-  localStorage.setItem(`${projectId}#notes`, JSON.stringify(notes));
+  saveToLocalStorage(notes);
   genNoteElement(newNote);
 }
 
@@ -52,18 +51,28 @@ function genNoteElement(noteObj) {
   noteBlock.id = noteObj.id;
   noteBlock.className = "note-block";
 
-  const noteText = document.createElement("p");
-  noteText.innerText = noteObj.content;
-  noteText.className = "note-text";
+  const noteText = createNoteText(noteObj.content);
   noteBlock.appendChild(noteText);
 
   const noteEdit = createNoteButton("edit", () => editNote(noteObj.id));
   const noteDelete = createNoteButton("delete", () => deleteNote(noteObj.id));
 
-  noteBlock.appendChild(noteDelete);
   noteBlock.appendChild(noteEdit);
+  noteBlock.appendChild(noteDelete);
 
   notesGrid.insertBefore(noteBlock, addButton);
+}
+
+/**
+ * Generates a p element for the note html element
+ * @param {string} content The content of the text element
+ * @returns {Object} The html element for the text content
+ */
+function createNoteText(content) {
+  const noteText = document.createElement("p");
+  noteText.innerText = content;
+  noteText.className = "note-text";
+  return noteText;
 }
 
 /**
@@ -75,17 +84,18 @@ function genNoteElement(noteObj) {
 
 /**
  * Generates a button for the note html element
- * @param {string} iconName
- * @param {onClickCallback} onClick
+ * @param {string} iconName The name of the icon for the button
+ * @param {onClickCallback} onClick The callback to use when clicked
  * @returns {Object} The html element for the button
  */
 function createNoteButton(iconName, onClick) {
   const button = document.createElement("button");
-  button.className = "note-button";
   button.onclick = onClick;
+  button.classList.add("note-button");
+  button.classList.add(iconName);
 
   const icon = document.createElement("i");
-  icon.className = "material-icons";
+  icon.classList.add("material-icons");
   icon.innerText = iconName;
   button.appendChild(icon);
   return button;
@@ -96,8 +106,40 @@ function createNoteButton(iconName, onClick) {
  * @param {string} noteId Id of the note to be changed
  */
 function editNote(noteId) {
-  const noteBlock = document.querySelector(`#${noteId}`);
-  console.log(noteBlock.innerText);
+  const noteBlock = document.getElementById(`${noteId}`);
+  const noteText = noteBlock.querySelector("p");
+
+  const editButton = noteBlock.querySelector("button.edit");
+  const editIcon = editButton.querySelector("i");
+  editButton.onclick = () => saveNote(noteId);
+  editIcon.innerText = "check";
+
+  const noteTextInput = document.createElement("input");
+  noteTextInput.type = "text";
+  noteTextInput.value = noteText.innerText;
+
+  noteBlock.replaceChild(noteTextInput, noteText);
+}
+
+/**
+ * Saves the edits made using the input element and converts it back to a text element
+ * @param {string} noteId Id of the note to be saved
+ */
+function saveNote(noteId) {
+  const noteBlock = document.getElementById(`${noteId}`);
+  const noteTextInput = noteBlock.querySelector("input");
+
+  const editButton = noteBlock.querySelector("button.edit");
+  const editIcon = editButton.querySelector("i");
+  editButton.onclick = () => editNote(noteId);
+  editIcon.innerText = "edit";
+
+  const noteText = createNoteText(noteTextInput.value);
+
+  noteBlock.replaceChild(noteText, noteTextInput);
+  notes.find((note) => note.id == noteId).content = noteTextInput.value;
+
+  saveToLocalStorage(notes);
 }
 
 /**
@@ -109,5 +151,13 @@ function deleteNote(noteId) {
   const noteBlock = document.getElementById(`${noteId}`);
   notes = notes.filter((n) => n.id != noteId);
   notesGrid.removeChild(noteBlock);
+  saveToLocalStorage(notes);
+}
+
+/**
+ * Saves specified notes to localstorage
+ * @param {Object[]} notes
+ */
+function saveToLocalStorage(notes) {
   localStorage.setItem(`${projectId}#notes`, JSON.stringify(notes));
 }
