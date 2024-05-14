@@ -26,7 +26,7 @@ function loadNotesFromStorage() {
 }
 
 // This function is referenced by the add button in the html page
-// eslint-disable no-unused-vars
+/* eslint-disable no-unused-vars */
 /**
  * Creates new blank note in localstorage as well as corresponding html element
  */
@@ -40,7 +40,7 @@ function createNote() {
   saveToLocalStorage(notes);
   genNoteElement(newNote);
 }
-// eslint-enable no-unused-vars
+/* eslint-enable no-unused-vars */
 
 /**
  * Generates html element for the corresponding note object and attaches it to the note grid
