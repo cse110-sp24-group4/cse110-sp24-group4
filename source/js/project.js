@@ -25,7 +25,7 @@ function loadNotesFromStorage() {
   }
 }
 
-// This function is referenced by the add button in the html page
+// This function is called by the add button in the html page
 /* eslint-disable no-unused-vars */
 /**
  * Creates new blank note in localstorage as well as corresponding html element
