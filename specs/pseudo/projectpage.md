@@ -1,7 +1,9 @@
 # Code guide for project page
 
 ## Phase 1
+
 For the MVP in phase 1, the landing page should implement the process described in pseudocode below:
+
 ```
 On page load:
     - get project name from url parameter
