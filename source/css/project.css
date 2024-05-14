@@ -1,0 +1,47 @@
+#main-container {
+    padding-left: 16px;
+}
+
+#grid-container {
+    display: grid;
+}
+
+#main-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 12px;
+}
+
+#notes-grid {
+    display: grid;
+    border: 1px solid black;
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+
+}
+
+.note-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+.note-button {
+    border-radius: 12px;
+    border: 1px solid black;
+}
+
+.note-button:hover {
+    opacity: 60%;
+}
+
+.note-button:active {
+    opacity: 70%;
+}
+
+.note-text {
+    font-size: 1.25em;
+
+}
