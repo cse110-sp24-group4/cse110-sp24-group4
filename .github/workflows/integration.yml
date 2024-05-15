@@ -26,6 +26,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: install eslint
         run: npm i
 
@@ -36,8 +39,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
       - name: Checkout
         uses: actions/checkout@v4
         with:
