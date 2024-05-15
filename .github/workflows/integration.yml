@@ -1,15 +1,14 @@
 name: Continuous Integration
 
-# This action works with pull requests on protected branches and pushes
+# This action works with pull requests on protected branches
 on:
-  push:
   pull_request:
     branches:
       - dev
       - main
 
 jobs:
-  linting:
+  prettier:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +22,13 @@ jobs:
         uses: creyD/prettier_action@v4.3
         with:
           prettier_options: --write **/*.{js,md}
+  linting:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: install eslint
         run: npm i
 
