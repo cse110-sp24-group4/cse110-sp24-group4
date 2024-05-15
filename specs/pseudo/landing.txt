@@ -1,0 +1,190 @@
+landing.js:
+// Make sure to write JSDoc for all the functions and also the project array
+// 
+
+// Call init() on page load
+window.addEventListener("load", () => init());
+
+
+// Array to hold projectIds
+let projects = [];
+
+
+// Load projects and add projects to the DOM
+function init() {
+  loadProjects();
+  generateProjectList();
+}
+
+
+// Load projects from localStorage
+function loadProjects() {
+  // Have to parse the string representation
+  let projectArrayString = localStorage.getItem("projects");
+  projects = json.parse(projectArrayString);
+}
+
+
+// Stringify array and place it in localStorage
+function saveProjects() {
+  let projectsStringified = json.stringify(projects);
+  localStorage.setItem("projects", projectsStringified);
+}
+
+
+// Create individual project items
+function createProjectItem(projectId) {
+  let projectItem = document.createElement("li");// List item html tag
+  let projectLink = document.createElement("a"); // Anchor html tag (link)
+  let deleteButton = document.createElement("button"); // Button html tag
+
+  deleteButton.addEventListener("click", deleteProject); // Callback function needs to be a REFERENCE to the function call, not a function call
+  
+  projectItem.id = projectId; // Id for deletion
+  
+  projectLink.href = "./pages/project.html?projectid=" + projectId; // URL to navigate to project page with correct URL parameter
+  
+  projectItem.appendChild(projectLink); // Append appropriate items to project list
+  projectItem.appendChild(deleteButton);
+
+  return projectItem; 
+}
+
+
+// Currently this function is just called on page load. We may refactor but it works for now.
+function generateProjectList() {
+  // get the project list
+  const projectList = document.getElementById("project-list");
+  
+  // Loop through project array to generate each item and add it to the project list
+  for (project in projects) {
+    let item = createProjectItem(project);
+    projectList.appendChild(item);
+  }
+}
+
+
+// Handles making a new project
+function createProject() {
+  let newProjectName = document.getElementById("new-project-name").innerText;
+  projects.append(newProjectName);
+  
+  const newProjectItem = createProjectItem(newProjectName);
+  const projectList = document.getElementById("project-list");
+  projectList.appendChild(newProjectItem);
+
+  saveProjects();
+}
+
+
+// Callback function for removing a project
+function deleteProject() {
+  let parentId = document.getParent(this);
+  
+  projects.remove(parentId);
+
+  document.removeElementById(parentId);
+
+  saveProjects();
+}
+
+
+
+index.html:
+
+
+<div class="container" id="project-container">
+        <ul id="Project-List">
+            <li>
+                <a href="./pages/project.html?projectid=devdog">Project 1</a>
+                <button>Delete</button>
+            </li>
+            <li>
+                <a href="Project2.html">Project 2</a>
+                <button>Delete</button>
+            </li>
+        </ul>
+    </div>
+
+<textarea id="new-project-name"><textarea>
+
+<button class="add-project-button" onClick="createProject()">Add New Project</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.log(localStorage)
+{
+  "projects": "",
+  "fido": "dog",
+  "winston": "cat",
+}
+
+let species = localStorage.getItem("fido")
+
+console.log(species)
+
+"dog"
+
+
+"./pages/project.html?projectid=devdog"
+
+
+const textbox = document.createElement('p')
+
+
+
+
+
+
+
+let notes = [];
+
+function saveNotes() {
+  let notesStringified = json.stringify(notes);
+}
+
+function loadNotes() {
+  let projectString = localStorage.getItem("projects");
+  notes = json.parse(projectString);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
