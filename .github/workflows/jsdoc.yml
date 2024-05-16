@@ -1,6 +1,6 @@
-name: generate-jsdoc
+name: Styling and Documentation
 on: 
-    pull_request:
+    push:
       branches:
         - dev
       paths:
@@ -8,6 +8,21 @@ on:
     workflow_dispatch:
 
 jobs:
+    prettier:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+          with:
+            # Make sure the actual branch is checked out when running on pull requests
+            ref: ${{ github.head_ref }}
+
+        - name: Prettify code
+          uses: creyD/prettier_action@v4.3
+          with:
+            prettier_options: --write **/*.{js,md}
+    
     jsdoc-job:
         runs-on: ubuntu-latest
         steps:
