@@ -155,6 +155,7 @@ function deleteNote(noteId) {
   notes = notes.filter((n) => n.id != noteId);
   notesGrid.removeChild(noteBlock);
   saveToLocalStorage(notes);
+  const testEslint = "";
 }
 
 /**
