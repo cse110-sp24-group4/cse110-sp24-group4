@@ -1,3 +1,11 @@
+/**
+ * @fileoverview
+ * This file handles functionality for the landing page including
+ * - Loading projects
+ * - Adding projects
+ * - Saving projects to localStorage
+ * - Navigating to the project page with proper project ID as a param
+ */
 window.addEventListener("load", () => init());
 
 let projects =[];
@@ -30,7 +38,7 @@ function createProjectItem(projectId){
         deleteProject(projectId);
       });
 
-    newLink.href=`./pages/project.html?projectId=${projectId}`; //setting embedded url 
+    newLink.href=`./project.html?projectId=${projectId}`; //setting embedded url 
     newLink.innerText = `${projectId}`; //displayed name is the projectId.
     newProject.id = projectId;
     newProject.appendChild(newLink); //adding link to list item
