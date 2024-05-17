@@ -1,6 +1,6 @@
 window.addEventListener("load", () => init());
 
-const projects =[];
+let projects =[];
 
 
 
@@ -10,11 +10,12 @@ function init(){
 
     const new_project_btn = document.getElementById("add-new-project");
     //new_project_btn.addEventListener("click", () => createProject());
-    loadProjects();
-    generateProjectList();
+    //loadProjects();
+    //generateProjectList();
+    getProjectsFromLocalStorage();
     //window.addEventListener("load", () => generateProjectList());
 }
-
+/*** 
 function loadProjects(){ // <- yet to implement fully.
     let projectsStringified = json.stringify(projects);
     localStorage.setItem("projects", projectsStringified);
@@ -27,7 +28,7 @@ function saveProjects() {
     localStorage.setItem("projects", projectsStringified);
 }
   
-
+**/
 function createProjectItem(projectId){
     //creating the new variables for the project item shown on webpage
     const new_project = document.createElement("li"); //list item
@@ -74,6 +75,9 @@ function createProject() {
     const projectList = document.getElementById("Project-List");
     projectList.appendChild(newProjectItem);
 
+    // saves the projects in local storage
+    localStorage.setItem('projects', JSON.stringify(projects));
+    console.log(localStorage);
     //saveProjects(); <- yet to implement fully.
 }
 
@@ -85,3 +89,15 @@ function createProject() {
     document.remove(parentId);
    // document.removeElementById(parentId); doesn't work.
 }*/
+
+function getProjectsFromLocalStorage(){
+    const projectList = document.getElementById("Project-List");
+    const storedProjects = JSON.parse(localStorage.getItem('projects')) || [];
+
+    for(const projectId of storedProjects){
+        let item = createProjectItem(projectId);
+        projectList.appendChild(item);
+    }
+
+    projects = storedProjects;
+}
