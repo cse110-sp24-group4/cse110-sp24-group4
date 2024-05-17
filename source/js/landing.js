@@ -40,7 +40,7 @@ function createProjectItem(projectId){
         deleteProject(projectId);
       });
 
-    new_link.href=`./pages/project.html?projectid=${projectId}`; //setting embedded url 
+    new_link.href=`./pages/project.html?projectId=${projectId}`; //setting embedded url 
     new_link.innerText = `${projectId}`; //displayed name is the projectId.
     new_project.id = projectId;
     new_project.appendChild(new_link); //adding link to list item
