@@ -20,15 +20,15 @@ function loadProjects(){ // <- yet to implement fully.
     let projectsStringified = json.stringify(projects);
     localStorage.setItem("projects", projectsStringified);
 }
-  
+**/
   
   // Stringify array and place it in localStorage <- yet to implement fully 
 function saveProjects() {
-    let projectsStringified = json.stringify(projects);
+    let projectsStringified = JSON.stringify(projects);
     localStorage.setItem("projects", projectsStringified);
 }
   
-**/
+
 function createProjectItem(projectId){
     //creating the new variables for the project item shown on webpage
     const new_project = document.createElement("li"); //list item
@@ -81,7 +81,7 @@ function createProject() {
     // saves the projects in local storage
     localStorage.setItem('projects', JSON.stringify(projects));
     console.log(localStorage);
-    //saveProjects(); <- yet to implement fully.
+    saveProjects(); //<- yet to implement fully.
 }
 
 
@@ -91,7 +91,7 @@ function deleteProject(projectId){
   
     const projectList = document.getElementById("Project-List");
     projectList.removeChild(parentId); // removing project visually from website
-    //saveProjects(); <- need to implement
+    saveProjects(); //<- need to implement
 }
 
 function getProjectsFromLocalStorage(){
