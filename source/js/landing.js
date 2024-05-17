@@ -3,69 +3,51 @@ window.addEventListener("load", () => init());
 let projects =[];
 
 
-
+/**
+ * Initializes the page
+ */
 function init(){
-
-    const project_list = document.getElementById("Project-List");
-
-    const new_project_btn = document.getElementById("add-new-project");
-    //new_project_btn.addEventListener("click", () => createProject());
-    //loadProjects();
-    //generateProjectList();
+    const projectList = document.getElementById("Project-List");
+    const newProjectBtn = document.getElementById("add-new-project");
     getProjectsFromLocalStorage();
-    //window.addEventListener("load", () => generateProjectList());
 }
-/*** 
-function loadProjects(){ // <- yet to implement fully.
-    let projectsStringified = json.stringify(projects);
-    localStorage.setItem("projects", projectsStringified);
-}
-**/
-  
-  // Stringify array and place it in localStorage <- yet to implement fully 
+
+
+// Stringify array and place it in localStorage <- yet to implement fully 
 function saveProjects() {
     let projectsStringified = JSON.stringify(projects);
     localStorage.setItem("projects", projectsStringified);
 }
   
-
+/**
+ * Takes the projectId and creates a project with it associated with its own project page as well as edit and delete buttons
+ * @param {string} projectId 
+ * @returns {li item}
+ */
 function createProjectItem(projectId){
     //creating the new variables for the project item shown on webpage
-    const new_project = document.createElement("li"); //list item
-    const new_link = document.createElement("a"); //link to project.html w/ project id.
+    const newProject = document.createElement("li"); //list item
+    const newLink = document.createElement("a"); //link to project.html w/ project id.
 
-    const new_delete = document.createElement("button"); //delete button
-    new_delete.innerText="Delete";
-    new_delete.addEventListener("click",  () => {
+    const newDelete = document.createElement("button"); //delete button
+    newDelete.innerText="Delete";
+    newDelete.addEventListener("click",  () => {
         deleteProject(projectId);
       });
 
-    new_link.href=`./pages/project.html?projectId=${projectId}`; //setting embedded url 
-    new_link.innerText = `${projectId}`; //displayed name is the projectId.
-    new_project.id = projectId;
-    new_project.appendChild(new_link); //adding link to list item
-    new_project.appendChild(new_delete); //adding delete button to list item.
+    newLink.href=`./pages/project.html?projectId=${projectId}`; //setting embedded url 
+    newLink.innerText = `${projectId}`; //displayed name is the projectId.
+    newProject.id = projectId;
+    newProject.appendChild(newLink); //adding link to list item
+    newProject.appendChild(newDelete); //adding delete button to list item.
 
-    return new_project; //returning the new project.
-
-
+    return newProject; //returning the new project.
 
 }
 
-function generateProjectList(){ //<- yet to implement fully.
-    const projectList = document.getElementById("Project-List");
-    for(const i = 0; i < projects.length; i++){
-        const project = localStorage.getItem(projects[i]);
-        projectList.appendChild(project);
-    }
-
-    /*for(const project in projects){
-        document.write(project);
-        let item = createProjectItem(project);
-        projectList.appendChild(item);
-    }*/
-}
-
+/**
+ * Creates a new project upon the new project button being pressed
+ */
 function createProject() {
     
     //gets value from textarea to be the projectId. 
@@ -80,20 +62,24 @@ function createProject() {
 
     // saves the projects in local storage
     localStorage.setItem('projects', JSON.stringify(projects));
-    console.log(localStorage);
-    saveProjects(); //<- yet to implement fully.
+    
 }
 
-
+/**
+ * Removes the project from the website visually
+ * @param {string} projectId 
+ */
 function deleteProject(projectId){
     let parentId = document.getElementById(projectId);
     projects = projects.filter(project => project != projectId); // removes project from projects array
   
     const projectList = document.getElementById("Project-List");
     projectList.removeChild(parentId); // removing project visually from website
-    saveProjects(); //<- need to implement
 }
 
+/**
+ * When website is loaded, retrieve all of the projects from local storage
+ */
 function getProjectsFromLocalStorage(){
     const projectList = document.getElementById("Project-List");
     const storedProjects = JSON.parse(localStorage.getItem('projects')) || [];
