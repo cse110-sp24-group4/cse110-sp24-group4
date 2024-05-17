@@ -1,0 +1,50 @@
+* {
+    font-family: "Sulphur Point", sans-serif;
+    font-style: normal;
+}
+body {
+    background-color: lightblue;
+    padding: 0%;
+}
+header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 0px;
+    padding: 0px;
+    border-width:0px;
+    width: 100%;
+
+    background-color: rgb(86, 134, 196);
+    &>img {
+        margin: 5px;
+    }
+    &>span {
+        font-size: 3em;
+        font-weight: 700;
+        letter-spacing: 5px;
+        margin: 5px;
+    }
+    &>a {
+        text-decoration: none;
+        font-size: 1.5em;
+        font-weight: 300;
+        border-width: 2px;;
+        border-style: solid;
+        border-radius: 10px;
+        color: black;
+        margin-left: auto;
+        margin-right: 5px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding: 5px;
+        &:hover {
+            opacity: 50%;
+        }
+    }
+    &>div {
+        flex: 0 0 100%;
+        border: 1px solid gray;
+    }
+}
