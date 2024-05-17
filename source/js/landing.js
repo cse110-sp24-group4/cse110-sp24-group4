@@ -13,12 +13,7 @@ function init(){
 }
 
 
-// Stringify array and place it in localStorage <- yet to implement fully 
-function saveProjects() {
-    let projectsStringified = JSON.stringify(projects);
-    localStorage.setItem("projects", projectsStringified);
-}
-  
+
 /**
  * Takes the projectId and creates a project with it associated with its own project page as well as edit and delete buttons
  * @param {string} projectId 
@@ -60,8 +55,8 @@ function createProject() {
     const projectList = document.getElementById("Project-List");
     projectList.appendChild(newProjectItem);
 
-    // saves the projects in local storage
-    localStorage.setItem('projects', JSON.stringify(projects));
+
+    localStorage.setItem('projects', JSON.stringify(projects)); // saves the projects in local storage
     
 }
 
@@ -75,6 +70,8 @@ function deleteProject(projectId){
   
     const projectList = document.getElementById("Project-List");
     projectList.removeChild(parentId); // removing project visually from website
+
+    localStorage.setItem('projects', JSON.stringify(projects)); // saves the projects in local storage
 }
 
 /**
