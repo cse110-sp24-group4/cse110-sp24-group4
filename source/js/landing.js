@@ -33,13 +33,16 @@ function createProjectItem(projectId){
     //creating the new variables for the project item shown on webpage
     const new_project = document.createElement("li"); //list item
     const new_link = document.createElement("a"); //link to project.html w/ project id.
-    const new_delete = document.createElement("button"); //delete button
 
+    const new_delete = document.createElement("button"); //delete button
     new_delete.innerText="Delete";
-    
+    new_delete.addEventListener("click",  () => {
+        deleteProject(projectId);
+      });
+
     new_link.href=`./pages/project.html?projectid=${projectId}`; //setting embedded url 
     new_link.innerText = `${projectId}`; //displayed name is the projectId.
-
+    new_project.id = projectId;
     new_project.appendChild(new_link); //adding link to list item
     new_project.appendChild(new_delete); //adding delete button to list item.
 
@@ -82,13 +85,14 @@ function createProject() {
 }
 
 
-/*function deleteProject(projectId){
+function deleteProject(projectId){
     let parentId = document.getElementById(projectId);
-    projects.remove(parentId);
-
-    document.remove(parentId);
-   // document.removeElementById(parentId); doesn't work.
-}*/
+    projects = projects.filter(project => project != projectId); // removes project from projects array
+  
+    const projectList = document.getElementById("Project-List");
+    projectList.removeChild(parentId); // removing project visually from website
+    //saveProjects(); <- need to implement
+}
 
 function getProjectsFromLocalStorage(){
     const projectList = document.getElementById("Project-List");
