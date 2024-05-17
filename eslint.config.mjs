@@ -34,6 +34,7 @@ export default [
           "**/*.js": "KEBAB_CASE",
         },
       ],
+      // JSDoc rules
       "jsdoc/check-alignment": 1, // Recommended
       "jsdoc/check-param-names": 1, // Recommended
       "jsdoc/check-property-names": 1, // Recommended
@@ -57,8 +58,12 @@ export default [
       "jsdoc/require-returns-type": 1, // Recommended
       "jsdoc/require-yields": 1, // Recommended
       "jsdoc/require-yields-check": 1, // Recommended
-      "jsdoc/valid-types": 1 // Recommended
-    }
+      "jsdoc/valid-types": 1, // Recommended
+
+      // Require let or const
+      "no-var": "error",
+    },
+
   },
   {
     ignores: ["**/*.test.js"]
