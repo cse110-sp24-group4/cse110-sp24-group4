@@ -16,6 +16,7 @@ let notes = [];
  * Initialization function for after the DOM loads
  */
 function init() {
+  document.getElementById("create-note-button").addEventListener("click", () => createNote());
   loadNotesFromStorage();
 }
 
@@ -30,8 +31,6 @@ function loadNotesFromStorage() {
   }
 }
 
-// This function is called by the add button in the html page
-/* eslint-disable no-unused-vars */
 /**
  * Creates new blank note in localstorage as well as corresponding html element
  */

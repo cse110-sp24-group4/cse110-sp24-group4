@@ -16,10 +16,8 @@ let projects =[];
  */
 function init(){
     getProjectsFromLocalStorage();
-    const createProjectButton = document.getElementById('project-create');
-    createProjectButton.addEventListener("click", ()=>{
-        createProject();
-    });
+    const createProjectButton = document.getElementById("project-create");
+    createProjectButton.addEventListener("click", createProject);
 }
 
 
