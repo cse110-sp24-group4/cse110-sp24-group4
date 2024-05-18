@@ -3,7 +3,7 @@
     font-style: normal;
 }
 body {
-    background-color: lightgray;
+    background-image: linear-gradient(0, rgb(253, 249, 249), lightgray);
     padding: 0%;
     margin: 0%;
 }
