@@ -15,8 +15,6 @@ let projects =[];
  * Initializes the page
  */
 function init(){
-    const projectList = document.getElementById("Project-List");
-    const newProjectBtn = document.getElementById("add-new-project");
     getProjectsFromLocalStorage();
 }
 
