@@ -6,6 +6,9 @@ header {
     margin-top: 0px;
     width: 100%;
 
+    position: fixed;
+    top: 0;
+
     background-color: darkgray;
     &>img {
         margin: 5px;
@@ -84,3 +87,4 @@ footer {
         margin-left: auto;
     }
 }
+
