@@ -60,15 +60,16 @@ footer {
     align-items: center;
     flex-wrap: wrap;
     margin-top: 1%;
-    width: 100%;
-    padding: 2%;
+    max-width: 100%;
+    padding-top: 100px;
+    padding-right: 0%;
 
     &>section {
         &>h2 {
             letter-spacing: 3px;
         }
         margin-left: 3%;
-        width: 20%;
+        max-width: 35%;
         &>a {
             text-decoration: none;
             font-size: 1.5em;
@@ -86,6 +87,12 @@ footer {
     
     &>img {
         margin-left: auto;
+        max-width: 60%;
+        height: auto;
     }
 }
 
+body {
+    padding: 0%;
+    margin: 0%;
+}
