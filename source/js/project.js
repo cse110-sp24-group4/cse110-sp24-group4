@@ -1,3 +1,8 @@
+/**
+ * @fileoverview This file handles project page functionality including
+ * - Creating, editing, deleting notes
+ * - Saving/loading with localStorage
+ */
 window.addEventListener("load", () => init());
 
 /**
