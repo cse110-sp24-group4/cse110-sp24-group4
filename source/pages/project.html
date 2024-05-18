@@ -1,39 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Page</title>
-
-    <link rel="stylesheet" href="../css/project.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script src="../js/project.js" defer></script>
-
+    <title>DevDogs - Developer Journal</title>
+    <script src="../js/project.js"></script>
+</head>
 <body>
-    <a href="./landing.html">Home</a>
-    <div id="main-container">
-        <h1>Project Page</h1>
-        <div id="main-grid">
-            <div>
-                <h2>Notes</h2>
-                <div class="notes-grid">
-
-                    <!-- Example note block <div class="note-block">
-                        <p class="note-text">Note content</p>
-                        <button class="note-button"><i class="material-icons">edit</i></button>
-                        <button class="note-button"><i class="material-icons">delete</i></button>
-                        </div> -->
-
-                    <button id="create-note-button" onclick="createNote()">Add new note</button>
-                </div>
-            </div>
-            <div class="notes-grid">
-
-
-            </div>
-        </div>
+    <h1>Welcome to DevDogs - Developer Journal</h1>
+    <h2>List of Projects:</h2>
+    <div class="container" id="project-container">
+        <ul id="Project-List">
+            </li>
+        </ul>
     </div>
+    <textarea id="new-project-name"></textarea>
+    <button class="add-project-button" onClick="createProject()">Add New Project</button>
 </body>
-
 </html>
