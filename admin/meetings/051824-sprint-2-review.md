@@ -1,4 +1,4 @@
-# Ctrl Alt Elite: Sprint 1 Review <br> 5/18/2024: 4:00pm - 5:00pm
+# Ctrl Alt Elite: Sprint 2 Review <br> 5/18/2024: 4:00pm - 5:00pm
 
 ## Members Present
 
