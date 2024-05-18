@@ -1,0 +1,9 @@
+* {
+    font-family: "Sulphur Point", sans-serif;
+    font-style: normal;
+}
+body {
+    background-image: linear-gradient(0, rgb(255, 251, 251), rgb(189, 186, 186));
+    padding: 0%;
+    margin: 0%;
+}
