@@ -1,5 +1,5 @@
 /**
- * @fileoverview This file handles project page functionality including
+ * @file This file handles project page functionality including
  * - Creating, editing, deleting notes
  * - Saving/loading with localStorage
  */
@@ -7,7 +7,7 @@ window.addEventListener("load", () => init());
 
 /**
  * The id for the project selected. Found from the search parameters of the URL with key "projectId"
- * @const {string}
+ * @constant {string}
  */
 const projectId = new URL(window.location).searchParams.get("projectId");
 let notes = [];
@@ -44,7 +44,6 @@ function createNote() {
   saveToLocalStorage(notes);
   genNoteElement(newNote);
 }
-/* eslint-enable no-unused-vars */
 
 /**
  * Generates html element for the corresponding note object and attaches it to the note grid
@@ -163,7 +162,7 @@ function deleteNote(noteId) {
 
 /**
  * Saves specified notes to localstorage
- * @param {Object[]} notes
+ * @param {Object[]} notes array of notes relating to project
  */
 function saveToLocalStorage(notes) {
   localStorage.setItem(`${projectId}#notes`, JSON.stringify(notes));

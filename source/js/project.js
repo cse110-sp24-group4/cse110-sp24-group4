@@ -1,5 +1,5 @@
 /**
- * @fileoverview
+ * @file
  * This file handles functionality for the landing page including
  * - Loading projects
  * - Adding projects
@@ -24,8 +24,8 @@ function init(){
 
 /**
  * Takes the projectId and creates a project with it associated with its own project page as well as edit and delete buttons
- * @param {string} projectId 
- * @returns {li item}
+ * @param {string} projectId string identifier for project which we are creating an element for
+ * @returns {li} an HTML li element containing the name of the project, link to notes page, and delete button
  */
 function createProjectItem(projectId){
     //creating the new variables for the project item shown on webpage
@@ -70,7 +70,7 @@ function createProject() {
 
 /**
  * Removes the project from the website visually
- * @param {string} projectId 
+ * @param {string} projectId string identifier of the project to be deleted
  */
 function deleteProject(projectId){
     let parentId = document.getElementById(projectId);
