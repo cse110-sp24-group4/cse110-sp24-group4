@@ -19,13 +19,15 @@ jobs:
             token: ${{ secrets.AUTOMATION_BOT }}
             ref: ${{ github.head_ref }}
 
+        - name: Install Dependencies
+          run: npm i
+        
         - name: Prettify code
-          uses: creyD/prettier_action@v4.3
-          with:
-            prettier_options: --write **/*.{js,md}
+          run: prettier --write
 
     jsdoc-job:
         runs-on: ubuntu-latest
+        needs: prettier
         steps:
           - name: Get access to repo
             uses: actions/checkout@v4
@@ -46,7 +48,7 @@ jobs:
                 git add .
                 git commit -m "Generate JSDoc"
           - name: Push JSDoc
-            if: ${{ github.actor != 'github-actions' }}
+            if: ${{ github.actor != 'cse110-sp24-group4-bot' }}
             uses: ad-m/github-push-action@master
             with:
                github_token: ${{ secrets.AUTOMATION_BOT }}
