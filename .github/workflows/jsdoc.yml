@@ -16,6 +16,7 @@ jobs:
           uses: actions/checkout@v4
           with:
           # Make sure the actual branch is checked out when running on pull requests
+            github_token: ${{secrets.AUTOMATION_BOT}}
             ref: ${{ github.head_ref }}
 
         - name: Prettify code
@@ -28,6 +29,9 @@ jobs:
         steps:
           - name: Get access to repo
             uses: actions/checkout@v4
+            with:
+              github_token: ${{secrets.AUTOMATION_BOT}}
+
           - name: Install Dependencies
             run: |
                 npm install
@@ -45,6 +49,5 @@ jobs:
             if: ${{ github.actor != 'github-actions' }}
             uses: ad-m/github-push-action@master
             with:
-               github_token: ${{secrets.GITHUB_TOKEN}}
+               github_token: ${{secrets.AUTOMATION_BOT}}
                branch: ${{ github.ref }}
-               force: true
