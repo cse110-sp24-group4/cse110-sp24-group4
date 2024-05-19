@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap");
 
 * {
-    font-family: "Sulphur Point", sans-serif;
-    font-style: normal;
+  font-family: "Sulphur Point", sans-serif;
+  font-style: normal;
 }
 body {
-    background-image: linear-gradient(0, rgb(255, 251, 251), rgb(189, 186, 186));
-    padding: 0%;
-    margin: 0%;
+  background-image: linear-gradient(0, rgb(255, 251, 251), rgb(189, 186, 186));
+  padding: 0%;
+  margin: 0%;
 }

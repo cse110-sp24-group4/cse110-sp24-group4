@@ -23,7 +23,7 @@ jobs:
           run: npm i
         
         - name: Prettify code
-          run: prettier --write
+          run: npm run prettier
 
     jsdoc-job:
         runs-on: ubuntu-latest
@@ -39,7 +39,7 @@ jobs:
                 npm install
                 npm install jsdoc docdash
           - name: Generate JSDoc
-            run: npx jsdoc -c ./jsdoc.json
+            run: npm run generate-docs
           - name: Commit JSDoc
             if: ${{ github.actor != 'github-actions' }}
             run: |
