@@ -1,5 +1,5 @@
 /**
- * @file This file handles project page functionality including
+ * @file This file handles notes page functionality including
  * - Creating, editing, deleting notes
  * - Saving/loading with localStorage
  */
@@ -16,7 +16,9 @@ let notes = [];
  * Initialization function for after the DOM loads
  */
 function init() {
-  document.getElementById("create-note-button").addEventListener("click", () => createNote());
+  document
+    .getElementById("create-note-button")
+    .addEventListener("click", () => createNote());
   loadNotesFromStorage();
 }
 
