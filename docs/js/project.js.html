@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>project.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createNote">createNote</a></li><li><a href="global.html#createNoteButton">createNoteButton</a></li><li><a href="global.html#createNoteText">createNoteText</a></li><li><a href="global.html#createProject">createProject</a></li><li><a href="global.html#createProjectItem">createProjectItem</a></li><li><a href="global.html#deleteNote">deleteNote</a></li><li><a href="global.html#deleteProject">deleteProject</a></li><li><a href="global.html#editNote">editNote</a></li><li><a href="global.html#genNoteElement">genNoteElement</a></li><li><a href="global.html#getProjectsFromLocalStorage">getProjectsFromLocalStorage</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#loadNotesFromStorage">loadNotesFromStorage</a></li><li><a href="global.html#projectId">projectId</a></li><li><a href="global.html#saveNote">saveNote</a></li><li><a href="global.html#saveToLocalStorage">saveToLocalStorage</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">project.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file
+ * This file handles functionality for the landing page including
+ * - Loading projects
+ * - Adding projects
+ * - Saving projects to localStorage
+ * - Navigating to the project page with proper project ID as a param
+ */
+window.addEventListener("load", () => init());
+
+let projects = [];
+
+/**
+ * Initializes the page
+ */
+function init() {
+  getProjectsFromLocalStorage();
+  const createProjectButton = document.getElementById("project-create");
+  createProjectButton.addEventListener("click", createProject);
+}
+
+/**
+ * Takes the projectId and creates a project with it associated with its own project page as well as edit and delete buttons
+ * @param {string} projectId string identifier for project which we are creating an element for
+ * @returns {li} an HTML li element containing the name of the project, link to notes page, and delete button
+ */
+function createProjectItem(projectId) {
+  //creating the new variables for the project item shown on webpage
+  const newProject = document.createElement("li"); //list item
+  const newLink = document.createElement("a"); //link to project.html w/ project id.
+
+  const newDelete = document.createElement("button"); //delete button
+  newDelete.innerText = "Delete";
+  newDelete.addEventListener("click", () => {
+    deleteProject(projectId);
+  });
+
+  newLink.href = `./notes.html?projectId=${projectId}`; //setting embedded url
+  newLink.innerText = `${projectId}`; //displayed name is the projectId.
+  newProject.id = projectId;
+  newProject.appendChild(newLink); //adding link to list item
+  newProject.appendChild(newDelete); //adding delete button to list item.
+
+  return newProject; //returning the new project.
+}
+
+/**
+ * Creates a new project upon the new project button being pressed
+ */
+function createProject() {
+  //gets value from textarea to be the projectId.
+  const newProjectName = document.getElementById("new-project-name").value;
+
+  projects.push(newProjectName); //pushes new projectId to projects array
+
+  //steps to make new project item.
+  const newProjectItem = createProjectItem(newProjectName);
+  const projectList = document.getElementById("Project-List");
+  projectList.appendChild(newProjectItem);
+
+  localStorage.setItem("projects", JSON.stringify(projects)); // saves the projects in local storage
+}
+
+/**
+ * Removes the project from the website visually
+ * @param {string} projectId string identifier of the project to be deleted
+ */
+function deleteProject(projectId) {
+  let parentId = document.getElementById(projectId);
+  projects = projects.filter((project) => project != projectId); // removes project from projects array
+
+  const projectList = document.getElementById("Project-List");
+  projectList.removeChild(parentId); // removing project visually from website
+
+  localStorage.setItem("projects", JSON.stringify(projects)); // saves the projects in local storage
+}
+
+/**
+ * When website is loaded, retrieve all of the projects from local storage
+ */
+function getProjectsFromLocalStorage() {
+  const projectList = document.getElementById("Project-List");
+  const storedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+
+  for (const projectId of storedProjects) {
+    let item = createProjectItem(projectId);
+    projectList.appendChild(item);
+  }
+
+  projects = storedProjects;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Sun May 19 2024 09:25:21 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
