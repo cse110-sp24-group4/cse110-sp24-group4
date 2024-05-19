@@ -9,6 +9,7 @@ on:
 
 jobs:
     styling-and-documentation:
+      if: ${{ github.actor != 'cse110-sp24-group4-bot' }}
       runs-on: ubuntu-latest
 
       steps:
@@ -29,7 +30,6 @@ jobs:
           run: npm run generate-docs
         
         - name: Commit changes
-          if: ${{ github.actor != 'cse110-sp24-group4-bot' }}
           run: |
             git config --local user.email "action@github.com"
             git config --local user.name "Github Action"
@@ -37,7 +37,6 @@ jobs:
             git commit -m "prettify code and generate jsdoc"
         
         - name: Push changes
-          if: ${{ github.actor != 'cse-sp24-group4-bot' }}
           uses: ad-m/github-push-action@master
           with:
             github_token: ${{ secrets.AUTOMATION_BOT }}
