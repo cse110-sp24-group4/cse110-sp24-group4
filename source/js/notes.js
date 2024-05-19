@@ -3,7 +3,7 @@
  * - Creating, editing, deleting notes
  * - Saving/loading with localStorage
  */
-window.addEventListener("load", () => init());
+	window.addEventListener("load", () => init());
 
 /**
  * The id for the project selected. Found from the search parameters of the URL with key "projectId"
