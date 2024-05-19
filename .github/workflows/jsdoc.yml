@@ -8,7 +8,7 @@ on:
     workflow_dispatch:
 
 jobs:
-    prettier:
+    styling-and-documentation:
       runs-on: ubuntu-latest
 
       steps:
@@ -24,32 +24,21 @@ jobs:
         
         - name: Prettify code
           run: npm run prettier
-
-    jsdoc-job:
-        runs-on: ubuntu-latest
-        needs: prettier
-        steps:
-          - name: Get access to repo
-            uses: actions/checkout@v4
-            with:
-              token: ${{ secrets.AUTOMATION_BOT }}
-
-          - name: Install Dependencies
-            run: |
-                npm install
-                npm install jsdoc docdash
-          - name: Generate JSDoc
-            run: npm run generate-docs
-          - name: Commit JSDoc
-            if: ${{ github.actor != 'github-actions' }}
-            run: |
-                git config --local user.email "action@github.com"
-                git config --local user.name "GitHub Action"
-                git add .
-                git commit -m "Generate JSDoc"
-          - name: Push JSDoc
-            if: ${{ github.actor != 'cse110-sp24-group4-bot' }}
-            uses: ad-m/github-push-action@master
-            with:
-               github_token: ${{ secrets.AUTOMATION_BOT }}
-               branch: ${{ github.ref }}
+        
+        - name: Generate JSDoc
+          run: npm run generate-docs
+        
+        - name: Commit changes
+          if: ${{ github.actor != 'cse110-sp24-group4-bot' }}
+          run: |
+            git config --local user.email "action@github.com"
+            git config --local user.name "Github Action"
+            git add .
+            git commit -m "prettify code and generate jsdoc"
+        
+        - name: Push changes
+          if: ${{ github.actor != 'cse-sp24-group4-bot' }}
+          uses: ad-m/github-push-action@master
+          with:
+            github_token: ${{ secrets.AUTOMATION_BOT }}
+            branch: ${{ github.ref }}

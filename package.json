@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "generate-docs": "node_modules/.bin/jsdoc -c ./jsdoc.json",
+    "generate-docs": "jsdoc -c ./jsdoc.json",
     "lint": "eslint source",
     "prettier": "prettier --write source/js"
   },
