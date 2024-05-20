@@ -6,6 +6,8 @@ on:
     branches:
       - dev
       - main
+  push:
+    - puppeteer
 
 jobs:
   linting:
@@ -21,7 +23,7 @@ jobs:
       - name: run ESLint
         run: npm run lint
   
-  unit-test:
+  tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,7 +33,7 @@ jobs:
           # Make sure the actual branch is checked out when running on pull requests
           ref: ${{ github.head_ref }}
       
-      - name: install jest
+      - name: install dependencies
         run: npm i
 
       - name: Unit tests

@@ -52,6 +52,5 @@
     "preset": "jest-puppeteer",
     "transform": {},
     "verbose": true
-  },
-  "type": "module"
+  }
 }
