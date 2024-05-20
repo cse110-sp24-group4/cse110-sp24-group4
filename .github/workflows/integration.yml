@@ -34,8 +34,8 @@ jobs:
       - name: install dependencies
         run: npm i
 
-      - name: start server and run tests
-        run: npx webpack serve & sleep 5 & npm run unit-test
+      - name: run unit tests
+        run: npm run unit-test
 
   puppeteer-test:
     runs-on: ubuntu-latest
@@ -51,4 +51,4 @@ jobs:
         run: npm i
 
       - name: start server and run tests
-        run: npx webpack serve & sleep 5 & npm run test
+        run: npx webpack serve & sleep 5 && npm run test
