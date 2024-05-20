@@ -21,7 +21,7 @@ jobs:
       - name: run ESLint
         run: npm run lint
   
-  tests:
+  unit-test:
     runs-on: ubuntu-latest
 
     steps:
