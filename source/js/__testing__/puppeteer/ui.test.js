@@ -3,7 +3,7 @@ describe("Simple Test", () => {
     beforeAll(async () => {
        // const browser = await puppeteer.launch();
        // const page = await browser.newPage();
-        await page.goto('http://127.0.0.1:5500/source/index.html');
+        await page.goto('http://localhost:9000/');
     });
 
     it("Check link to projects", async () => {
