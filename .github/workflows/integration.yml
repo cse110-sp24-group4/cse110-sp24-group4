@@ -37,7 +37,5 @@ jobs:
       - name: install dependencies
         run: npm i
 
-      - name: start server
-        run: npx webpack serve
-      - name: Unit tests
-        run: npm run test
+      - name: start server and run tests
+        run: npx webpack serve & sleep 5 & npm run test
