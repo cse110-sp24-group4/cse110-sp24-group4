@@ -7,10 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "serve": "webpack serve",
     "unit-test": "jest source/js/__testing__/unit/*",
     "puppeteer-test": "bash source/js/__testing__/puppeteer/test-puppeteer.sh",
-    "test": "jest",
     "generate-docs": "jsdoc -c ./jsdoc.json",
     "lint": "eslint source",
     "prettier": "prettier --write source/js"

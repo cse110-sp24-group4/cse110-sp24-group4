@@ -9,5 +9,3 @@ echo Running tests...
 jest source/js/__testing__/puppeteer
 
 kill $PID
-
-echo DONE!
