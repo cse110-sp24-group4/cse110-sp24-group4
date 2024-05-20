@@ -35,4 +35,20 @@ jobs:
         run: npm i
 
       - name: start server and run tests
+        run: npx webpack serve & sleep 5 & npm run unit-test
+
+  puppeteer-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Make sure the actual branch is checked out when running on pull requests
+          ref: ${{ github.head_ref }}
+      
+      - name: install dependencies
+        run: npm i
+
+      - name: start server and run tests
         run: npx webpack serve & sleep 5 & npm run test
