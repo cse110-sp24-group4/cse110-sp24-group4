@@ -38,6 +38,6 @@ jobs:
         run: npm i
 
       - name: start server
-        run: 
+        run: npx webpack serve
       - name: Unit tests
         run: npm run test
