@@ -1,11 +1,13 @@
-echo Starting server...
+node source/js/__testing__/puppeteer/server.js &
 
-npx webpack serve &
+PID=$!
 
 sleep 5
 
 echo Running tests...
 
 jest source/js/__testing__/puppeteer
+
+kill $PID
 
 echo DONE!
