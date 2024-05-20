@@ -1,5 +1,3 @@
-const { default: puppeteer } = require("puppeteer");
-
 describe("Simple Test", () => {
 
     beforeAll(async () => {

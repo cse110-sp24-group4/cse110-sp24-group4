@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test": "jest",
     "generate-docs": "jsdoc -c ./jsdoc.json",
     "lint": "eslint source",
     "prettier": "prettier --write source/js"
@@ -33,7 +33,10 @@
   },
   "homepage": "",
   "devDependencies": {
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
     "@eslint/js": "^9.2.0",
+    "babel-jest": "^29.7.0",
     "docdash": "^2.0.2",
     "eslint": "^9.2.0",
     "eslint-plugin-check-file": "^2.8.0",
