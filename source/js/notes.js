@@ -169,3 +169,75 @@ function deleteNote(noteId) {
 function saveToLocalStorage(notes) {
   localStorage.setItem(`${projectId}#notes`, JSON.stringify(notes));
 }
+/**
+ * Adds a new task to the task list
+ */
+ function addTask() {
+  const newTaskName = document.getElementById("new-task-name").value.trim();
+  
+  if (newTaskName === "") {
+    alert("Task name cannot be empty");
+    return;
+  }
+
+  tasks.push({ name: newTaskName, completed: false });
+  renderTasks();
+  saveTasksToLocalStorage();
+
+  document.getElementById("new-task-name").value = ""; // Clear input field after adding task
+}
+
+/**
+ * Renders the task list on the page
+ */
+function renderTasks() {
+  const taskList = document.getElementById("task-list");
+  taskList.innerHTML = ""; // Clear existing tasks
+
+  for (const task of tasks) {
+    const taskItem = document.createElement("li");
+    const taskCheckbox = document.createElement("input");
+    taskCheckbox.type = "checkbox";
+    taskCheckbox.checked = task.completed;
+    taskCheckbox.addEventListener("change", () => {
+      if (taskCheckbox.checked) {
+        completeTask(task.name);
+      }
+    });
+
+    taskItem.innerText = task.name;
+    taskItem.prepend(taskCheckbox);
+    taskList.appendChild(taskItem);
+  }
+}
+
+/**
+ * Marks a task as completed and converts it to a note
+ * @param {string} taskName string name of the task to be completed
+ */
+function completeTask(taskName) {
+  const taskIndex = tasks.findIndex((task) => task.name === taskName);
+  if (taskIndex > -1) {
+    notes.push(newNote);
+    genNoteElement(newNote);
+    saveNotesToLocalStorage(notes);
+    
+    saveTasksToLocalStorage();
+  }
+}
+
+/**
+ * Saves the tasks to localStorage
+ */
+function saveTasksToLocalStorage() {
+  localStorage.setItem(`${projectId}#tasks`, JSON.stringify(tasks));
+}
+
+/**
+ * Retrieves the tasks from localStorage
+ */
+function loadTasksFromLocalStorage() {
+  const storedTasks = JSON.parse(localStorage.getItem(`${projectId}#tasks`)) || [];
+  tasks = storedTasks;
+  renderTasks();
+}
