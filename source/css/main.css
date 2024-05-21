@@ -1,17 +1,61 @@
 @import url("https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap");
 
+/*
+ * This serves as the base styling for all the pages in the app
+*/
+
 * {
     font-family: "Sulphur Point", sans-serif;
     font-style: normal;
 }
 
 html, body {
-    min-height: 100vw;
-    max-width: 100vw;
+    min-height: 100vw; /* Prevents tiling of background gradients or images */
+    max-width: 100vw; /* Gets rid of unnecessary scroll bar that appeared on some screens */
 }
 
 body {
     background-image: linear-gradient(0, rgb(255, 251, 251), rgb(189, 186, 186));
-    min-height: 100%;
-    max-width: 100%;
+    padding: 100px 0px 50px; /* 100px top to give space for sticky header can be adjusted as needed, 0px on side to allow header to occupy full screen 50px on bottom because I felt like it */
+    margin: 0px; /* There's a margin between html and body? */
+}
+
+header {
+    /*
+    * This allows the header to lay the elements out depending on screen size and stretches header across the top of the screen
+    */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+    position: fixed; /* Keeps header at top of screen through scrolling top sets it to top of screen */
+    top: 0;
+    background-color: darkgray;
+    /* Heading at top of specific page */
+    &>h1 {
+        font-size: 3em;
+        font-weight: 700;
+        letter-spacing: 5px;
+        margin: 5px;
+    }
+    /* I'm using an empty div element to draw a solid line at the bottom of the header */
+    &>div {
+        flex: 0 0 100%;
+        border: 1px solid gray;
+    }
+    /* This handles the class of "back" buttons in the headers. Home button on project.html and back button on notes.html */
+    .back {
+        &>i {
+            font-size: 2em;
+            font-weight: 700;
+            letter-spacing: 5px;
+            margin: 3px;
+            color: black;
+        }
+        &:hover {
+            opacity: 60%;
+        }
+    }
 }
