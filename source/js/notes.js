@@ -212,7 +212,7 @@ function renderTasks() {
 }
 
 /**
- * Marks a task as completed and converts it to a note
+ * Marks a task as completed 
  * @param {string} taskName string name of the task to be completed
  */
 function completeTask(taskName) {
