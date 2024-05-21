@@ -176,7 +176,6 @@ function saveToLocalStorage(notes) {
   const newTaskName = document.getElementById("new-task-name").value.trim();
   
   if (newTaskName === "") {
-    alert("Task name cannot be empty");
     return;
   }
 
