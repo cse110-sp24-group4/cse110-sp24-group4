@@ -7,9 +7,11 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "generate-docs": "node_modules/.bin/jsdoc -c ./jsdoc.json",
-    "lint": "eslint source"
+    "unit-test": "jest source/js/__testing__/unit/*",
+    "puppeteer-test": "bash source/js/__testing__/puppeteer/test-puppeteer.sh",
+    "generate-docs": "jsdoc -c ./jsdoc.json",
+    "lint": "eslint source",
+    "prettier": "prettier --write source/js"
   },
   "repository": {
     "type": "git",
@@ -32,18 +34,27 @@
   },
   "homepage": "",
   "devDependencies": {
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
     "@eslint/js": "^9.2.0",
+    "babel-jest": "^29.7.0",
     "docdash": "^2.0.2",
     "eslint": "^9.2.0",
     "eslint-plugin-check-file": "^2.8.0",
     "eslint-plugin-jsdoc": "^48.2.5",
     "globals": "^15.2.0",
+    "html-loader": "^5.0.0",
     "jest": "^29.7.0",
-    "jsdoc": "^4.0.3"
+    "jest-puppeteer": "^10.0.1",
+    "jsdoc": "^4.0.3",
+    "prettier": "^3.2.5",
+    "puppeteer": "^22.9.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
   },
   "jest": {
+    "preset": "jest-puppeteer",
     "transform": {},
     "verbose": true
-  },
-  "type": "module"
+  }
 }

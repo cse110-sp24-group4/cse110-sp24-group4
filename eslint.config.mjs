@@ -66,7 +66,7 @@ export default [
 
   },
   {
-    ignores: ["**/*.test.js"]
+    ignores: ["**/*.test.js", "**/__testing__/"]
   },
   {
     languageOptions: {

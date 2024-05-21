@@ -19,7 +19,7 @@ jobs:
         run: npm i
 
       - name: run ESLint
-        run: npx eslint ./source/js/*.js
+        run: npm run lint
   
   unit-test:
     runs-on: ubuntu-latest
@@ -31,8 +31,24 @@ jobs:
           # Make sure the actual branch is checked out when running on pull requests
           ref: ${{ github.head_ref }}
       
-      - name: install jest
+      - name: install dependencies
         run: npm i
 
-      - name: Unit tests
-        run: npm test ./source/js/__testing__/unit.test.js
+      - name: run unit tests
+        run: npm run unit-test
+
+  puppeteer-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Make sure the actual branch is checked out when running on pull requests
+          ref: ${{ github.head_ref }}
+      
+      - name: install dependencies
+        run: npm i
+
+      - name: start server and run tests
+        run: npm run puppeteer-test
