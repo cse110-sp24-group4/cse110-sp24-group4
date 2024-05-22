@@ -27,9 +27,21 @@ describe('Test the functionality of the landing page', ()=>{
 
     /**
      * Test delete project feature
+     * How do I click the specific button to delete
      */
     it('Delete project given a name', async () => {
         // TODO
+        
+    }, 10000);
+
+    /**
+     * Test local storage
+     */
+    it('See if projects are stored in local storage', async () => {
+        const currProjects = await page.$$('a');
+        await page.reload();
+        const reloadedProjects = await page.$$('a');
+        expect(currProjects.length).toBe(reloadedProjects.length);
         
     }, 10000);
 
