@@ -62,17 +62,25 @@ function createProject() {
 }
 
 /**
- * Removes the project from the website visually
+ * Removes the project from the website visually and in local storage
+ * Also removes associated notes from local storage
  * @param {string} projectId string identifier of the project to be deleted
  */
 function deleteProject(projectId) {
-  let parentId = document.getElementById(projectId);
-  projects = projects.filter((project) => project != projectId); // removes project from projects array
+  if (window.confirm(`Are you sure you want to delete ${projectId} and associated notes? (This action cannot be undone)`)) {
+    let parentId = document.getElementById(projectId);
+    projects = projects.filter((project) => project != projectId); // removes project from projects array
 
-  const projectList = document.getElementById("Project-List");
-  projectList.removeChild(parentId); // removing project visually from website
+    const projectList = document.getElementById("Project-List");
+    projectList.removeChild(parentId); // removing project visually from website
 
-  localStorage.setItem("projects", JSON.stringify(projects)); // saves the projects in local storage
+    localStorage.setItem("projects", JSON.stringify(projects)); // saves the projects in local storage
+
+    localStorage.removeItem(`${projectId}#notes`); // removes associated notes from local storage
+
+  } else {
+    return;
+  }
 }
 
 /**
