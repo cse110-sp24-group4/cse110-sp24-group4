@@ -4,6 +4,30 @@ describe('Test the functionality of the landing page', ()=>{
     });
 
     /**
+     * Test delete project feature
+     * How do I click the specific button to delete
+     */
+    it('Delete project given a name', async () => {
+        await page.type('#new-project-name', 'Project 1');
+        await page.click('#project-create');
+        await page.waitForSelector('#Project-List li');
+
+        
+        const projectsBeforeDeletion = await page.$$eval('#Project-List li', (items) => items.length);  // Get number of projects before deletion
+
+        
+        await page.$$eval('#Project-List li button', (buttons) => {
+            buttons.forEach((button) => button.click());    // Click delete button for each project
+        });
+
+        
+        const projectsAfterDeletion = await page.$$eval('#Project-List li', (items) => items.length);
+
+        expect(projectsAfterDeletion).toBe(projectsBeforeDeletion - 1);
+    }, 10000);
+
+
+    /**
      * Test create project button
      */
     it('Add project to page', async () => {
@@ -26,15 +50,6 @@ describe('Test the functionality of the landing page', ()=>{
     }, 10000);
 
     /**
-     * Test delete project feature
-     * How do I click the specific button to delete
-     */
-    it('Delete project given a name', async () => {
-        // TODO
-        
-    }, 10000);
-
-    /**
      * Test local storage
      */
     it('See if projects are stored in local storage', async () => {
@@ -45,5 +60,5 @@ describe('Test the functionality of the landing page', ()=>{
         
     }, 10000);
 
-    
+
 });
