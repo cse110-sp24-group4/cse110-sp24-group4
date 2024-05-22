@@ -74,11 +74,11 @@ function genNoteElement(noteObj) {
 /**
  * Generates a p element for the note html element
  * @param {string} content The content of the text element
- * @returns {Object} The html element for the text content
+ * @returns {HTMLElement} The html element for the text content
  */
-function createNoteText(content) {
+export function createNoteText(content) {
   const noteText = document.createElement("p");
-  noteText.innerText = content;
+  noteText.innerText = content ?? "New note";
   noteText.className = "note-text";
   return noteText;
 }
@@ -94,17 +94,17 @@ function createNoteText(content) {
  * Generates a button for the note html element
  * @param {string} iconName The name of the icon for the button
  * @param {onClickCallback} onClick The callback to use when clicked
- * @returns {Object} The html element for the button
+ * @returns {HTMLElement} The html element for the button
  */
-function createNoteButton(iconName, onClick) {
+export function createNoteButton(iconName, onClick) {
   const button = document.createElement("button");
-  button.onclick = onClick;
+  button.onclick = onClick ?? (() => console.log("Note button invalid"));
   button.classList.add("note-button");
   button.classList.add(iconName);
 
   const icon = document.createElement("i");
   icon.classList.add("material-icons");
-  icon.innerText = iconName;
+  icon.innerText = iconName ?? "edit";
   button.appendChild(icon);
   return button;
 }
