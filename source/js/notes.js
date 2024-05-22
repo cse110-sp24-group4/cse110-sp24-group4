@@ -40,7 +40,7 @@ function createNote() {
   const rand = (Math.random() * 1000).toFixed(0).toString();
   const newNote = {
     id: `${projectId}#notes#${rand}`,
-    content: "new note",
+    content: "New note",
   };
   notes.push(newNote);
   saveToLocalStorage(notes);
