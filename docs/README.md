@@ -13,6 +13,9 @@ cse110-sp24-group4/
 ```
 
 - `/docs` will contain all documentation for the project. These should be `.md` documents detailing how the repository should be maintained. The subdirectory `/jsdoc` will contain the JSDoc generated for our project.
+- `/admin` contains meeting minutes and other administrative material related to the project or class in general.
+- `/source` will conain the project source code
+- `/specs` will contain all content relating to the specifications of the project, as well as ADRs
 
 ## Project structure
 
@@ -33,11 +36,10 @@ source/
     README.md
 ```
 
-
 - `/assets` will contain any images we need for our project
 - `/js` will contain all the `.js` scripts we are implementing in our project. All files within this directory should have the `.js` extension.
 - `/css` will contain all the cascading style sheets for our project. All files within this directory should have the `.css` extension
-
+- `/pages` will contain the additional pages to the website aside from `index.html`. All files within this directory should have the `.html` or `.md` extension.
 - `index.html` will serve as the landing page when we publish
 - `README.md` in the main depository will serve as a README for the project which links to our documentation, contains a quickstart guide, or any other information relevant to an initial viewing of the repository.
 
