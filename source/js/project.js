@@ -67,7 +67,11 @@ function createProject() {
  * @param {string} projectId string identifier of the project to be deleted
  */
 function deleteProject(projectId) {
-  if (window.confirm(`Are you sure you want to delete ${projectId} and associated notes? (This action cannot be undone)`)) {
+  if (
+    window.confirm(
+      `Are you sure you want to delete ${projectId} and associated notes? (This action cannot be undone)`,
+    )
+  ) {
     let parentId = document.getElementById(projectId);
     projects = projects.filter((project) => project != projectId); // removes project from projects array
 
@@ -77,7 +81,6 @@ function deleteProject(projectId) {
     localStorage.setItem("projects", JSON.stringify(projects)); // saves the projects in local storage
 
     localStorage.removeItem(`${projectId}#notes`); // removes associated notes from local storage
-
   } else {
     return;
   }

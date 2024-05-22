@@ -155,7 +155,11 @@ function saveNote(noteId) {
  * @param {string} noteId Id of the note to be deleted
  */
 function deleteNote(noteId) {
-  if (window.confirm("Are you sure you want to delete this note? (This action cannot be undone)")) {
+  if (
+    window.confirm(
+      "Are you sure you want to delete this note? (This action cannot be undone)",
+    )
+  ) {
     const notesGrid = document.querySelector(".notes-grid");
     const noteBlock = document.getElementById(`${noteId}`);
     notes = notes.filter((n) => n.id != noteId);
