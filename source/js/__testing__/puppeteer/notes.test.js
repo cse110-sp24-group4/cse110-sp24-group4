@@ -119,6 +119,10 @@ describe("Test suites for notes page end-to-end tests", () => {
     const noteGrid = await page.$(".notes-grid");
     const noteBlocks = await noteGrid.$$(".note-block");
 
+    page.on("dialog", async (dialog) => {
+      await dialog.accept();
+    });
+
     for (const block of noteBlocks) {
       const deleteButton = await block.$("button.delete");
       expect(deleteButton).toBeDefined();
