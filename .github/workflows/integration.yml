@@ -50,5 +50,8 @@ jobs:
       - name: install dependencies
         run: npm i
 
+      - name: install live-server
+        run: npm i -g live-server
+
       - name: start server and run tests
         run: npm run puppeteer-test

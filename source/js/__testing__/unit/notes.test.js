@@ -1,5 +1,4 @@
-import { createNoteText, createNoteButton } from "../../notes.js";
-import { describe, it, expect } from "@jest/globals";
+import { createNoteText, createNoteButton } from "../../notes-utils.js";
 
 describe("Test suites for notes page unit tests", () => {
   it("Test createNoteText with valid input", () => {
