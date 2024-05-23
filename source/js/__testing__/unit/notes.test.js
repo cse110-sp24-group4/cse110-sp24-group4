@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { createNoteText, createNoteButton } from "../../notes-utils.js";
+import { createNoteText, createNoteButton } from "../../notes.js";
 
 describe("Test suites for notes page unit tests", () => {
   it("Test createNoteText with valid input", () => {
