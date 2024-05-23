@@ -1,6 +1,6 @@
 describe('Test the functionality of the landing page', ()=>{
     beforeAll(async () => {
-        await page.goto("http://127.0.0.1:5500/source/pages/project.html");
+        await page.goto("http://localhost:9000/pages/project.html");
     });
 
     /**
@@ -15,9 +15,13 @@ describe('Test the functionality of the landing page', ()=>{
         
         const projectsBeforeDeletion = await page.$$eval('#Project-List li', (items) => items.length);  // Get number of projects before deletion
 
+        page.on("dialog", async (dialog) => {
+            await dialog.accept();
+        });
         
         await page.$$eval('#Project-List li button', (buttons) => {
             buttons.forEach((button) => button.click());    // Click delete button for each project
+
         });
 
         
