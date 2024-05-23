@@ -53,7 +53,7 @@ function createProject() {
 
   // Try block to catch exceptions thrown by name check
   try {
-    const valid = isValidProjectName(newProjectName); // Will throw an exception if project name is invalid
+    isValidProjectName(newProjectName); // Will throw an exception if project name is invalid
     projects.push(newProjectName); //pushes new projectId to projects array
 
     //steps to make new project item.
@@ -119,7 +119,7 @@ function getProjectsFromLocalStorage() {
  * The name cannot be blank and must not be longer than 30 characters
  * @param {string} name entered name of project
  * @throws {Error} Throws an error with a message corresponding to fail condition
- * @return {boolean} true if name is valid
+ * @returns {boolean} true if name is valid
  */
 export function isValidProjectName(name) {
   const validCharacters = /^[A-Za-z0-9\-._~ ]+$/
