@@ -29,7 +29,7 @@
 <nav >
     
     
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createNote">createNote</a></li><li><a href="global.html#createNoteButton">createNoteButton</a></li><li><a href="global.html#createNoteText">createNoteText</a></li><li><a href="global.html#createProject">createProject</a></li><li><a href="global.html#createProjectItem">createProjectItem</a></li><li><a href="global.html#deleteNote">deleteNote</a></li><li><a href="global.html#deleteProject">deleteProject</a></li><li><a href="global.html#editNote">editNote</a></li><li><a href="global.html#genNoteElement">genNoteElement</a></li><li><a href="global.html#getProjectsFromLocalStorage">getProjectsFromLocalStorage</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#loadNotesFromStorage">loadNotesFromStorage</a></li><li><a href="global.html#projectId">projectId</a></li><li><a href="global.html#saveNote">saveNote</a></li><li><a href="global.html#saveToLocalStorage">saveToLocalStorage</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createNote">createNote</a></li><li><a href="global.html#createNoteButton">createNoteButton</a></li><li><a href="global.html#createNoteText">createNoteText</a></li><li><a href="global.html#createProject">createProject</a></li><li><a href="global.html#createProjectItem">createProjectItem</a></li><li><a href="global.html#deleteNote">deleteNote</a></li><li><a href="global.html#deleteProject">deleteProject</a></li><li><a href="global.html#editNote">editNote</a></li><li><a href="global.html#genNoteElement">genNoteElement</a></li><li><a href="global.html#getProjectsFromLocalStorage">getProjectsFromLocalStorage</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isValidProjectName">isValidProjectName</a></li><li><a href="global.html#loadNotesFromStorage">loadNotesFromStorage</a></li><li><a href="global.html#projectId">projectId</a></li><li><a href="global.html#saveNote">saveNote</a></li><li><a href="global.html#saveToLocalStorage">saveToLocalStorage</a></li><li><a href="global.html#setNamingErrorMessage">setNamingErrorMessage</a></li></ul>
     
 </nav>
 
@@ -1032,7 +1032,7 @@ Also removes associated notes from local storage</p></li></ul></dd>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="project.js.html">project.js</a>, <a href="project.js.html#line69">line 69</a>
+        <a href="project.js.html">project.js</a>, <a href="project.js.html#line76">line 76</a>
     </li></ul></dd>
     
 
@@ -1437,7 +1437,7 @@ Also removes associated notes from local storage</p></li></ul></dd>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="project.js.html">project.js</a>, <a href="project.js.html#line92">line 92</a>
+        <a href="project.js.html">project.js</a>, <a href="project.js.html#line99">line 99</a>
     </li></ul></dd>
     
 
@@ -1668,6 +1668,203 @@ Also removes associated notes from local storage</p></li></ul></dd>
 
 
 
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isValidProjectName"><span class="type-signature"></span>isValidProjectName<span class="signature">(name)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Verifies that project name is valid. Valid strings are structured as follows:
+Contains only the following characters:</p>
+<ul>
+<li>Alphanumeric</li>
+<li>'-'</li>
+<li>'.'</li>
+<li>'_'</li>
+<li>'~'
+The name cannot be blank and must not be longer than 30 characters</li>
+</ul></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="project.js.html">project.js</a>, <a href="project.js.html#line124">line 124</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>entered name of project</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-throws">Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        <p>Throws an error with a message corresponding to fail condition</p>
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>true if name is valid</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -2027,6 +2224,177 @@ Also removes associated notes from local storage</p></li></ul></dd>
 
 
         
+            
+
+    
+
+    <h4 class="name" id="setNamingErrorMessage"><span class="type-signature"></span>setNamingErrorMessage<span class="signature">(display, message)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Sets project naming message to be displayed or hidden</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="project.js.html">project.js</a>, <a href="project.js.html#line147">line 147</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>display</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>True if message should be displayed, false if message should be hidden</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>Project naming error</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Message to be displayed in case of error</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     
 
     
@@ -2185,7 +2553,7 @@ Also removes associated notes from local storage</p></li></ul></dd>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Thu May 23 2024 17:52:45 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Thu May 23 2024 21:21:02 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

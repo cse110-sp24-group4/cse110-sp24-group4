@@ -122,16 +122,18 @@ function getProjectsFromLocalStorage() {
  * @returns {boolean} true if name is valid
  */
 export function isValidProjectName(name) {
-  const validCharacters = /^[A-Za-z0-9\-._~ ]+$/
+  const validCharacters = /^[A-Za-z0-9\-._~ ]+$/;
 
   if (name.length < 1) {
     throw new Error("Project name must not be blank."); // Disallow blank names
   } else if (name.length > 30) {
     throw new Error("Project name cannot exceed 30 characters"); // Names should be max 30 characters
-  } else if (projects.includes(name)){
+  } else if (projects.includes(name)) {
     throw new Error(`${name} is already in use!`); // Disallow duplicate project names
   } else if (!validCharacters.test(name)) {
-    throw new Error("Project names can only contain letters, numbers, spaces and '-', '.', '_', '~'"); // Disallow reserved URI characters
+    throw new Error(
+      "Project names can only contain letters, numbers, spaces and '-', '.', '_', '~'",
+    ); // Disallow reserved URI characters
   }
 
   return true; // Return true if all checks pass
@@ -145,7 +147,7 @@ export function isValidProjectName(name) {
 function setNamingErrorMessage(display, message = "Project naming error") {
   const errorMessage = document.getElementById("project-name-error-message"); // Get error message element
   if (display) {
-    errorMessage.innerText = message; // Set specific error message 
+    errorMessage.innerText = message; // Set specific error message
     errorMessage.hidden = false; // Displays message
   } else {
     errorMessage.hidden = true; // Hides message
