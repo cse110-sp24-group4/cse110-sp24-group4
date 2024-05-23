@@ -18,8 +18,8 @@ header > a {
     &:hover {
         opacity: 50%;
     }
-  }
 }
+
 
 footer {
   display: flex;
