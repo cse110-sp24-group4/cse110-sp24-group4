@@ -27,7 +27,7 @@ export function createNoteButton(iconName, onClick) {
   const button = document.createElement("button");
   button.onclick = onClick ?? (() => console.log("Note button invalid"));
   button.classList.add("note-button");
-  button.classList.add(iconName);
+  button.classList.add(iconName ?? "edit");
 
   const icon = document.createElement("i");
   icon.classList.add("material-icons");

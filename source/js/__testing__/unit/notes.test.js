@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { createNoteText, createNoteButton } from "../../notes-utils.js";
 
 describe("Test suites for notes page unit tests", () => {
@@ -24,10 +27,10 @@ describe("Test suites for notes page unit tests", () => {
     const testIcon = "edit";
     const button = createNoteButton(testIcon, testFunc);
     expect(button.tagName.toLowerCase()).toBe("button");
-    expect(button.classList).toStrictEqual(["note-button", "edit"]);
+    expect(button.classList.toString()).toBe("note-button edit");
     expect(button.children.length).toBe(1);
     expect(button.children[0].tagName.toLowerCase()).toBe("i");
-    expect(button.children[0].tagName.toLowerCase()).toBe("edit");
+    expect(button.children[0].innerText.toLowerCase()).toBe("edit");
     expect(button.onclick).toBeDefined();
   });
 
@@ -36,10 +39,10 @@ describe("Test suites for notes page unit tests", () => {
     const testText = null;
     const button = createNoteButton(testText, testFunc);
     expect(button.tagName.toLowerCase()).toBe("button");
-    expect(button.classList).toStrictEqual(["note-button", "edit"]);
+    expect(button.classList.toString()).toBe("note-button edit");
     expect(button.children.length).toBe(1);
     expect(button.children[0].tagName.toLowerCase()).toBe("i");
-    expect(button.children[0].tagName.toLowerCase()).toBe("edit");
+    expect(button.children[0].innerText.toLowerCase()).toBe("edit");
     expect(button.onclick).toBeDefined();
   });
 });
