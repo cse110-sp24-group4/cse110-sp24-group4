@@ -8,7 +8,7 @@
  */
 window.addEventListener("load", () => init());
 
-let projects = [];
+export let projects = [];
 
 /**
  * Initializes the page
@@ -24,7 +24,7 @@ function init() {
  * @param {string} projectId string identifier for project which we are creating an element for
  * @returns {li} an HTML li element containing the name of the project, link to notes page, and delete button
  */
-function createProjectItem(projectId) {
+export function createProjectItem(projectId) {
   //creating the new variables for the project item shown on webpage
   const newProject = document.createElement("li"); //list item
   const newLink = document.createElement("a"); //link to project.html w/ project id.
@@ -35,7 +35,7 @@ function createProjectItem(projectId) {
     deleteProject(projectId);
   });
 
-  newLink.href = `./notes.html?projectId=${projectId}`; //setting embedded url
+  newLink.href = `./notes.html?projectId=${encodeURI(projectId)}`; //setting embedded url
   newLink.innerText = `${projectId}`; //displayed name is the projectId.
   newProject.id = projectId;
   newProject.appendChild(newLink); //adding link to list item
@@ -121,7 +121,7 @@ function getProjectsFromLocalStorage() {
  * @throws {Error} Throws an error with a message corresponding to fail condition
  * @return {boolean} true if name is valid
  */
-function isValidProjectName(name) {
+export function isValidProjectName(name) {
   const validCharacters = /^[A-Za-z0-9\-._~ ]+$/
 
   if (name.length < 1) {
