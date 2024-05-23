@@ -96,7 +96,7 @@ describe("Test suites for notes page end-to-end tests", () => {
     await page.reload();
     const noteGrid = await page.$(".notes-grid");
     const noteBlocks = await noteGrid.$$(".note-block");
-    i = 0;
+    let i = 0;
     for (const block of noteBlocks) {
       const textValue = await (
         await (await block.$("p")).getProperty("innerText")
