@@ -1,3 +1,4 @@
+import { createNoteText, createNoteButton } from "./notes-utils.js";
 /**
  * @file This file handles notes page functionality including
  * - Creating, editing, deleting notes
@@ -40,7 +41,7 @@ function createNote() {
   const rand = (Math.random() * 1000).toFixed(0).toString();
   const newNote = {
     id: `${projectId}#notes#${rand}`,
-    content: "new note",
+    content: "New note",
   };
   notes.push(newNote);
   saveToLocalStorage(notes);
@@ -72,44 +73,6 @@ function genNoteElement(noteObj) {
 }
 
 /**
- * Generates a p element for the note html element
- * @param {string} content The content of the text element
- * @returns {Object} The html element for the text content
- */
-function createNoteText(content) {
-  const noteText = document.createElement("p");
-  noteText.innerText = content;
-  noteText.className = "note-text";
-  return noteText;
-}
-
-/**
- * Callback for clicking buttons on the note blocks
- *
- * @callback onClickCallback
- * @param {string} noteId
- */
-
-/**
- * Generates a button for the note html element
- * @param {string} iconName The name of the icon for the button
- * @param {onClickCallback} onClick The callback to use when clicked
- * @returns {Object} The html element for the button
- */
-function createNoteButton(iconName, onClick) {
-  const button = document.createElement("button");
-  button.onclick = onClick;
-  button.classList.add("note-button");
-  button.classList.add(iconName);
-
-  const icon = document.createElement("i");
-  icon.classList.add("material-icons");
-  icon.innerText = iconName;
-  button.appendChild(icon);
-  return button;
-}
-
-/**
  * Changes the note text element to be an input and allow it to be edited
  * @param {string} noteId Id of the note to be changed
  */
@@ -118,8 +81,10 @@ function editNote(noteId) {
   const noteText = noteBlock.querySelector("p");
 
   const editButton = noteBlock.querySelector("button.edit");
-  const editIcon = editButton.querySelector("i");
+  editButton.classList.replace("edit", "check");
   editButton.onclick = () => saveNote(noteId);
+
+  const editIcon = editButton.querySelector("i");
   editIcon.innerText = "check";
 
   const noteTextInput = document.createElement("input");
@@ -137,9 +102,11 @@ function saveNote(noteId) {
   const noteBlock = document.getElementById(`${noteId}`);
   const noteTextInput = noteBlock.querySelector("input");
 
-  const editButton = noteBlock.querySelector("button.edit");
-  const editIcon = editButton.querySelector("i");
-  editButton.onclick = () => editNote(noteId);
+  const saveButton = noteBlock.querySelector("button.check");
+  saveButton.classList.replace("check", "edit");
+  saveButton.onclick = () => editNote(noteId);
+
+  const editIcon = saveButton.querySelector("i");
   editIcon.innerText = "edit";
 
   const noteText = createNoteText(noteTextInput.value);
