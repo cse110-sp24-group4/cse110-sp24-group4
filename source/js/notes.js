@@ -10,6 +10,17 @@ window.addEventListener("load", () => init());
  * @constant {string}
  */
 const projectId = new URL(window.location).searchParams.get("projectId");
+
+/**
+ * @typedef {Object} Note
+ * @property {string} id Unique ID for the note
+ * @property {string} content The text contained in the note
+ * @property {string} createdAt The ISO string for when the note was created
+ * @property {string} updatedAt The ISO string for when the note was last updated
+ */
+/**
+ * @type {Array<Note>}
+ */
 let notes = [];
 
 /**
@@ -29,6 +40,7 @@ function loadNotesFromStorage() {
   // if (projectId == null) return;
   notes = JSON.parse(localStorage.getItem(`${projectId}#notes`) ?? "[]") ?? [];
   for (const note of notes) {
+    console.log(note.createdAt, note.updatedAt);
     genNoteElement(note);
   }
 }
@@ -38,9 +50,15 @@ function loadNotesFromStorage() {
  */
 function createNote() {
   const rand = (Math.random() * 1000).toFixed(0).toString();
+  const curTime = new Date().toISOString();
+  /**
+   * @type {Note}
+   */
   const newNote = {
     id: `${projectId}#notes#${rand}`,
     content: "New note",
+    createdAt: curTime,
+    updatedAt: curTime,
   };
   notes.push(newNote);
   saveToLocalStorage(notes);
@@ -49,7 +67,7 @@ function createNote() {
 
 /**
  * Generates html element for the corresponding note object and attaches it to the note grid
- * @param {Object} noteObj Note object to generate element for
+ * @param {Note} noteObj Note object to generate element for
  */
 function genNoteElement(noteObj) {
   const addButton = document.querySelector("#create-note-button");
@@ -112,6 +130,8 @@ function saveNote(noteId) {
 
   noteBlock.replaceChild(noteText, noteTextInput);
   notes.find((note) => note.id == noteId).content = noteTextInput.value;
+  const curTime = new Date().toISOString();
+  notes.find((note) => note.id == noteId).updatedAt = curTime;
 
   saveToLocalStorage(notes);
 }
@@ -138,7 +158,7 @@ function deleteNote(noteId) {
 
 /**
  * Saves specified notes to localstorage
- * @param {Object[]} notes array of notes relating to project
+ * @param {Array<Note>} notes array of notes relating to project
  */
 function saveToLocalStorage(notes) {
   localStorage.setItem(`${projectId}#notes`, JSON.stringify(notes));
