@@ -20,11 +20,6 @@ body {
     margin: 0px; /* There's a margin between html and body? */
 }
 
-/*
-#2596be
-#3f48cc
-*/
-
 header {
     /*
     * This allows the header to lay the elements out depending on screen size and stretches header across the top of the screen
@@ -46,9 +41,6 @@ header {
         margin: 5px;
     }
 
-    &>a {
-        color: white;
-    }
     /* This handles the class of "back" buttons in the headers. Home button on project.html and back button on notes.html */
     .back {
         &>i {
