@@ -87,7 +87,7 @@ function genNoteElement(noteObj) {
   noteBlock.appendChild(noteEdit);
   noteBlock.appendChild(noteDelete);
 
-  notesGrid.insertBefore(noteBlock, addButton);
+  notesGrid.appendChild(noteBlock);
 }
 
 /**
