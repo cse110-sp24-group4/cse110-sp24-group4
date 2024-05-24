@@ -30,6 +30,7 @@ function init() {
   document
     .getElementById("create-note-button")
     .addEventListener("click", () => createNote());
+  document.getElementById("project-title").innerText = projectId;
   loadNotesFromStorage();
 }
 
