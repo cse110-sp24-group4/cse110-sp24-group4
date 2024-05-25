@@ -71,7 +71,6 @@ function createNote() {
  * @param {Note} noteObj Note object to generate element for
  */
 function genNoteElement(noteObj) {
-  const addButton = document.querySelector("#create-note-button");
   const notesGrid = document.querySelector(".notes-grid");
   const noteBlock = document.createElement("div");
 
