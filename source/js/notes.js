@@ -83,8 +83,8 @@ function genNoteElement(noteObj) {
   const noteEdit = createNoteButton("edit", () => editNote(noteObj.id));
   const noteDelete = createNoteButton("delete", () => deleteNote(noteObj.id));
 
-  const buttonContainer = document.createElement('div');
-  buttonContainer.classList = 'button-container';
+  const buttonContainer = document.createElement("div");
+  buttonContainer.classList = "button-container";
   buttonContainer.appendChild(noteEdit);
   buttonContainer.appendChild(noteDelete);
   noteBlock.appendChild(buttonContainer);
