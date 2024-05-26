@@ -31,7 +31,7 @@ function init() {
   document
     .getElementById("create-note-button")
     .addEventListener("click", () => createNote());
-    document
+  document
     .getElementById("sort-notes-button")
     .addEventListener("click", () => sortNotes());
   document.getElementById("project-title").innerText = projectId;
@@ -41,20 +41,22 @@ function init() {
 /**
  * Sorts notes based on both most and least recently created
  */
-function sortNotes(){
+function sortNotes() {
   let sortButton = document.getElementById("sort-notes-button");
   let notesGrid = document.querySelector(".notes-grid");
-    notes = notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // sorts dates
-    if (sortButton.innerText == "Sorted by most recent"){ // changes text based on how we sort
-      notes.reverse();
-      sortButton.innerText = "Sorted by least recent";
-    } else {
-      sortButton.innerText = "Sorted by most recent";
-    }
-    for (const note of notes){      // appends each note to end, giving us sorted list.
-      let noteBlock = document.getElementById(`${note.id}`);
-      notesGrid.appendChild(noteBlock);
-    }
+  notes = notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // sorts dates
+  if (sortButton.innerText == "Sorted by most recent") {
+    // changes text based on how we sort
+    notes.reverse();
+    sortButton.innerText = "Sorted by least recent";
+  } else {
+    sortButton.innerText = "Sorted by most recent";
+  }
+  for (const note of notes) {
+    // appends each note to end, giving us sorted list.
+    let noteBlock = document.getElementById(`${note.id}`);
+    notesGrid.appendChild(noteBlock);
+  }
 }
 
 /**
