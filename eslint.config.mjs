@@ -12,6 +12,8 @@ export default [
     },
 
     rules: {
+      // Check for lingering debug logging
+      "no-console": "error",
       // Custom naming conventions
       "camelcase": ["error", {
         "properties": "always",

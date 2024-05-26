@@ -64,7 +64,6 @@ function loadNotesFromStorage() {
   // if (projectId == null) return;
   notes = JSON.parse(localStorage.getItem(`${projectId}#notes`) ?? "[]") ?? [];
   for (const note of notes) {
-    console.log(note.timeFormatted, note.updatedAt);
     genNoteElement(note);
   }
   sortNotes();
@@ -223,6 +222,7 @@ export function createNoteText(content) {
  */
 export function createNoteButton(iconName, onClick) {
   const button = document.createElement("button");
+  // eslint-disable-next-line no-console
   button.onclick = onClick ?? (() => console.log("Note button invalid"));
   button.classList.add("note-button");
   button.classList.add(iconName ?? "edit");
