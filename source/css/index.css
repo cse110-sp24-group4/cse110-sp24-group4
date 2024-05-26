@@ -5,7 +5,7 @@ header>img {
 header>a {
     text-decoration: none;
     font-size: 2em;
-    border: 2px solid black;
+    border: 2px solid #674A2A;
     border-radius: 10px;
     color: black;
     margin-left: auto;
@@ -13,7 +13,7 @@ header>a {
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 5px;
-    background-color: #2596be;
+    background-color:#ebd0b2;
 
     &:hover {
         opacity: 50%;
@@ -39,9 +39,9 @@ footer {
         margin-left: 3%;
         width: 33%;
         padding: 35px;
-        border: solid 1px black;
+        border: solid 1px #674A2A;
         border-radius: 25px;
-        background-color: #5CB1CF;
+        background-color: #FFF;
 
         &>h2 {
             letter-spacing: 3px;
@@ -59,11 +59,11 @@ footer {
         &>a {
             text-decoration: none;
             font-size: 1.5em;
-            border: 2px solid black;
+            border: 2px solid #674A2A;
             border-radius: 10px;
             color: white;
             padding: 5px;
-            background-color: #202466;
+            background-color: #674A2A;
 
             &:hover {
                 opacity: 50%;
