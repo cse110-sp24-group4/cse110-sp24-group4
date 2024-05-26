@@ -14,6 +14,7 @@ const projectId = new URL(window.location).searchParams.get("projectId");
 /**
  * @typedef {Object} Note
  * @property {string} id Unique ID for the note
+ *  @property {string} createdTime The time created listed in a way to be compared
  * @property {string} content The text contained in the note
  * @property {string} createdAt The ISO string for when the note was created
  * @property {string} updatedAt The ISO string for when the note was last updated
@@ -30,8 +31,30 @@ function init() {
   document
     .getElementById("create-note-button")
     .addEventListener("click", () => createNote());
+    document
+    .getElementById("sort-notes-button")
+    .addEventListener("click", () => sortNotes());
   document.getElementById("project-title").innerText = projectId;
   loadNotesFromStorage();
+}
+
+/**
+ * Sorts notes based on both most and least recently created
+ */
+function sortNotes(){
+  let sortButton = document.getElementById("sort-notes-button");
+  let notesGrid = document.querySelector(".notes-grid");
+    notes = notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // sorts dates
+    if (sortButton.innerText == "Sorted by most recent"){ // changes text based on how we sort
+      notes.reverse();
+      sortButton.innerText = "Sorted by least recent";
+    } else {
+      sortButton.innerText = "Sorted by most recent";
+    }
+    for (const note of notes){      // appends each note to end, giving us sorted list.
+      let noteBlock = document.getElementById(`${note.id}`);
+      notesGrid.appendChild(noteBlock);
+    }
 }
 
 /**
@@ -41,9 +64,10 @@ function loadNotesFromStorage() {
   // if (projectId == null) return;
   notes = JSON.parse(localStorage.getItem(`${projectId}#notes`) ?? "[]") ?? [];
   for (const note of notes) {
-    console.log(note.createdAt, note.updatedAt);
+    console.log(note.timeFormatted, note.updatedAt);
     genNoteElement(note);
   }
+  sortNotes();
 }
 
 /**
@@ -51,14 +75,16 @@ function loadNotesFromStorage() {
  */
 function createNote() {
   const rand = (Math.random() * 1000).toFixed(0).toString();
-  const curTime = new Date().toISOString();
+  const time = new Date();
+  const curTime = time.toLocaleDateString() + " " + time.toLocaleTimeString();
   /**
    * @type {Note}
    */
   const newNote = {
     id: `${projectId}#notes#${rand}`,
     content: "New note",
-    createdAt: curTime,
+    timeFormatted: curTime,
+    createdAt: time,
     updatedAt: curTime,
   };
   notes.push(newNote);
@@ -82,12 +108,14 @@ function genNoteElement(noteObj) {
 
   const noteEdit = createNoteButton("edit", () => editNote(noteObj.id));
   const noteDelete = createNoteButton("delete", () => deleteNote(noteObj.id));
+  const noteDate = createNoteText(noteObj.timeFormatted);
 
   const buttonContainer = document.createElement("div");
   buttonContainer.classList = "button-container";
   buttonContainer.appendChild(noteEdit);
   buttonContainer.appendChild(noteDelete);
   noteBlock.appendChild(buttonContainer);
+  noteBlock.appendChild(noteDate);
 
   notesGrid.appendChild(noteBlock);
 }
