@@ -14,9 +14,9 @@ const projectId = new URL(window.location).searchParams.get("projectId");
 /**
  * @typedef {Object} Note
  * @property {string} id Unique ID for the note
- *  @property {string} createdTime The time created listed in a way to be compared
+ *  @property {string} timeFormatted The ISO string for when the note was created
  * @property {string} content The text contained in the note
- * @property {string} createdAt The ISO string for when the note was created
+ * @property {string} createdAt The time created listed in a way to be compared
  * @property {string} updatedAt The ISO string for when the note was last updated
  */
 /**
