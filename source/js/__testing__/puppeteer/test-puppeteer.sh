@@ -1,3 +1,5 @@
+set -e
+
 npx live-server --port=9000 source/ &
 
 PID=$!
