@@ -107,7 +107,7 @@ function genNoteElement(noteObj) {
 
   const noteEdit = createNoteButton("edit", () => editNote(noteObj.id));
   const noteDelete = createNoteButton("delete", () => deleteNote(noteObj.id));
-  const noteDate = document.createElement("p");
+  const noteDate = document.createElement("i");
   noteDate.innerText = noteObj.timeFormatted;
 
   const buttonContainer = document.createElement("div");
