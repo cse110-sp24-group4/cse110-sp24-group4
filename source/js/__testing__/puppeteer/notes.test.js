@@ -16,7 +16,7 @@ describe("Test suites for notes page end-to-end tests", () => {
     }, projectId);
 
     const noteGrid = await page.$(".notes-grid");
-    const noteTexts = await noteGrid.$$(".note-block > p");
+    const noteTexts = await noteGrid.$$(".note-block > p.note-text");
 
     for (const text of noteTexts) {
       const textValue = await (await text.getProperty("innerText")).jsonValue();
@@ -37,7 +37,7 @@ describe("Test suites for notes page end-to-end tests", () => {
     }, projectId);
 
     const noteGrid = await page.$(".notes-grid");
-    const noteTexts = await noteGrid.$$(".note-block > p");
+    const noteTexts = await noteGrid.$$(".note-block > p.note-text");
 
     for (const text of noteTexts) {
       const textValue = await (await text.getProperty("innerText")).jsonValue();
@@ -87,7 +87,7 @@ describe("Test suites for notes page end-to-end tests", () => {
 
     expect(contents).toStrictEqual(["New note0", "New note1"]);
 
-    const noteTexts = await noteGrid.$$(".note-block > p");
+    const noteTexts = await noteGrid.$$(".note-block > p.note-text");
 
     expect(noteTexts.length).toBe(2);
     expect(curLocalStorage.length).toBe(2);
@@ -133,7 +133,7 @@ describe("Test suites for notes page end-to-end tests", () => {
       return JSON.parse(localStorage.getItem(`${projId}#notes`));
     }, projectId);
 
-    const noteTexts = await noteGrid.$$(".note-block > p");
+    const noteTexts = await noteGrid.$$(".note-block > p.note-text");
 
     expect(noteTexts.length).toBe(0);
     expect(curLocalStorage.length).toBe(0);
@@ -145,7 +145,7 @@ describe("Test suites for notes page end-to-end tests", () => {
     }, projectId);
 
     const noteGrid = await page.$(".notes-grid");
-    const noteTexts = await noteGrid.$$(".note-block > p");
+    const noteTexts = await noteGrid.$$(".note-block > p.note-text");
 
     expect(noteTexts.length).toBe(0);
     expect(curLocalStorage.length).toBe(0);
