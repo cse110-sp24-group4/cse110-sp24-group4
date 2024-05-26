@@ -66,6 +66,7 @@ function createProject() {
   } catch (error) {
     setNamingErrorMessage(true, error.message); // Displays naming error message under text area
   }
+  document.getElementById("new-project-name").value = '';
 }
 
 /**
