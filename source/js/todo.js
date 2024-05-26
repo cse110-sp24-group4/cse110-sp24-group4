@@ -1,3 +1,11 @@
+/**
+ * @file This file handles the to-do list functionality for the project page.
+ * It includes:
+ * - Adding new tasks
+ * - Marking tasks as completed
+ * - Deleting tasks
+ * - Saving and loading tasks from localStorage
+ */
 window.addEventListener("load", () => initTodoList());
 
 let tasks = [];
