@@ -59,16 +59,21 @@ function renderTasks(projectId) {
     const taskCheckbox = document.createElement("input");
     taskCheckbox.type = "checkbox";
     taskCheckbox.checked = task.completed;
-    taskCheckbox.addEventListener("change", () => {
-      task.completed = taskCheckbox.checked;
-      saveTasksToLocalStorage(projectId);
-    });
 
     const taskName = document.createElement("span");
     taskName.innerText = task.name;
-    if (task.completed) {
-      taskName.classList.add("task-completed");
-    }
+
+    // Checkbox event listener needs to be added after span element
+    // Task needs to be marked completed in event listener or item will not update until tasks are re-rendered
+    taskCheckbox.addEventListener("change", () => {
+      task.completed = taskCheckbox.checked;
+      if (task.completed) {
+        taskName.classList.add("task-completed");
+      } else {
+        taskName.classList.remove("task-completed"); // Allows task to be unchecked
+      }
+      saveTasksToLocalStorage(projectId);
+    });
 
     const deleteButton = document.createElement("button");
     deleteButton.innerHTML = '<i class="material-icons">delete</i>';
