@@ -245,7 +245,9 @@ function deleteNote(noteId) {
  */
 function expandNote(noteId) {
   const noteBlock = document.getElementById(`${noteId}`);
-  noteBlock.querySelector(".note-content").style.removeProperty("height");
+  noteBlock
+    .querySelector(".note-content")
+    .classList.replace("collapsed", "expanded");
   const expandButton = noteBlock.querySelector(".note-overflow-button");
   expandButton.classList.replace("note-expand", "note-collapse");
   expandButton.onclick = () => collapseNote(noteId);
@@ -258,7 +260,9 @@ function expandNote(noteId) {
  */
 function collapseNote(noteId) {
   const noteBlock = document.getElementById(`${noteId}`);
-  noteBlock.querySelector(".note-content").style["height"] = "200px";
+  noteBlock
+    .querySelector(".note-content")
+    .classList.replace("expanded", "collapsed");
   const collapseButton = noteBlock.querySelector(".note-overflow-button");
   collapseButton.classList.replace("note-collapse", "note-expand");
   collapseButton.onclick = () => expandNote(noteId);
@@ -280,9 +284,8 @@ function saveToLocalStorage(notes) {
  */
 export function createNoteText(content) {
   const noteText = document.createElement("p");
-  noteText.style.height = "200px";
   noteText.innerText = content ?? "New note";
-  noteText.classList.add("note-content", "note-text");
+  noteText.classList.add("note-content", "note-text", "collapsed");
   return noteText;
 }
 
