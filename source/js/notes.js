@@ -173,7 +173,10 @@ function editNote(noteId) {
 
   noteTitle.replaceWith(noteTitleInput);
   noteBlock.replaceChild(noteTextInput, noteText);
-  noteBlock.removeChild(noteBlock.querySelector(".note-overflow-button"));
+  const expandButton = noteBlock.querySelector(".note-overflow-button");
+  if (expandButton) {
+    noteBlock.removeChild(expandButton);
+  }
 }
 
 /**
