@@ -5,19 +5,24 @@
 */
 
 * {
-  font-family: "Sulphur Point", sans-serif;
-  font-style: normal;
+    font-family: "Sulphur Point", sans-serif;
+    font-style: normal;
 }
 
-html, body {
-    min-height: 100vh; /* Prevents tiling of background gradients or images */
-    max-width: 100vw; /* Gets rid of unnecessary scroll bar that appeared on some screens */
+html,
+body {
+    min-height: 100vh;
+    /* Prevents tiling of background gradients or images */
+    max-width: 100vw;
+    /* Gets rid of unnecessary scroll bar that appeared on some screens */
 }
 
 body {
     background-color: #FFF;
-    padding: 100px 0px 50px; /* 100px top to give space for sticky header can be adjusted as needed, 0px on side to allow header to occupy full screen 50px on bottom because I felt like it */
-    margin: 0px; /* There's a margin between html and body? */
+    padding: 100px 0px 50px;
+    /* 100px top to give space for sticky header can be adjusted as needed, 0px on side to allow header to occupy full screen 50px on bottom because I felt like it */
+    margin: 0px;
+    /* There's a margin between html and body? */
 }
 
 header {
@@ -29,11 +34,14 @@ header {
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
-    position: fixed; /* Keeps header at top of screen through scrolling top sets it to top of screen */
+    position: fixed;
+    /* Keeps header at top of screen through scrolling top sets it to top of screen */
     top: 0;
     color: white;
     background-color: #202466;
     border-bottom: 5px solid #92CBDF;
+    z-index: 100;
+
     /* Heading at top of specific page */
     &>h1 {
         font-size: 3em;
@@ -50,6 +58,7 @@ header {
             margin: 3px;
             color: white;
         }
+
         &:hover {
             opacity: 60%;
         }
