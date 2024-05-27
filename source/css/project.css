@@ -1,23 +1,40 @@
 .container{
-    font-size: 140%;
-    font-weight:bold;
+    width: 80vw;
+    margin: 20px;
+    font-size: 1em;
+    font-weight: bold;
     font-family: 'Courier New', Courier, monospace
 }
 
 a {
     color:#3D5D46;
-    padding-right: 30px;
+    display: grid;
+    grid-template-columns: auto;
+    &>* {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 ul{
-    list-style-position: inside;
-    list-style-type:circle;
+    display: grid;
+    grid-template-columns: 15% 15% 15% 15%;
+    gap: 10%;
+
+    list-style-type: none;
 
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    width: 80vw;
 
-    background-color: white;
-    width: 500px;
+}
 
+li {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
 }
 
 button {
@@ -33,17 +50,15 @@ button {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 
+    margin: 5px;
+
     font-size: 80%;
 }
 
-textarea{
-    padding: 10px;
-    margin-left: 10px;
-
+#new-project-name{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
     width: auto;
-    align-items: center;
 }
 
 h2{
@@ -54,6 +69,5 @@ h2{
 
 .add-project-button{
     font-size: 100%;
-    align-self: center;
 }
 
