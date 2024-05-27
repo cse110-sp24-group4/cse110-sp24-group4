@@ -34,7 +34,7 @@ export function createProjectItem(projectId) {
   folderImage.src = "../assets/images/folder.png";
   folderImage.alt = "folder";
 
-  linkText.innterText = `${projectId}`;
+  linkText.innerText = `${projectId}`;
 
   const newDelete = document.createElement("button"); //delete button
   newDelete.innerText = "Delete";

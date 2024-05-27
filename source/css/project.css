@@ -8,12 +8,12 @@
 
 a {
     color:#3D5D46;
-    display: grid;
-    grid-template-columns: auto;
-    &>* {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    & > img {
+        max-width: 32px;
     }
 }
 
