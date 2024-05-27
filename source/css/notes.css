@@ -86,6 +86,7 @@
   height: 200px;
   font-size: 1em;
   overflow-wrap: break-word;
+  overflow-y: hidden;
 }
 
 .note-button {

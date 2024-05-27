@@ -134,7 +134,12 @@ function genNoteElement(noteObj) {
   noteBlock.appendChild(noteText);
   noteBlock.appendChild(buttonContainer);
 
-  notesGrid.appendChild(noteBlock);
+  let sortButton = document.getElementById("sort-notes-button");
+  if (sortButton.innerText == "Sorted by most recent") {
+    notesGrid.prepend(noteBlock);
+  } else {
+    notesGrid.append(noteBlock);
+  }
 }
 
 /**
