@@ -28,6 +28,16 @@ export function createProjectItem(projectId) {
   //creating the new variables for the project item shown on webpage
   const newProject = document.createElement("li"); //list item
   const newLink = document.createElement("a"); //link to project.html w/ project id.
+  const folderImage = document.createElement("img");
+  const linkText = document.createElement("p");
+
+  folderImage.src = "../assets/images/folder.png";
+  folderImage.alt = "folder";
+
+  linkText.innerText = `${projectId}`;
+
+  newLink.classList.add("project-link");
+  linkText.classList.add("project-name");
 
   const newDelete = document.createElement("button"); //delete button
   newDelete.innerText = "Delete";
@@ -35,11 +45,14 @@ export function createProjectItem(projectId) {
     deleteProject(projectId);
   });
 
+  newLink.appendChild(folderImage);
   newLink.href = `./notes.html?projectId=${encodeURI(projectId)}`; //setting embedded url
-  newLink.innerText = `${projectId}`; //displayed name is the projectId.
   newProject.id = projectId;
+
   newProject.appendChild(newLink); //adding link to list item
+  newProject.appendChild(linkText);
   newProject.appendChild(newDelete); //adding delete button to list item.
+  
 
   return newProject; //returning the new project.
 }
@@ -58,8 +71,8 @@ function createProject() {
 
     //steps to make new project item.
     const newProjectItem = createProjectItem(newProjectName);
-    const projectList = document.getElementById("Project-List");
-    projectList.appendChild(newProjectItem);
+    const projectList = document.getElementById("add-a-project");
+    projectList.after(newProjectItem);
 
     localStorage.setItem("projects", JSON.stringify(projects)); // saves the projects in local storage
     setNamingErrorMessage(false); // Hides naming error message
@@ -98,12 +111,12 @@ function deleteProject(projectId) {
  * When website is loaded, retrieve all of the projects from local storage
  */
 function getProjectsFromLocalStorage() {
-  const projectList = document.getElementById("Project-List");
+  const projectList = document.getElementById("add-a-project");
   const storedProjects = JSON.parse(localStorage.getItem("projects")) || [];
 
   for (const projectId of storedProjects) {
     let item = createProjectItem(projectId);
-    projectList.appendChild(item);
+    projectList.after(item);
   }
 
   projects = storedProjects;
