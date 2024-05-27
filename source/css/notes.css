@@ -10,24 +10,36 @@
   justify-content: center;
 }
 
+#create-note-button {
+  border-width: 0.5px;
+  border-radius: 4px;
+}
+
+#sort-notes-button {
+  border-width: 0.5px;
+  border-radius: 4px;
+}
+
 #notes-header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  margin-left: 8px;
 }
 
 #main-container {
   display: grid;
   grid-template-columns: 0.8fr 0.2fr;
+  padding: 0px 16px 0px 16px;
+  gap: 12px;
 }
 
 .notes-grid {
   display: grid;
   grid-template-columns: auto;
   gap: 10px;
-  margin: 0 20px;
 }
 
 .button-container {
@@ -46,9 +58,15 @@
   justify-content: space-between;
   gap: 12px;
   padding: 12px;
+  padding-top: 0px;
 }
 
 .note-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3em;
+  height: 3em;
   border-radius: 12px;
   border: 1px solid black;
 }
@@ -63,14 +81,12 @@
 
 .note-header {
   position: relative;
-  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: nowrap;
   width: 100%;
   padding: 0px;
-  margin: 0px;
 }
 
 .note-content {
