@@ -14,7 +14,7 @@ describe("Test suites for notes page unit tests", () => {
     const text = createNoteText(testText);
     expect(text.tagName.toLowerCase()).toBe("p");
     expect(text.innerText).toBe("Testing note");
-    expect(text.classList.toString()).toBe("note-content note-text");
+    expect(text.classList.toString()).toBe("note-content note-text collapsed");
   });
 
   it("Test createNoteText with invalid input", () => {
@@ -22,7 +22,7 @@ describe("Test suites for notes page unit tests", () => {
     const text = createNoteText(testText);
     expect(text.tagName.toLowerCase()).toBe("p");
     expect(text.innerText).toBe("New note");
-    expect(text.classList.toString()).toBe("note-content note-text");
+    expect(text.classList.toString()).toBe("note-content note-text collapsed");
   });
 
   it("Test createNoteButton with valid input", () => {
