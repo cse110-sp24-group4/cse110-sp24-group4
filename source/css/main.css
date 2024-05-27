@@ -40,6 +40,7 @@ header {
     /* Keeps header at top of screen through scrolling top sets it to top of screen */
     top: 0;
     color: white;
+    z-index: 1000;
     /*background-color: #674A2A;*/
     background-color: #708B64;
     border-bottom: 5px solid #C4A179;
