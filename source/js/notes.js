@@ -155,7 +155,7 @@ function editNote(noteId) {
 
   const noteTextInput = document.createElement("textarea");
   noteTextInput.value = noteText.innerText;
-  noteTextInput.classList.add("edit-note");
+  noteTextInput.classList.add("edit-note", "note-text");
 
   const noteTitleInput = document.createElement("input");
   noteTitleInput.value = noteTitle.innerText;
