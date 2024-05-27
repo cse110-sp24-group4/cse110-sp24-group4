@@ -125,6 +125,8 @@ function genNoteElement(noteObj) {
   const noteEdit = createNoteButton("edit", () => editNote(noteObj.id));
   const noteDelete = createNoteButton("delete", () => deleteNote(noteObj.id));
 
+  const expandButton = createExpandButton(noteObj.id);
+
   const buttonContainer = document.createElement("div");
   buttonContainer.className = "button-container";
   buttonContainer.appendChild(noteEdit);
@@ -139,6 +141,9 @@ function genNoteElement(noteObj) {
     notesGrid.prepend(noteBlock);
   } else {
     notesGrid.append(noteBlock);
+  }
+  if (noteText.scrollHeight > noteText.clientHeight) {
+    noteBlock.insertBefore(expandButton, buttonContainer);
   }
 }
 
@@ -168,6 +173,7 @@ function editNote(noteId) {
 
   noteTitle.replaceWith(noteTitleInput);
   noteBlock.replaceChild(noteTextInput, noteText);
+  noteBlock.removeChild(noteBlock.querySelector(".note-overflow-button"));
 }
 
 /**
@@ -197,6 +203,12 @@ function saveNote(noteId) {
   noteTitle.innerText = noteTitleInput.value;
   noteTitleInput.replaceWith(noteTitle);
 
+  if (noteText.scrollHeight > noteText.clientHeight) {
+    const expandButton = createExpandButton(noteId);
+    const buttonContainer = noteBlock.querySelector(".button-container");
+    noteBlock.insertBefore(expandButton, buttonContainer);
+  }
+
   notes.find((note) => note.id == noteId).content = noteTextInput.value;
   notes.find((note) => note.id == noteId).title = noteTitleInput.value;
   notes.find((note) => note.id == noteId).updatedAt = curTime;
@@ -225,6 +237,32 @@ function deleteNote(noteId) {
 }
 
 /**
+ * Expands the given note's contents
+ * @param {string} noteId Id of the note to expand
+ */
+function expandNote(noteId) {
+  const noteBlock = document.getElementById(`${noteId}`);
+  noteBlock.querySelector(".note-content").style.removeProperty("height");
+  const expandButton = noteBlock.querySelector(".note-overflow-button");
+  expandButton.classList.replace("note-expand", "note-collapse");
+  expandButton.onclick = () => collapseNote(noteId);
+  expandButton.innerText = "Less";
+}
+
+/**
+ * Collapses the given note's contents
+ * @param {string} noteId Id of the note to collapse
+ */
+function collapseNote(noteId) {
+  const noteBlock = document.getElementById(`${noteId}`);
+  noteBlock.querySelector(".note-content").style["height"] = "200px";
+  const collapseButton = noteBlock.querySelector(".note-overflow-button");
+  collapseButton.classList.replace("note-collapse", "note-expand");
+  collapseButton.onclick = () => expandNote(noteId);
+  collapseButton.innerText = "More";
+}
+
+/**
  * Saves specified notes to localstorage
  * @param {Array<Note>} notes array of notes relating to project
  */
@@ -239,6 +277,7 @@ function saveToLocalStorage(notes) {
  */
 export function createNoteText(content) {
   const noteText = document.createElement("p");
+  noteText.style.height = "200px";
   noteText.innerText = content ?? "New note";
   noteText.classList.add("note-content", "note-text");
   return noteText;
@@ -269,6 +308,23 @@ export function createNoteButton(iconName, onClick) {
   icon.innerText = iconName ?? "edit";
   button.appendChild(icon);
   return button;
+}
+
+/**
+ * Creates an expand button for the note content
+ *@param {string} noteId Id of the note to expand
+ *@returns {HTMLElement} The html element for the button
+ */
+export function createExpandButton(noteId) {
+  const expandButton = document.createElement("button");
+  expandButton.innerText = "More";
+  expandButton.classList.add(
+    "note-text",
+    "note-overflow-button",
+    "note-expand",
+  );
+  expandButton.onclick = () => expandNote(noteId);
+  return expandButton;
 }
 
 /**

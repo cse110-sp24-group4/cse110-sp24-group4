@@ -83,10 +83,24 @@
   margin: 0;
   padding-left: 8px;
   min-width: 90%;
-  height: 200px;
   font-size: 1em;
+  min-height: 200px;
   overflow-wrap: break-word;
   overflow-y: hidden;
+}
+
+.note-expand,
+.note-collapse {
+  align-self: flex-start;
+  background-color: white;
+  border: none;
+  font-weight: 900;
+
+}
+
+.note-expand:hover,
+.note-collapse:hover {
+  opacity: 50%;
 }
 
 .note-button {
