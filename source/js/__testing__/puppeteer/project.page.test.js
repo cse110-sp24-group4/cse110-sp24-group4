@@ -34,13 +34,13 @@ describe("Test the functionality of the landing page", () => {
   }, 10000);
 
   /**
-   * Test create project button
+   * Test create project button with invalid input
    */
-  it("Add project to page", async () => {
+  it("Add blank name project to page", async () => {
     const currProjects = await page.$$("a"); // obtain the current list of projects
     await page.click(".add-project-button"); // click on the add project button
     const projects = await page.$$("a"); // obtain the current list of projects
-    expect(projects.length).toBe(currProjects.length + 1); // the project length shouldve added one
+    expect(projects.length).toBe(currProjects.length); // the project length shouldve rejected blank project name
   }, 10000);
 
   /**

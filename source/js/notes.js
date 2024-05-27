@@ -14,9 +14,9 @@ const projectId = new URL(window.location).searchParams.get("projectId");
 /**
  * @typedef {Object} Note
  * @property {string} id Unique ID for the note
- *  @property {string} timeFormatted The ISO string for when the note was created
  * @property {string} content The text contained in the note
- * @property {string} createdAt The time created listed in a way to be compared
+ * @property {string} title The title of the note
+ * @property {string} createdAt The ISO string for when the note was created
  * @property {string} updatedAt The ISO string for when the note was last updated
  */
 /**
@@ -44,7 +44,7 @@ function init() {
 function sortNotes() {
   let sortButton = document.getElementById("sort-notes-button");
   let notesGrid = document.querySelector(".notes-grid");
-  notes = notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // sorts dates
+  notes = notes.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)); // sorts dates
   if (sortButton.innerText == "Sorted by most recent") {
     // changes text based on how we sort
     notes.reverse();
@@ -77,16 +77,15 @@ function loadNotesFromStorage() {
 function createNote() {
   const rand = (Math.random() * 1000).toFixed(0).toString();
   const time = new Date();
-  const curTime = time.toLocaleDateString() + " " + time.toLocaleTimeString();
   /**
    * @type {Note}
    */
   const newNote = {
     id: `${projectId}#notes#${rand}`,
-    content: "New note",
-    timeFormatted: curTime,
-    createdAt: time,
-    updatedAt: curTime,
+    title: "New note",
+    content: "Put the contents of your note here!",
+    createdAt: time.toISOString(),
+    updatedAt: time.toISOString(),
   };
   notes.push(newNote);
   saveToLocalStorage(notes);
@@ -102,24 +101,50 @@ function genNoteElement(noteObj) {
   const noteBlock = document.createElement("div");
 
   noteBlock.id = noteObj.id;
-  noteBlock.className = "note-block";
+  noteBlock.classList.add("note-block");
+
+  const noteHeader = document.createElement("h3");
+  noteHeader.classList.add("note-header");
+
+  const noteTitle = document.createElement("p");
+  noteTitle.classList.add("note-text", "note-title");
+  noteTitle.innerText = noteObj.title;
+
+  const noteDate = document.createElement("i");
+
+  const curTime = formatTime(noteObj.updatedAt);
+
+  noteDate.innerText = curTime;
+  noteDate.classList.add("note-date");
+
+  noteHeader.appendChild(noteTitle);
+  noteHeader.appendChild(noteDate);
 
   const noteText = createNoteText(noteObj.content);
-  noteBlock.appendChild(noteText);
 
   const noteEdit = createNoteButton("edit", () => editNote(noteObj.id));
   const noteDelete = createNoteButton("delete", () => deleteNote(noteObj.id));
-  const noteDate = document.createElement("i");
-  noteDate.innerText = noteObj.timeFormatted;
+
+  const expandButton = createExpandButton(noteObj.id);
 
   const buttonContainer = document.createElement("div");
-  buttonContainer.classList = "button-container";
+  buttonContainer.className = "button-container";
   buttonContainer.appendChild(noteEdit);
   buttonContainer.appendChild(noteDelete);
-  noteBlock.appendChild(buttonContainer);
-  noteBlock.appendChild(noteDate);
 
-  notesGrid.appendChild(noteBlock);
+  noteBlock.appendChild(noteHeader);
+  noteBlock.appendChild(noteText);
+  noteBlock.appendChild(buttonContainer);
+
+  let sortButton = document.getElementById("sort-notes-button");
+  if (sortButton.innerText == "Sorted by most recent") {
+    notesGrid.prepend(noteBlock);
+  } else {
+    notesGrid.append(noteBlock);
+  }
+  if (noteText.scrollHeight > noteText.clientHeight) {
+    noteBlock.insertBefore(expandButton, buttonContainer);
+  }
 }
 
 /**
@@ -128,7 +153,8 @@ function genNoteElement(noteObj) {
  */
 function editNote(noteId) {
   const noteBlock = document.getElementById(`${noteId}`);
-  const noteText = noteBlock.querySelector("p");
+  const noteTitle = noteBlock.querySelector(".note-title");
+  const noteText = noteBlock.querySelector(".note-content");
 
   const editButton = noteBlock.querySelector("button.edit");
   editButton.classList.replace("edit", "check");
@@ -137,11 +163,20 @@ function editNote(noteId) {
   const editIcon = editButton.querySelector("i");
   editIcon.innerText = "check";
 
-  const noteTextInput = document.createElement("input");
-  noteTextInput.type = "text";
+  const noteTextInput = document.createElement("textarea");
   noteTextInput.value = noteText.innerText;
+  noteTextInput.classList.add("edit-note", "note-text");
 
+  const noteTitleInput = document.createElement("input");
+  noteTitleInput.value = noteTitle.innerText;
+  noteTitleInput.classList = noteTitle.classList;
+
+  noteTitle.replaceWith(noteTitleInput);
   noteBlock.replaceChild(noteTextInput, noteText);
+  const expandButton = noteBlock.querySelector(".note-overflow-button");
+  if (expandButton) {
+    noteBlock.removeChild(expandButton);
+  }
 }
 
 /**
@@ -150,7 +185,9 @@ function editNote(noteId) {
  */
 function saveNote(noteId) {
   const noteBlock = document.getElementById(`${noteId}`);
-  const noteTextInput = noteBlock.querySelector("input");
+  const noteTitleInput = noteBlock.querySelector(".note-title");
+  const noteTextInput = noteBlock.querySelector(".edit-note");
+  const curTime = new Date().toISOString();
 
   const saveButton = noteBlock.querySelector("button.check");
   saveButton.classList.replace("check", "edit");
@@ -160,10 +197,23 @@ function saveNote(noteId) {
   editIcon.innerText = "edit";
 
   const noteText = createNoteText(noteTextInput.value);
-
+  const noteDate = noteBlock.querySelector(".note-date");
+  noteDate.innerText = formatTime(curTime);
   noteBlock.replaceChild(noteText, noteTextInput);
+
+  const noteTitle = document.createElement("p");
+  noteTitle.classList = noteTitleInput.classList;
+  noteTitle.innerText = noteTitleInput.value;
+  noteTitleInput.replaceWith(noteTitle);
+
+  if (noteText.scrollHeight > noteText.clientHeight) {
+    const expandButton = createExpandButton(noteId);
+    const buttonContainer = noteBlock.querySelector(".button-container");
+    noteBlock.insertBefore(expandButton, buttonContainer);
+  }
+
   notes.find((note) => note.id == noteId).content = noteTextInput.value;
-  const curTime = new Date().toISOString();
+  notes.find((note) => note.id == noteId).title = noteTitleInput.value;
   notes.find((note) => note.id == noteId).updatedAt = curTime;
 
   saveToLocalStorage(notes);
@@ -190,6 +240,32 @@ function deleteNote(noteId) {
 }
 
 /**
+ * Expands the given note's contents
+ * @param {string} noteId Id of the note to expand
+ */
+function expandNote(noteId) {
+  const noteBlock = document.getElementById(`${noteId}`);
+  noteBlock.querySelector(".note-content").style.removeProperty("height");
+  const expandButton = noteBlock.querySelector(".note-overflow-button");
+  expandButton.classList.replace("note-expand", "note-collapse");
+  expandButton.onclick = () => collapseNote(noteId);
+  expandButton.innerText = "Less";
+}
+
+/**
+ * Collapses the given note's contents
+ * @param {string} noteId Id of the note to collapse
+ */
+function collapseNote(noteId) {
+  const noteBlock = document.getElementById(`${noteId}`);
+  noteBlock.querySelector(".note-content").style["height"] = "200px";
+  const collapseButton = noteBlock.querySelector(".note-overflow-button");
+  collapseButton.classList.replace("note-collapse", "note-expand");
+  collapseButton.onclick = () => expandNote(noteId);
+  collapseButton.innerText = "More";
+}
+
+/**
  * Saves specified notes to localstorage
  * @param {Array<Note>} notes array of notes relating to project
  */
@@ -204,8 +280,9 @@ function saveToLocalStorage(notes) {
  */
 export function createNoteText(content) {
   const noteText = document.createElement("p");
+  noteText.style.height = "200px";
   noteText.innerText = content ?? "New note";
-  noteText.className = "note-text";
+  noteText.classList.add("note-content", "note-text");
   return noteText;
 }
 
@@ -234,4 +311,31 @@ export function createNoteButton(iconName, onClick) {
   icon.innerText = iconName ?? "edit";
   button.appendChild(icon);
   return button;
+}
+
+/**
+ * Creates an expand button for the note content
+ *@param {string} noteId Id of the note to expand
+ *@returns {HTMLElement} The html element for the button
+ */
+export function createExpandButton(noteId) {
+  const expandButton = document.createElement("button");
+  expandButton.innerText = "More";
+  expandButton.classList.add(
+    "note-text",
+    "note-overflow-button",
+    "note-expand",
+  );
+  expandButton.onclick = () => expandNote(noteId);
+  return expandButton;
+}
+
+/**
+ * Returns a formatted time string from a given ISO string
+ * @param {string} timeString The ISO string to convert
+ * @returns {string} The formatted version of the string
+ */
+export function formatTime(timeString) {
+  const time = new Date(timeString);
+  return time.toLocaleDateString() + " " + time.toLocaleTimeString();
 }
