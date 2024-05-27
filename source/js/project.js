@@ -36,6 +36,9 @@ export function createProjectItem(projectId) {
 
   linkText.innerText = `${projectId}`;
 
+  newLink.classList.add("project-link");
+  linkText.classList.add("project-name");
+
   const newDelete = document.createElement("button"); //delete button
   newDelete.innerText = "Delete";
   newDelete.addEventListener("click", () => {
@@ -43,12 +46,13 @@ export function createProjectItem(projectId) {
   });
 
   newLink.appendChild(folderImage);
-  newLink.appendChild(linkText);
   newLink.href = `./notes.html?projectId=${encodeURI(projectId)}`; //setting embedded url
   newProject.id = projectId;
 
   newProject.appendChild(newLink); //adding link to list item
+  newProject.appendChild(linkText);
   newProject.appendChild(newDelete); //adding delete button to list item.
+  
 
   return newProject; //returning the new project.
 }
@@ -106,12 +110,12 @@ function deleteProject(projectId) {
  * When website is loaded, retrieve all of the projects from local storage
  */
 function getProjectsFromLocalStorage() {
-  const projectList = document.getElementById("Project-List");
+  const projectList = document.getElementById("add-a-project");
   const storedProjects = JSON.parse(localStorage.getItem("projects")) || [];
 
   for (const projectId of storedProjects) {
     let item = createProjectItem(projectId);
-    projectList.appendChild(item);
+    projectList.after(item);
   }
 
   projects = storedProjects;
