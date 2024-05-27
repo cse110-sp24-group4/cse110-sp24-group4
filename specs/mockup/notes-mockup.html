@@ -1,163 +1,193 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Page</title>
-    <link rel="stylesheet" href="main-mockup.css" />
-    <link rel="stylesheet" href="notes-mockup.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-  </head>
-  <body>
-    <header>
-      <a href="./project.html" class="back"
-        ><i class="material-icons">arrow_back</i></a
-      >
-      <h1 id="project-title">Project</h1>
-      <div></div>
-    </header>
-    <section id="note-add">
-        <h2 id="notes-header">
-            Notes
-            <button id="create-note-button">Add new note</button>
-            <button id="sort-notes-button">Sort by date</button>
-        </h2>
-        <h2 id="todo-header">
-            To-do
-        </h2>
-    </section>
-    <div id="main-container">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Page</title>
+  <link rel="stylesheet" href="main-mockup.css" />
+  <link rel="stylesheet" href="notes-mockup.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+</head>
+
+<body>
+  <header>
+    <a href="./project.html" class="back"><i class="material-icons">arrow_back</i></a>
+    <h1 id="project-title">Project</h1>
+    <div></div>
+  </header>
+  <section id="note-add">
+    <h2 id="notes-header">
+      Notes
+      <button id="create-note-button">Add new note</button>
+      <button id="sort-notes-button">Sort by date</button>
+    </h2>
+    <h2 id="todo-header">
+      To-do
+    </h2>
+  </section>
+  <div id="main-container">
 
 
-      <div class="notes-grid">
-        <!-- Example note block <div class="note-block">
+    <div class="notes-grid">
+      <!-- Example note block <div class="note-block">
                 <p class="note-text">Note content</p>
                 <button class="note-button"><i class="material-icons">edit</i></button>
                 <button class="note-button"><i class="material-icons">delete</i></button>
                 </div> -->
-                <div id="mockup-project#notes#884" class="note-block">
-                    <h3 class="note-header">  
-                      <input type="textbox" class="note-text" value="Note 1"></p>
-                      <i class="note-date">5/26/2024 10:47:40 AM</i>
-                    </h3>
-                    <textarea class="edit-note">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Nam vehicula, ligula non bibendum vehicula, turpis turpis 
-                        cursus urna, vitae sollicitudin turpis mi vel ex. Curabitur 
-                        auctor sit amet justo vel blandit. Integer sit amet diam eu 
-                        turpis elementum aliquet. Duis hendrerit, odio et bibendum tempus, 
-                        urna sapien accumsan turpis, a egestas dolor ligula non eros. 
-                        Suspendisse potenti. Aenean ut aliquet nunc. Nulla non felis ut 
-                        libero sodales tempor. Cras fermentum lorem sed sapien elementum, 
-                        id varius sem sagittis. Vestibulum feugiat dui quis suscipit 
-                        interdum.                          
-                    </textarea>
-                    <details class="note-entry" style="display: none;">
-                        <summary>Expand</summary>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Nam vehicula, ligula non bibendum vehicula, turpis turpis 
-                        cursus urna, vitae sollicitudin turpis mi vel ex. Curabitur 
-                        auctor sit amet justo vel blandit. Integer sit amet diam eu 
-                        turpis elementum aliquet. Duis hendrerit, odio et bibendum tempus, 
-                        urna sapien accumsan turpis, a egestas dolor ligula non eros. 
-                        Suspendisse potenti. Aenean ut aliquet nunc. Nulla non felis ut 
-                        libero sodales tempor. Cras fermentum lorem sed sapien elementum, 
-                        id varius sem sagittis. Vestibulum feugiat dui quis suscipit 
-                        interdum.
-        
-                        
-                    </p>
-                    </details>
+      <div id="mockup-project#notes#884" class="note-block">
+        <h3 class="note-header">
+          <input type="textbox" class="note-text" value="Note 1"></p>
+          <i class="note-date">5/26/2024 10:47:40 AM</i>
+        </h3>
+        <textarea class="edit-note">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Nam vehicula, ligula non bibendum vehicula, turpis turpis
+          cursus urna, vitae sollicitudin turpis mi vel ex. Curabitur
+          auctor sit amet justo vel blandit. Integer sit amet diam eu
+          turpis elementum aliquet. Duis hendrerit, odio et bibendum tempus,
+          urna sapien accumsan turpis, a egestas dolor ligula non eros.
+          Suspendisse potenti. Aenean ut aliquet nunc. Nulla non felis ut
+          libero sodales tempor. Cras fermentum lorem sed sapien elementum,
+          id varius sem sagittis. Vestibulum feugiat dui quis suscipit
+          interdum.
+        </textarea>
+        <details class="note-entry" style="display: none;">
+          <summary>Expand</summary>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nam vehicula, ligula non bibendum vehicula, turpis turpis
+            cursus urna, vitae sollicitudin turpis mi vel ex. Curabitur
+            auctor sit amet justo vel blandit. Integer sit amet diam eu
+            turpis elementum aliquet. Duis hendrerit, odio et bibendum tempus,
+            urna sapien accumsan turpis, a egestas dolor ligula non eros.
+            Suspendisse potenti. Aenean ut aliquet nunc. Nulla non felis ut
+            libero sodales tempor. Cras fermentum lorem sed sapien elementum,
+            id varius sem sagittis. Vestibulum feugiat dui quis suscipit
+            interdum.
 
-                    <div class="button-container">
-                      <button class="note-button edit">
-                        <i class="material-icons">check</i>
-                      </button>
-                      <button class="note-button delete">
-                        <i class="material-icons">delete</i>
-                      </button>
-                    </div>
-                    
-                  </div>
-        <div id="mockup-project#notes#884" class="note-block">
-          <h3 class="note-header">  
-            <p class="note-text">Note 2</p>
-            <i class="note-date">5/26/2024 10:47:40 AM</i>
-          </h3>
-          <p class="preview">
-            Lorem ipsum dolor sit amet...
+
           </p>
-          <details class="note-entry">
-            <summary>Expand:</summary>
-            <p>
-                
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget libero ut turpis consectetur semper. Vivamus sit amet augue sed arcu malesuada facilisis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras non nisi vel lacus euismod maximus. Integer viverra, justo a accumsan scelerisque, augue turpis vehicula dui, nec sodales elit nisl at velit. Sed aliquam consectetur magna, ut fermentum ipsum rhoncus in. Duis ac lectus eget justo venenatis accumsan a at arcu. Mauris in ultrices mauris, nec tempor quam. Quisque nec massa sit amet mauris mattis hendrerit. Maecenas tristique ligula eu purus iaculis, id pulvinar odio mattis. Nulla facilisi. Vivamus at magna mi.
+        </details>
 
-Praesent suscipit odio sit amet orci pellentesque, nec convallis justo vestibulum. Morbi pretium, risus quis vestibulum molestie, mauris enim fermentum est, nec posuere nisi tellus vitae leo. Ut id magna sapien. Vestibulum convallis, nunc id tincidunt tristique, est ligula commodo enim, ac semper purus magna sit amet lacus. Nam fringilla, lacus vitae ultricies mattis, leo arcu fermentum lacus, sit amet interdum ante magna in neque. Aliquam erat volutpat. Sed non elit ut quam sollicitudin ullamcorper. Nullam faucibus efficitur arcu eget faucibus. Integer vitae risus nisl. Aenean et arcu eget magna eleifend elementum. Proin non tincidunt dolor, id sagittis dolor. Vivamus malesuada, quam eu fermentum posuere, ipsum magna posuere metus, sit amet egestas est libero et urna. Aliquam vel risus et eros ullamcorper tincidunt. Donec bibendum, justo vel varius eleifend, urna sapien dictum lectus, nec ullamcorper quam mi non ipsum. Nam id rhoncus justo.
-
-Sed consequat orci ut nunc eleifend, id ultricies quam bibendum. Cras fringilla elit et purus accumsan, eget gravida tortor hendrerit. Nulla facilisi. Suspendisse sit amet magna id tortor ultricies dignissim. Donec ac fringilla orci. Fusce eu mauris eu est tincidunt dignissim. Morbi accumsan nisl justo, eget viverra dui consectetur nec. Ut sagittis, elit eu vehicula blandit, nisi quam venenatis leo, nec aliquet lorem eros eget mi. Mauris ac lorem eget nunc commodo cursus.
-
-Suspendisse potenti. Phasellus dapibus laoreet ipsum, a fermentum sem feugiat eget. Integer scelerisque sit amet quam id posuere. Curabitur pulvinar semper diam, vel facilisis libero feugiat vitae. Cras malesuada lacus vitae turpis volutpat, nec malesuada elit hendrerit. Nulla facilisi. Phasellus euismod, nunc sit amet aliquet dictum, neque metus ultricies magna, vel vestibulum risus ex vel magna. Vestibulum at nisi tellus. Ut nec erat ipsum. Mauris sit amet malesuada libero, vitae venenatis lorem. Aliquam ac hendrerit dui. Vestibulum tempus nisi nec eros pellentesque vehicula. Vivamus vel nunc id urna ultricies cursus vitae nec eros.
-
-In ultricies efficitur odio, vitae scelerisque leo scelerisque ut. Nam ut quam volutpat, varius ante vel, dictum purus. Sed eget est in orci vehicula elementum. Phasellus vitae dictum mauris. Sed suscipit erat nec nunc ultricies dignissim. Phasellus sit amet fermentum justo. Integer sodales, velit vitae tristique facilisis, urna mauris tristique lorem, eget tincidunt urna risus eu ex. Sed tincidunt, nulla non consequat placerat, mauris velit malesuada odio, ut dapibus libero mi a risus. Nulla interdum, urna vel vulputate malesuada, ligula lacus vestibulum ante, nec sodales lacus lorem nec ex. Nullam dapibus justo ligula, ac congue urna facilisis a. Sed vel condimentum ligula, vel euismod mi. Curabitur pellentesque nunc ac tempor pretium. Sed vel aliquet libero. Donec consequat felis nisi, nec dapibus sem congue in. Sed in lobortis nisi. Sed euismod, ligula nec viverra dignissim, felis nisi dignissim lorem, a rhoncus metus tortor at dui. Sed mattis volutpat eros ac pharetra.
-
-                
-            </p>
-          </details>
-          <div class="button-container">
-            <button class="note-button edit">
-              <i class="material-icons">edit</i>
-            </button>
-            <button class="note-button delete">
-              <i class="material-icons">delete</i>
-            </button>
-          </div>
-          
+        <div class="button-container">
+          <button class="note-button edit">
+            <i class="material-icons">check</i>
+          </button>
+          <button class="note-button delete">
+            <i class="material-icons">delete</i>
+          </button>
         </div>
-        <div id="mockup-project#notes#884" class="note-block">
-            <h3 class="note-header">  
-              <p class="note-text">Note 3</p>
-              <i class="note-date">5/26/2024 10:47:40 AM</i>
-            </h3>
-            <p class="preview">
-                A shorter note
-              </p>
-            <details class="note-entry" style="display: none;">
-              <summary>Entry:</summary>
-              <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                  Nam vehicula, ligula non bibendum vehicula, turpis turpis 
-                  cursus urna, vitae sollicitudin turpis mi vel ex. Curabitur 
-                  auctor sit amet justo vel blandit. Integer sit amet diam eu 
-                  turpis elementum aliquet. Duis hendrerit, odio et bibendum tempus, 
-                  urna sapien accumsan turpis, a egestas dolor ligula non eros. 
-                  Suspendisse potenti. Aenean ut aliquet nunc. Nulla non felis ut 
-                  libero sodales tempor. Cras fermentum lorem sed sapien elementum, 
-                  id varius sem sagittis. Vestibulum feugiat dui quis suscipit 
-                  interdum.
-  
-                  
-              </p>
-            </details>
-            <div class="button-container">
-              <button class="note-button edit">
-                <i class="material-icons">edit</i>
-              </button>
-              <button class="note-button delete">
-                <i class="material-icons">delete</i>
-              </button>
-            </div>
-            
-          </div>
+
       </div>
-      <div id="todo-list">
-        <div class="todo-grid">
-          <input type="textbox" id="new-task-name" placeholder="Enter new task"></textarea>
-          <button id="add-task-button">Add new task</button>
-          <section>
+      <div id="mockup-project#notes#884" class="note-block">
+        <h3 class="note-header">
+          <p class="note-text">Note 2</p>
+          <i class="note-date">5/26/2024 10:47:40 AM</i>
+        </h3>
+        <p class="preview">
+          Lorem ipsum dolor sit amet...
+        </p>
+        <details class="note-entry">
+          <summary>Expand:</summary>
+          <p>
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget libero ut turpis consectetur semper.
+            Vivamus sit amet augue sed arcu malesuada facilisis. Pellentesque habitant morbi tristique senectus et netus
+            et malesuada fames ac turpis egestas. Cras non nisi vel lacus euismod maximus. Integer viverra, justo a
+            accumsan scelerisque, augue turpis vehicula dui, nec sodales elit nisl at velit. Sed aliquam consectetur
+            magna, ut fermentum ipsum rhoncus in. Duis ac lectus eget justo venenatis accumsan a at arcu. Mauris in
+            ultrices mauris, nec tempor quam. Quisque nec massa sit amet mauris mattis hendrerit. Maecenas tristique
+            ligula eu purus iaculis, id pulvinar odio mattis. Nulla facilisi. Vivamus at magna mi.
+
+            Praesent suscipit odio sit amet orci pellentesque, nec convallis justo vestibulum. Morbi pretium, risus quis
+            vestibulum molestie, mauris enim fermentum est, nec posuere nisi tellus vitae leo. Ut id magna sapien.
+            Vestibulum convallis, nunc id tincidunt tristique, est ligula commodo enim, ac semper purus magna sit amet
+            lacus. Nam fringilla, lacus vitae ultricies mattis, leo arcu fermentum lacus, sit amet interdum ante magna
+            in neque. Aliquam erat volutpat. Sed non elit ut quam sollicitudin ullamcorper. Nullam faucibus efficitur
+            arcu eget faucibus. Integer vitae risus nisl. Aenean et arcu eget magna eleifend elementum. Proin non
+            tincidunt dolor, id sagittis dolor. Vivamus malesuada, quam eu fermentum posuere, ipsum magna posuere metus,
+            sit amet egestas est libero et urna. Aliquam vel risus et eros ullamcorper tincidunt. Donec bibendum, justo
+            vel varius eleifend, urna sapien dictum lectus, nec ullamcorper quam mi non ipsum. Nam id rhoncus justo.
+
+            Sed consequat orci ut nunc eleifend, id ultricies quam bibendum. Cras fringilla elit et purus accumsan, eget
+            gravida tortor hendrerit. Nulla facilisi. Suspendisse sit amet magna id tortor ultricies dignissim. Donec ac
+            fringilla orci. Fusce eu mauris eu est tincidunt dignissim. Morbi accumsan nisl justo, eget viverra dui
+            consectetur nec. Ut sagittis, elit eu vehicula blandit, nisi quam venenatis leo, nec aliquet lorem eros eget
+            mi. Mauris ac lorem eget nunc commodo cursus.
+
+            Suspendisse potenti. Phasellus dapibus laoreet ipsum, a fermentum sem feugiat eget. Integer scelerisque sit
+            amet quam id posuere. Curabitur pulvinar semper diam, vel facilisis libero feugiat vitae. Cras malesuada
+            lacus vitae turpis volutpat, nec malesuada elit hendrerit. Nulla facilisi. Phasellus euismod, nunc sit amet
+            aliquet dictum, neque metus ultricies magna, vel vestibulum risus ex vel magna. Vestibulum at nisi tellus.
+            Ut nec erat ipsum. Mauris sit amet malesuada libero, vitae venenatis lorem. Aliquam ac hendrerit dui.
+            Vestibulum tempus nisi nec eros pellentesque vehicula. Vivamus vel nunc id urna ultricies cursus vitae nec
+            eros.
+
+            In ultricies efficitur odio, vitae scelerisque leo scelerisque ut. Nam ut quam volutpat, varius ante vel,
+            dictum purus. Sed eget est in orci vehicula elementum. Phasellus vitae dictum mauris. Sed suscipit erat nec
+            nunc ultricies dignissim. Phasellus sit amet fermentum justo. Integer sodales, velit vitae tristique
+            facilisis, urna mauris tristique lorem, eget tincidunt urna risus eu ex. Sed tincidunt, nulla non consequat
+            placerat, mauris velit malesuada odio, ut dapibus libero mi a risus. Nulla interdum, urna vel vulputate
+            malesuada, ligula lacus vestibulum ante, nec sodales lacus lorem nec ex. Nullam dapibus justo ligula, ac
+            congue urna facilisis a. Sed vel condimentum ligula, vel euismod mi. Curabitur pellentesque nunc ac tempor
+            pretium. Sed vel aliquet libero. Donec consequat felis nisi, nec dapibus sem congue in. Sed in lobortis
+            nisi. Sed euismod, ligula nec viverra dignissim, felis nisi dignissim lorem, a rhoncus metus tortor at dui.
+            Sed mattis volutpat eros ac pharetra.
+
+
+          </p>
+        </details>
+        <div class="button-container">
+          <button class="note-button edit">
+            <i class="material-icons">edit</i>
+          </button>
+          <button class="note-button delete">
+            <i class="material-icons">delete</i>
+          </button>
+        </div>
+
+      </div>
+      <div id="mockup-project#notes#884" class="note-block">
+        <h3 class="note-header">
+          <p class="note-text">Note 3</p>
+          <i class="note-date">5/26/2024 10:47:40 AM</i>
+        </h3>
+        <p class="preview">
+          A shorter note
+        </p>
+        <details class="note-entry" style="display: none;">
+          <summary>Entry:</summary>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nam vehicula, ligula non bibendum vehicula, turpis turpis
+            cursus urna, vitae sollicitudin turpis mi vel ex. Curabitur
+            auctor sit amet justo vel blandit. Integer sit amet diam eu
+            turpis elementum aliquet. Duis hendrerit, odio et bibendum tempus,
+            urna sapien accumsan turpis, a egestas dolor ligula non eros.
+            Suspendisse potenti. Aenean ut aliquet nunc. Nulla non felis ut
+            libero sodales tempor. Cras fermentum lorem sed sapien elementum,
+            id varius sem sagittis. Vestibulum feugiat dui quis suscipit
+            interdum.
+
+
+          </p>
+        </details>
+        <div class="button-container">
+          <button class="note-button edit">
+            <i class="material-icons">edit</i>
+          </button>
+          <button class="note-button delete">
+            <i class="material-icons">delete</i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+    <div id="todo-list">
+      <div class="todo-grid">
+        <input type="textbox" id="new-task-name" placeholder="Enter new task"></textarea>
+        <button id="add-task-button">Add new task</button>
+        <section>
           <ul id="task-list">
             <li class="task-item">
               <input type="checkbox" />
@@ -181,10 +211,11 @@ In ultricies efficitur odio, vitae scelerisque leo scelerisque ut. Nam ut quam v
               </button>
             </li>
           </ul>
-          </section>
-          <button id="add-to-notes">Add completed tasks to notes</button>
-        </div>
+        </section>
+        <button id="add-to-notes">Add completed tasks to notes</button>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
