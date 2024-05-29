@@ -13,11 +13,12 @@ describe("Test suites for project page unit tests", () => {
     const project = createProjectItem(testText);
 
     const anchor = project.querySelector("a");
+    const labelText = project.querySelector("p");
 
     expect(anchor.href).toBe(
       `http://localhost/notes.html?projectId=${encodeURI(testText)}`,
     );
-    expect(anchor.innerText).toBe(testText);
+    expect(labelText.innerText).toBe(testText);
   });
   it("Test isValidProjectName with blank project name", () => {
     const testName = "";

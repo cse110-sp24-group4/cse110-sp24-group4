@@ -2,7 +2,6 @@
     width: 80vw;
     font-size: 1em;
     font-weight: bold;
-    font-family: 'Courier New', Courier, monospace
 }
 
 img {
@@ -16,7 +15,6 @@ ul{
 
     list-style-type: none;
 
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     width: 80vw;
 
 }
@@ -35,7 +33,6 @@ button {
     border-style: none;
     
     background-color: #eac59a;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -48,14 +45,10 @@ button {
 }
 
 #new-project-name{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
     width: auto;
 }
 
 h2{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
     margin-left: 20px;
 }
 

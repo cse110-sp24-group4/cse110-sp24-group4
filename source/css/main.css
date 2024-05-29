@@ -5,7 +5,7 @@
 */
 
 * {
-  /*font-family: "Sulphur Point", sans-serif;*/
+  font-family: "Sulphur Point", sans-serif;
   font-style: normal;
 }
 
@@ -29,8 +29,6 @@ header {
     /*
     * This allows the header to lay the elements out depending on screen size and stretches header across the top of the screen
     */
-    /*font-family: "Sulphur Point", sans-serif;*/
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     display: flex;
     justify-content: flex-start;
     align-items: center;
