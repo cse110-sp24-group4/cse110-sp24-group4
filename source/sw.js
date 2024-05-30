@@ -26,3 +26,21 @@ self.addEventListener("install", function (event) {
 self.addEventListener("activate", function (event) {
   event.waitUntil(self.clients.claim());
 });
+
+self.addEventListener("fetch", function (event) {
+  event.respondWith(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.match(event.request).then((cachedResponse) => {
+        return (
+          cachedResponse ||
+          fetch(event.request).then((fetchedResponse) => {
+            cache
+              .put(event.request, fetchedResponse.clone())
+              .catch(() => console.log("Unsupported request to cache"));
+            return fetchedResponse;
+          })
+        );
+      });
+    }),
+  );
+});
