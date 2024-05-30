@@ -1,0 +1,15 @@
+{
+  "name": "DevDog",
+  "start_url": "./",
+  "description": "A simple note-taking app!",
+  "display": "standalone",
+  "background_color": "white",
+  "theme_color": "cyan",
+  "icons": [
+    {
+      "src": "../assets/images/newfolder.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

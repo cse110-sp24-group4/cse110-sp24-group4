@@ -28,6 +28,7 @@ let notes = [];
  * Initialization function for after the DOM loads
  */
 function init() {
+  initializeServiceWorker();
   document
     .getElementById("create-note-button")
     .addEventListener("click", () => createNote());
@@ -36,6 +37,24 @@ function init() {
     .addEventListener("click", () => sortNotes());
   document.getElementById("project-title").innerText = projectId;
   loadNotesFromStorage();
+}
+
+/**
+ * Initializes service worker
+ */
+async function initializeServiceWorker() {
+  if ("serviceWorker" in navigator) {
+    try {
+      const register = await navigator.serviceWorker.register("../sw.js");
+      if (register.active) {
+        // eslint-disable-next-line
+        console.log("Service worker successfully registered");
+      }
+    } catch (err) {
+      // eslint-disable-next-line
+      console.error("Service worker failed to register", err);
+    }
+  }
 }
 
 /**
