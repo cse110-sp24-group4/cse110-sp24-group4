@@ -5,12 +5,11 @@
 */
 
 * {
-    font-family: "Sulphur Point", sans-serif;
-    font-style: normal;
+  font-family: "Sulphur Point", sans-serif;
+  font-style: normal;
 }
 
-html,
-body {
+html, body {
     min-height: 100vh;
     /* Prevents tiling of background gradients or images */
     max-width: 100vw;
@@ -18,11 +17,12 @@ body {
 }
 
 body {
-    background-color: #FFF;
-    padding: 100px 0px 50px;
-    /* 100px top to give space for sticky header can be adjusted as needed, 0px on side to allow header to occupy full screen 50px on bottom because I felt like it */
-    margin: 0px;
-    /* There's a margin between html and body? */
+    background-color: #b5cfaf;
+    padding: 100px 0px 50px; /* 100px top to give space for sticky header can be adjusted as needed, 0px on side to allow header to occupy full screen 50px on bottom because I felt like it */
+    margin: 0px; /* There's a margin between html and body? */
+    /*font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;*/
+    /*font-family: Verdana, Geneva, Tahoma, sans-serif;*/
+    font-family: 'Courier New', Courier, monospace;
 }
 
 header {
@@ -38,15 +38,16 @@ header {
     /* Keeps header at top of screen through scrolling top sets it to top of screen */
     top: 0;
     color: white;
-    background-color: #202466;
-    border-bottom: 5px solid #92CBDF;
-    z-index: 100;
-
+    z-index: 1000;
+    /*background-color: #674A2A;*/
+    background-color: #708B64;
+    border-bottom: 5px solid #C4A179;
     /* Heading at top of specific page */
     &>h1 {
         font-size: 3em;
         letter-spacing: 5px;
         margin: 5px;
+        
     }
 
     /* This handles the class of "back" buttons in the headers. Home button on project.html and back button on notes.html */
