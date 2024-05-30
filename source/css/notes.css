@@ -101,7 +101,7 @@
 
 .note-overflow-button {
   align-self: flex-start;
-  background-color: white;
+  background-color: inherit;
   border-radius: 12px;
   border: none;
   font-weight: 900;
