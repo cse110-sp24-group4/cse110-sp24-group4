@@ -77,14 +77,14 @@ describe("Test suites for notes page end-to-end tests", () => {
 
       const textInput = await block.$("textarea");
       await textInput.click();
-      await textInput.evaluate(input => {
+      await textInput.evaluate((input) => {
         input.selectionStart = input.selectionEnd = input.value.length;
       }); // This ensures text is appended to end of content
       await textInput.type(`${i}`);
 
       const titleInput = await block.$(".note-title");
       await titleInput.click();
-      await titleInput.evaluate(input => {
+      await titleInput.evaluate((input) => {
         input.selectionStart = input.selectionEnd = input.value.length;
       }); // This ensures text is appended to end of content
       await titleInput.type(`${i}`);

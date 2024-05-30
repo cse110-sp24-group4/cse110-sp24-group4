@@ -52,7 +52,6 @@ export function createProjectItem(projectId) {
   newProject.appendChild(newLink); //adding link to list item
   newProject.appendChild(linkText);
   newProject.appendChild(newDelete); //adding delete button to list item.
-  
 
   return newProject; //returning the new project.
 }
