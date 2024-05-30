@@ -99,17 +99,16 @@
   transition: max-height 1s 0s;
 }
 
-.note-expand,
-.note-collapse {
+.note-overflow-button {
   align-self: flex-start;
   background-color: white;
+  border-radius: 12px;
   border: none;
   font-weight: 900;
 
 }
 
-.note-expand:hover,
-.note-collapse:hover {
+.note-overflow-button:hover {
   opacity: 50%;
 }
 
