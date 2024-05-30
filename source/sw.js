@@ -5,7 +5,6 @@ self.addEventListener("install", function (event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
       return cache.addAll([
-        "https://fonts.googleapis.com/icon?family=Material+Icons",
         "./",
         "./index.html",
         "./js/project.js",
