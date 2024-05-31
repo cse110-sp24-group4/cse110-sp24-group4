@@ -250,9 +250,12 @@ function deleteNote(noteId) {
   ) {
     const notesGrid = document.querySelector(".notes-grid");
     const noteBlock = document.getElementById(`${noteId}`);
-    notes = notes.filter((n) => n.id != noteId);
-    notesGrid.removeChild(noteBlock);
-    saveToLocalStorage(notes);
+    noteBlock.classList.add("delete-note");
+    setTimeout(() => {
+      notesGrid.removeChild(noteBlock);
+      notes = notes.filter((n) => n.id != noteId);
+      saveToLocalStorage(notes);
+    }, 800);
   } else {
     return;
   }
