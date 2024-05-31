@@ -163,12 +163,16 @@ describe("Test suites for notes page end-to-end tests", () => {
     });
 
     for (const block of noteBlocks) {
+      await page.evaluate(async () => {
+        await new Promise((func) => setTimeout(func, 1000));
+      });
       const deleteButton = await block.$("button.delete");
       expect(deleteButton).toBeDefined();
       await deleteButton.click();
+      await page.evaluate(async () => {
+        await new Promise((func) => setTimeout(func, 1000));
+      });
     }
-
-    await page.waitForTimeout(2000);
 
     const curLocalStorage = await page.evaluate((projId) => {
       return JSON.parse(localStorage.getItem(`${projId}#notes`));
@@ -176,9 +180,9 @@ describe("Test suites for notes page end-to-end tests", () => {
 
     const noteTexts = await noteGrid.$$(".note-block > p.note-content");
 
-    expect(noteTexts.length).toBe(0);
     expect(curLocalStorage.length).toBe(0);
-  });
+    expect(noteTexts.length).toBe(0);
+  }, 20000);
   it("Test delete persistence", async () => {
     await page.reload();
     const curLocalStorage = await page.evaluate((projId) => {
@@ -188,7 +192,7 @@ describe("Test suites for notes page end-to-end tests", () => {
     const noteGrid = await page.$(".notes-grid");
     const noteTexts = await noteGrid.$$(".note-block > p.note-content");
 
-    expect(noteTexts.length).toBe(0);
     expect(curLocalStorage.length).toBe(0);
+    expect(noteTexts.length).toBe(0);
   });
 });
