@@ -189,8 +189,8 @@ function setNamingErrorMessage(display, message = "Project naming error") {
 
 function handleGracefulDegradation(){
   document.addEventListener("DOMContentLoaded", function() {
-    var toggleButton = document.getElementById("toggleButton");
-    var toggleSection = document.getElementById("toggleSection");
+    let toggleButton = document.getElementById("toggleButton");
+    let toggleSection = document.getElementById("toggleSection");
 
     toggleButton.addEventListener("click", function() {
         if (toggleSection.style.display === "none") {
