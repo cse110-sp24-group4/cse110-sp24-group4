@@ -168,7 +168,7 @@ describe("Test suites for notes page end-to-end tests", () => {
       await deleteButton.click();
     }
 
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000);
 
     const curLocalStorage = await page.evaluate((projId) => {
       return JSON.parse(localStorage.getItem(`${projId}#notes`));
