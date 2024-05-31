@@ -28,6 +28,7 @@ let notes = [];
  * Initialization function for after the DOM loads
  */
 function init() {
+  initializeServiceWorker();
   document
     .getElementById("create-note-button")
     .addEventListener("click", () => createNote());
@@ -36,6 +37,24 @@ function init() {
     .addEventListener("click", () => sortNotes());
   document.getElementById("project-title").innerText = projectId;
   loadNotesFromStorage();
+}
+
+/**
+ * Initializes service worker
+ */
+async function initializeServiceWorker() {
+  if ("serviceWorker" in navigator) {
+    try {
+      const register = await navigator.serviceWorker.register("../sw.js");
+      if (register.active) {
+        // eslint-disable-next-line
+        console.log("Service worker successfully registered");
+      }
+    } catch (err) {
+      // eslint-disable-next-line
+      console.error("Service worker failed to register", err);
+    }
+  }
 }
 
 /**
@@ -229,11 +248,14 @@ function deleteNote(noteId) {
       "Are you sure you want to delete this note? (This action cannot be undone)",
     )
   ) {
+    notes = notes.filter((n) => n.id != noteId);
+    saveToLocalStorage(notes);
     const notesGrid = document.querySelector(".notes-grid");
     const noteBlock = document.getElementById(`${noteId}`);
-    notes = notes.filter((n) => n.id != noteId);
-    notesGrid.removeChild(noteBlock);
-    saveToLocalStorage(notes);
+    noteBlock.classList.add("delete-note");
+    setTimeout(() => {
+      notesGrid.removeChild(noteBlock);
+    }, 800);
   } else {
     return;
   }
