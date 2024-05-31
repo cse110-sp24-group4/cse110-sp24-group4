@@ -248,13 +248,13 @@ function deleteNote(noteId) {
       "Are you sure you want to delete this note? (This action cannot be undone)",
     )
   ) {
+    notes = notes.filter((n) => n.id != noteId);
+    saveToLocalStorage(notes);
     const notesGrid = document.querySelector(".notes-grid");
     const noteBlock = document.getElementById(`${noteId}`);
     noteBlock.classList.add("delete-note");
     setTimeout(() => {
       notesGrid.removeChild(noteBlock);
-      notes = notes.filter((n) => n.id != noteId);
-      saveToLocalStorage(notes);
     }, 800);
   } else {
     return;
