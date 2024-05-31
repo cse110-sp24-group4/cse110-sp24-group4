@@ -221,6 +221,6 @@
 }
 
 /* Hide the toggle button on larger screens */
-.toggle-button {
+#toggle-sidebar-button {
   display: none;
 }
