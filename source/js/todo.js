@@ -24,6 +24,8 @@ function initTodoList() {
     .getElementById("add-task-button")
     .addEventListener("click", () => addTask(projectId));
   loadTasksFromStorage(projectId);
+
+  document.getElementById("toggle-sidebar-button").addEventListener("click", toggleSidebar);
 }
 
 /**
@@ -121,11 +123,25 @@ function loadTasksFromStorage(projectId) {
   tasks = JSON.parse(localStorage.getItem(`${projectId}#tasks`)) || [];
   renderTasks(projectId);
 }
-
+/*
 window.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.getElementById("todo-list");
 
   window.addEventListener("scroll", () => {
     todoList.classList.toggle("open");
   });
-});
+});*/
+
+/**
+ * Toggles the ToDo sidebar when the button is pressed
+ */
+function toggleSidebar() {
+  const todoList = document.getElementById("todo-list");
+  const collapseButton = document.getElementById("toggle-sidebar-button");
+  if (todoList.classList.replace("closed", "open")) {
+    collapseButton.querySelector("i").innerText = "chevron_right";
+  } else {
+    todoList.classList.replace("open", "closed");
+    collapseButton.querySelector("i").innerText = "chevron_left";
+  }
+}

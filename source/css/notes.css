@@ -195,10 +195,20 @@
   flex: 0 0 300px; /* Adjust width as needed */
 }
 
+/* Hide the toggle button on larger screens */
+#toggle-sidebar-button {
+  display: none;
+}
+
+
 /* Styles for smaller screens */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+
   #main-container {
-      flex-direction: column;
+    display: grid;
+    grid-template-columns: auto;
+    padding: 0px 16px 0px 16px;
+    gap: 12px;
   }
 
   .notes-grid {
@@ -207,20 +217,20 @@
 
   #todo-list {
       display: none;
-      width: 100%;
+      position: fixed;
+      right: 0px;
+      background-color: #628745;
+      min-height: 100vw;
+      width: 0.2fr;
   }
 
   #todo-list.open {
       display: block;
   }
 
-  .toggle-button {
-      display: block;
-      margin: 10px 0;
+  #toggle-sidebar-button {
+      display: inline-block;
+      margin: 10px;
   }
 }
 
-/* Hide the toggle button on larger screens */
-#toggle-sidebar-button {
-  display: none;
-}
