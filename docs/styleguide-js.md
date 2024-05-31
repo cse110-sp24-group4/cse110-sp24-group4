@@ -91,13 +91,13 @@ Files consist of the following, **in order**:
 
 ### 3.1 Top level file overview
 
-A file should have a top-level file overview. Author information and default visibility level are optional. File overviews are generally recommended whenever a file consists of more than a single class definition. The top level comment is designed to orient readers unfamiliar with the code to what is in this file. If present, it may provide a description of the file's contents and any dependencies or compatibility information. Wrapped lines are not indented.
+A file should have a top-level file overview. Author information and default visibility level are optional. The top level comment is designed to orient readers unfamiliar with the code to what is in this file. If present, it may provide a description of the file's contents and any dependencies or compatibility information. Wrapped lines are not indented.
 
 JSDoc example:
 
 ```
 /**
- * @fileoverview Description of file, its uses and information
+ * @file Description of file, its uses and information
  * about its dependencies.
  * @package
  */
@@ -632,7 +632,7 @@ The basic formatting of JSDoc blocks is as seen in this example:
 function doSomething(arg) { … }
 ```
 
-Many tools extract metadate from JSDoc comments to perform code validation. As such, these comments _must_ be well-formed.
+Many tools extract metadata from JSDoc comments to perform code validation. As such, these comments _must_ be well-formed.
 
 ### 7.2 JSDoc tags
 

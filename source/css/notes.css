@@ -1,0 +1,225 @@
+#note-add {
+  display: grid;
+  grid-template-columns: 0.8fr 0.2fr;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+#note-add>* {
+  display: flex;
+  justify-content: center;
+}
+
+#create-note-button {
+  border-width: 0.5px;
+  border-radius: 4px;
+}
+
+#sort-notes-button {
+  border-width: 0.5px;
+  border-radius: 4px;
+}
+
+#notes-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-left: 8px;
+}
+
+#main-container {
+  display: grid;
+  grid-template-columns: 0.8fr 0.2fr;
+  padding: 0px 16px 0px 16px;
+  gap: 12px;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 10px;
+}
+
+.button-container {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.note-block {
+  position: relative;
+  border-radius: 12px;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px;
+  padding-top: 0px;
+}
+
+.note-header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding: 0px;
+}
+
+.note-title {
+  border-radius: 12px;
+  border-width: 0.5px;
+  padding: 2px;
+  padding-left: 4px;
+}
+
+.note-content {
+  width: 0;
+  margin: 0;
+  padding-left: 8px;
+  min-width: 90%;
+  font-size: 1em;
+  min-height: 200px;
+  overflow-wrap: break-word;
+  overflow-y: hidden;
+}
+
+.collapsed {
+  max-height: 200px;
+  transition: max-height 0.25s 0s;
+}
+
+.expanded {
+  max-height: 10000px;
+  transition: max-height 1s 0s;
+}
+
+.note-overflow-button {
+  align-self: flex-start;
+  background-color: inherit;
+  border-radius: 12px;
+  border: none;
+  font-weight: 900;
+
+}
+
+.note-overflow-button:hover {
+  opacity: 50%;
+}
+
+.note-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3em;
+  height: 3em;
+  border-radius: 12px;
+  border: 1px solid black;
+}
+
+.note-button:hover {
+  opacity: 60%;
+}
+
+.note-button:active {
+  opacity: 70%;
+}
+
+
+.note-text {
+  margin: 0px;
+  font-size: 1em;
+}
+
+.note-date {
+  font-size: 1em;
+  margin-left: auto;
+}
+
+.note-entry {
+  width: 90%;
+}
+
+.edit-note {
+  border-radius: 12px;
+  font-size: 1em;
+  width: 90%;
+  height: 220px;
+  resize: none;
+  padding: 8px;
+}
+
+.todo-grid {
+  display: grid;
+  grid-template-columns: 1;
+}
+
+.todo-grid>* {
+  display: flex;
+  justify-content: center;
+}
+
+#task-list {
+  list-style-type: none;
+  padding: 0px;
+  padding-top: 5px;
+  margin: 0px;
+}
+
+.preview {
+  padding: 0px;
+  margin: 0px;
+}
+
+.horizontal-details {
+  display: flex;
+  flex-direction: row;
+}
+
+.horizontal-details>details {
+  margin-right: 10px;
+  /* Optional: Add space between details */
+}
+
+.horizontal-details>details:last-child {
+  margin-right: 0;
+  /* Remove margin from the last details element */
+}
+#todo-list {
+  flex: 0 0 300px; /* Adjust width as needed */
+}
+
+/* Styles for smaller screens */
+@media (max-width: 768px) {
+  #main-container {
+      flex-direction: column;
+  }
+
+  .notes-grid {
+      width: 100%;
+  }
+
+  #todo-list {
+      display: none;
+      width: 100%;
+  }
+
+  #todo-list.open {
+      display: block;
+  }
+
+  .toggle-button {
+      display: block;
+      margin: 10px 0;
+  }
+}
+
+/* Hide the toggle button on larger screens */
+.toggle-button {
+  display: none;
+}

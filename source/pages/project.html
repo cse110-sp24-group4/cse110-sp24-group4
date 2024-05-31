@@ -1,39 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Page</title>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevDog - Developer Journal</title>
+    <script src="../js/project.js" type="module"></script>
+    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/project.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script src="../js/project.js" defer></script>
-
-<body>
-    <a href="./landing.html">Home</a>
-    <div id="main-container">
-        <h1>Project Page</h1>
-        <div id="main-grid">
-            <div>
-                <h2>Notes</h2>
-                <div class="notes-grid">
-
-                    <!-- Example note block <div class="note-block">
-                        <p class="note-text">Note content</p>
-                        <button class="note-button"><i class="material-icons">edit</i></button>
-                        <button class="note-button"><i class="material-icons">delete</i></button>
-                        </div> -->
-
-                    <button id="create-note-button" onclick="createNote()">Add new note</button>
-                </div>
-            </div>
-            <div class="notes-grid">
-
-
-            </div>
-        </div>
+</head>
+  <body>
+    <header>
+        <a href="../index.html" class="back"><i class="material-icons">home</i></a>
+        <h1>Projects</h1>
+        <div></div>
+    </header>
+    <h2>List of Projects:</h2>
+    <div class="container" id="project-container">
+      <ul id="Project-List">
+        <li id="add-a-project">
+          <img src="../assets/images/newfolder.png" alt="new folder">
+          <input type="textbox" id="new-project-name">
+          <button class="add-project-button" id="project-create">Add New Project</button>
+          <p id="project-name-error-message" hidden>Invalid Project name. Project names are limited to max length of 30 and can only contain letters, numbers, spaces and '-', '.', '_', '~'</p>
+        </li>
+        <noscript>
+            <li>
+              <p>JavaScript is disabled in your browser. Some features of this site may not work as intended.</p>
+            </li>
+          </noscript>
+      </ul>
     </div>
-</body>
-
+  </body>
 </html>
