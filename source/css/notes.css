@@ -30,8 +30,9 @@
 }
 
 #main-container {
+  position: relative;
   display: grid;
-  grid-template-columns: 0.8fr 0.2fr;
+  grid-template-columns: 3fr 1fr;
   padding: 0px 16px 0px 16px;
   gap: 12px;
 }
@@ -152,6 +153,12 @@
   height: 220px;
   resize: none;
   padding: 8px;
+}
+
+#todo-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .todo-grid {
