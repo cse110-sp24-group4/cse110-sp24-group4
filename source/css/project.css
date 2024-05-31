@@ -73,3 +73,6 @@ h2{
 .project-link {
     margin: 0px;
 }
+.js-only {
+    display: none;
+}

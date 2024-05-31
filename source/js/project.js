@@ -18,6 +18,7 @@ function init() {
   getProjectsFromLocalStorage();
   const createProjectButton = document.getElementById("project-create");
   createProjectButton.addEventListener("click", createProject);
+  handleGracefulDegradation();
 }
 
 /**
@@ -184,4 +185,19 @@ function setNamingErrorMessage(display, message = "Project naming error") {
   } else {
     errorMessage.hidden = true; // Hides message
   }
+}
+
+function handleGracefulDegradation(){
+  document.addEventListener("DOMContentLoaded", function() {
+    var toggleButton = document.getElementById("toggleButton");
+    var toggleSection = document.getElementById("toggleSection");
+
+    toggleButton.addEventListener("click", function() {
+        if (toggleSection.style.display === "none") {
+            toggleSection.style.display = "block";
+        } else {
+            toggleSection.style.display = "none";
+        }
+    });
+});
 }
