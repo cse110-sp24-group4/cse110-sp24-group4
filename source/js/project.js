@@ -187,17 +187,17 @@ function setNamingErrorMessage(display, message = "Project naming error") {
   }
 }
 
-function handleGracefulDegradation(){
-  document.addEventListener("DOMContentLoaded", function() {
+function handleGracefulDegradation() {
+  document.addEventListener("DOMContentLoaded", function () {
     let toggleButton = document.getElementById("toggleButton");
     let toggleSection = document.getElementById("toggleSection");
 
-    toggleButton.addEventListener("click", function() {
-        if (toggleSection.style.display === "none") {
-            toggleSection.style.display = "block";
-        } else {
-            toggleSection.style.display = "none";
-        }
+    toggleButton.addEventListener("click", function () {
+      if (toggleSection.style.display === "none") {
+        toggleSection.style.display = "block";
+      } else {
+        toggleSection.style.display = "none";
+      }
     });
-});
+  });
 }
