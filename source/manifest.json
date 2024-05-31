@@ -10,6 +10,16 @@
       "src": "../assets/images/newfolder.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "../assets/images/folder.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "../assets/images/possible-logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ]
 }
