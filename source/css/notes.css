@@ -227,3 +227,36 @@
   margin-right: 0;
   /* Remove margin from the last details element */
 }
+#todo-list {
+  flex: 0 0 300px; /* Adjust width as needed */
+}
+
+/* Styles for smaller screens */
+@media (max-width: 768px) {
+  #main-container {
+      flex-direction: column;
+  }
+
+  .notes-grid {
+      width: 100%;
+  }
+
+  #todo-list {
+      display: none;
+      width: 100%;
+  }
+
+  #todo-list.open {
+      display: block;
+  }
+
+  .toggle-button {
+      display: block;
+      margin: 10px 0;
+  }
+}
+
+/* Hide the toggle button on larger screens */
+.toggle-button {
+  display: none;
+}
