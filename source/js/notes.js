@@ -342,3 +342,24 @@ export function formatTime(timeString) {
   const time = new Date(timeString);
   return time.toLocaleDateString() + " " + time.toLocaleTimeString();
 }
+
+/**
+ * Creates and saves a note element with the given information of the task id and name
+ * @param {string} taskId The id of the task we are adding
+ * @param {string} taskName The name of the task we are adding
+ */
+export function createNoteFromTask(taskId, taskName){
+  /**
+   * @type {Note}
+   */
+  const newNote = {
+    id: taskId,
+    title: taskName,
+    content: "Put the contents of your finished task here!",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+  notes.push(newNote);
+  saveToLocalStorage(notes);
+  genNoteElement(newNote);
+}

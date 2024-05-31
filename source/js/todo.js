@@ -5,7 +5,9 @@
  * - Marking tasks as completed
  * - Deleting tasks
  * - Saving and loading tasks from localStorage
+ * - Adding notes of completed tasks when requested
  */
+import { createNoteFromTask } from "./notes.js"; // Needed for completedTasksToNotes()
 window.addEventListener("load", () => initTodoList());
 
 let tasks = [];
@@ -23,6 +25,9 @@ function initTodoList() {
   document
     .getElementById("add-task-button")
     .addEventListener("click", () => addTask(projectId));
+  document
+    .getElementById("add-to-notes")
+    .addEventListener("click", () => completedTasksToNotes())
   loadTasksFromStorage(projectId);
 }
 
@@ -121,3 +126,18 @@ function loadTasksFromStorage(projectId) {
   tasks = JSON.parse(localStorage.getItem(`${projectId}#tasks`)) || [];
   renderTasks(projectId);
 }
+
+/**
+ * Creates notes based on completed tasks. Calls on ./notes.js file to create note. 
+ * Removes task from task list after added to notes
+ */
+function completedTasksToNotes(){
+  for (const task of tasks){
+    if (task.completed){
+      let taskId = task.id;
+      createNoteFromTask(taskId, task.name); // calls ./notes.js file function to create note
+      deleteTask(taskId, taskId.split('#')[0]);
+    }
+  }
+}
+
