@@ -14,10 +14,29 @@ export let projects = [];
  * Initializes the page
  */
 function init() {
+  initializeServiceWorker();
   getProjectsFromLocalStorage();
   const createProjectButton = document.getElementById("project-create");
   createProjectButton.addEventListener("click", createProject);
   handleGracefulDegradation();
+}
+
+/**
+ * Initializes service worker
+ */
+async function initializeServiceWorker() {
+  if ("serviceWorker" in navigator) {
+    try {
+      const register = await navigator.serviceWorker.register("../sw.js");
+      if (register.active) {
+        // eslint-disable-next-line
+        console.log("Service worker successfully registered");
+      }
+    } catch (err) {
+      // eslint-disable-next-line
+      console.error("Service worker failed to register", err);
+    }
+  }
 }
 
 /**

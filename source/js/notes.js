@@ -34,6 +34,7 @@ let notes = [];
  * Initialization function for after the DOM loads
  */
 function init() {
+  initializeServiceWorker();
   document
     .getElementById("create-note-button")
     .addEventListener("click", () => createNote());
@@ -53,6 +54,24 @@ function init() {
       .addEventListener("click", () => toggleDateView());
   }
   
+}
+
+/**
+ * Initializes service worker
+ */
+async function initializeServiceWorker() {
+  if ("serviceWorker" in navigator) {
+    try {
+      const register = await navigator.serviceWorker.register("../sw.js");
+      if (register.active) {
+        // eslint-disable-next-line
+        console.log("Service worker successfully registered");
+      }
+    } catch (err) {
+      // eslint-disable-next-line
+      console.error("Service worker failed to register", err);
+    }
+  }
 }
 
 /**
@@ -201,11 +220,19 @@ function editNote(noteId) {
   editIcon.innerText = "check";
 
   const noteTextInput = document.createElement("textarea");
-  noteTextInput.value = noteText.innerText;
+  if (noteText.innerText == "Put the contents of your note here!") {
+    noteTextInput.placeholder = noteText.innerText;
+  } else {
+    noteTextInput.value = noteText.innerText;
+  }
   noteTextInput.classList.add("edit-note", "note-text");
 
   const noteTitleInput = document.createElement("input");
-  noteTitleInput.value = noteTitle.innerText;
+  if (noteTitle.innerText == "New note") {
+    noteTitleInput.placeholder = noteTitle.innerText;
+  } else {
+    noteTitleInput.value = noteTitle.innerText;
+  }
   noteTitleInput.classList = noteTitle.classList;
 
   noteTitle.replaceWith(noteTitleInput);
@@ -266,11 +293,14 @@ function deleteNote(noteId) {
       "Are you sure you want to delete this note? (This action cannot be undone)",
     )
   ) {
+    notes = notes.filter((n) => n.id != noteId);
+    saveToLocalStorage(notes);
     const notesGrid = document.querySelector(".notes-grid");
     const noteBlock = document.getElementById(`${noteId}`);
-    notes = notes.filter((n) => n.id != noteId);
-    notesGrid.removeChild(noteBlock);
-    saveToLocalStorage(notes);
+    noteBlock.classList.add("delete-note");
+    setTimeout(() => {
+      notesGrid.removeChild(noteBlock);
+    }, 800);
   } else {
     return;
   }
