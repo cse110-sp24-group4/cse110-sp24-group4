@@ -1,45 +1,155 @@
 #note-add {
-    display: grid;
-    grid-template-columns: 0.8fr 0.2fr;
-    gap: 10px;
-    margin-left: 10px;
+  display: grid;
+  grid-template-columns: 0.8fr 0.2fr;
+  gap: 10px;
+  margin-left: 10px;
 }
 
 #note-add>* {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+}
+
+#create-note-button {
+  border-width: 0.5px;
+  border-radius: 4px;
+}
+
+#sort-notes-button {
+  border-width: 0.5px;
+  border-radius: 4px;
+}
+
+#notes-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-left: 8px;
 }
 
 #main-container {
-    display: grid;
-    grid-template-columns: 0.8fr 0.2fr;
+  position: relative;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 0px 16px 0px 16px;
+  gap: 12px;
 }
 
 .notes-grid {
   display: grid;
   grid-template-columns: auto;
   gap: 10px;
-  margin: 0 20px;
 }
 
 .button-container {
   display: flex;
-  gap: 5px;
-  margin-right: 5px;
+  gap: 8px;
+  justify-content: flex-end;
+  &>p {
+    justify-self: flex-start;
+  }
 }
 
 .note-block {
+  position: relative;
+  border-radius: 12px;
   border: 2px solid black;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 8px;
+  padding: 12px;
+  padding-top: 0px;
+  animation: 1s create-note-animation;
+  transition: height 1s;
+}
+
+.delete-note {
+  animation: 1s delete-note-animation;
+}
+
+@keyframes create-note-animation {
+  from {
+    transform: scale(0);
+
+  }
+
+  to {
+    transform: scale(1.0);
+  }
+}
+
+@keyframes delete-note-animation {
+  from {
+    transform: scale(1.0);
+    max-height: 200px;
+  }
+
+  to {
+    max-height: 0;
+    transform: scale(0);
+  }
+}
+
+.note-header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  padding-left: 5px;
-  padding: 5px;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding: 0px;
+}
+
+.note-title {
+  border-radius: 12px;
+  border-width: 0.5px;
+  padding: 2px;
+  padding-left: 4px;
+}
+
+.note-content {
+  width: 0;
+  margin: 0;
+  padding-left: 8px;
+  min-width: 90%;
+  font-size: 1em;
+  min-height: 200px;
+  overflow-wrap: break-word;
+  overflow-y: hidden;
+}
+
+.collapsed {
+  max-height: 200px;
+  transition: max-height 0.25s 0s;
+}
+
+.expanded {
+  max-height: 10000px;
+  transition: max-height 1s 0s;
+}
+
+.note-overflow-button {
+  align-self: flex-start;
+  background-color: inherit;
+  border-radius: 12px;
+  border: none;
+  font-weight: 900;
+
+}
+
+.note-overflow-button:hover {
+  opacity: 50%;
 }
 
 .note-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3em;
+  height: 3em;
   border-radius: 12px;
   border: 1px solid black;
 }
@@ -52,71 +162,135 @@
   opacity: 70%;
 }
 
-.note-header {
-    position: relative;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: nowrap;
-    width: 100%;
-    padding: 0px;
-    margin: 0px;
-
-}
 
 .note-text {
-    flex-grow: 1;
-    font-size: 1em;
-    margin-left: 0px;
-    max-width: 25%;
+  margin: 0px;
+  font-size: 1em;
 }
 
 .note-date {
-    font-size: 1em;
-    margin-left: auto;
+  font-size: 1em;
+  margin-left: auto;
 }
 
 .note-entry {
-    width: 90%;
+  width: 90%;
 }
 
 .edit-note {
-    width: 90%;
-    height: 200px;
+  border-radius: 12px;
+  font-size: 1em;
+  width: 90%;
+  height: 220px;
+  resize: none;
+  padding: 8px;
+}
+
+
+#todo-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .todo-grid {
-    display: grid;
-    grid-template-columns: 1;
+  display: grid;
+  grid-template-columns: 1;
 }
 
 .todo-grid>* {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 #task-list {
-    list-style-type: none;
-    padding: 0px;
-    padding-top: 5px;
-    margin: 0px;
+  list-style-type: none;
+  padding: 0px;
+  padding-top: 5px;
+  margin: 0px;
 }
 
 .preview {
-    padding: 0px;
-    margin: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 
 .horizontal-details {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+}
+
+.horizontal-details>details {
+  margin-right: 10px;
+  /* Optional: Add space between details */
+}
+
+.horizontal-details>details:last-child {
+  margin-right: 0;
+  /* Remove margin from the last details element */
+}
+#todo-list {
+  flex: 0 0 300px; /* Adjust width as needed */
+}
+
+/* Styles for smaller screens */
+@media (max-width: 768px) {
+  #main-container {
+      flex-direction: column;
   }
-  
-  .horizontal-details > details {
-    margin-right: 10px; /* Optional: Add space between details */
+
+  .notes-grid {
+      width: 100%;
   }
-  
-  .horizontal-details > details:last-child {
-    margin-right: 0; /* Remove margin from the last details element */
+
+  #todo-list {
+      display: none;
+      width: 100%;
   }
+
+  #todo-list.open {
+      display: block;
+  }
+
+  .toggle-button {
+      display: block;
+      margin: 10px 0;
+  }
+}
+
+/* Hide the toggle button on larger screens */
+.toggle-button {
+  display: none;
+}
+
+.note-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label-list {
+  display: flex;
+  justify-content: flex-start;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.label-item {
+  margin: 5px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+}
+
+label {
+  font-weight: 300;
+  font-size: 0.6em;
+  padding: 0px;
+  margin: 0px;
+}
+
+.Y435 {
+  display: none;
+}

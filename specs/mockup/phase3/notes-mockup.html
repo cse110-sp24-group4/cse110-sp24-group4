@@ -6,6 +6,7 @@
   <title>Project Page</title>
   <link rel="stylesheet" href="main-mockup.css" />
   <link rel="stylesheet" href="notes-mockup.css" />
+  <link rel="stylesheet" href="todo-mockup.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 </head>
 
@@ -19,7 +20,17 @@
     <h2 id="notes-header">
       Notes
       <button id="create-note-button">Add new note</button>
-      <button id="sort-notes-button">Sort by date</button>
+      <div id="sort-and-filter">
+      <label for="sort">Sorted by:</label>
+      <button name="sort" id="sort-notes-button">Sort by date</button>
+      <label for="filter">Filter by:</label>
+      <select name="filter">
+        <option>No Filter</option>
+        <option>label 1</option>
+        <option>label 2</option>
+        <option>label 3</option>
+      </select>
+      </div>
     </h2>
     <h2 id="todo-header">
       To-do
@@ -34,42 +45,20 @@
                 <button class="note-button"><i class="material-icons">edit</i></button>
                 <button class="note-button"><i class="material-icons">delete</i></button>
                 </div> -->
-      <div id="mockup-project#notes#884" class="note-block">
+      <div id="mockup-project#notes#884" class="note-block F865">
         <h3 class="note-header">
-          <input type="textbox" class="note-text" value="Note 1"></p>
+          <p class="note-text note-title">New note</p>
           <i class="note-date">5/26/2024 10:47:40 AM</i>
         </h3>
-        <textarea class="edit-note">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Nam vehicula, ligula non bibendum vehicula, turpis turpis
-          cursus urna, vitae sollicitudin turpis mi vel ex. Curabitur
-          auctor sit amet justo vel blandit. Integer sit amet diam eu
-          turpis elementum aliquet. Duis hendrerit, odio et bibendum tempus,
-          urna sapien accumsan turpis, a egestas dolor ligula non eros.
-          Suspendisse potenti. Aenean ut aliquet nunc. Nulla non felis ut
-          libero sodales tempor. Cras fermentum lorem sed sapien elementum,
-          id varius sem sagittis. Vestibulum feugiat dui quis suscipit
-          interdum.
-        </textarea>
-        <details class="note-entry" style="display: none;">
-          <summary>Expand</summary>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Nam vehicula, ligula non bibendum vehicula, turpis turpis
-            cursus urna, vitae sollicitudin turpis mi vel ex. Curabitur
-            auctor sit amet justo vel blandit. Integer sit amet diam eu
-            turpis elementum aliquet. Duis hendrerit, odio et bibendum tempus,
-            urna sapien accumsan turpis, a egestas dolor ligula non eros.
-            Suspendisse potenti. Aenean ut aliquet nunc. Nulla non felis ut
-            libero sodales tempor. Cras fermentum lorem sed sapien elementum,
-            id varius sem sagittis. Vestibulum feugiat dui quis suscipit
-            interdum.
-
-
-          </p>
-        </details>
-
+        <p class="note-content note-text collapsed">Put the contents of your note here!</p>
+        <div class="note-bottom">
+          <ul class="label-list">
+            <li class="label-item">label 1</li>
+            <li class="label-item">label 2</li>
+            <li class="label-item">label 3</li>
+          </ul>
         <div class="button-container">
+ 
           <button class="note-button edit">
             <i class="material-icons">check</i>
           </button>
@@ -77,9 +66,10 @@
             <i class="material-icons">delete</i>
           </button>
         </div>
+        </div>
 
       </div>
-      <div id="mockup-project#notes#884" class="note-block">
+      <div id="mockup-project#notes#884" class="note-block A654">
         <h3 class="note-header">
           <p class="note-text">Note 2</p>
           <i class="note-date">5/26/2024 10:47:40 AM</i>
@@ -147,7 +137,7 @@
         </div>
 
       </div>
-      <div id="mockup-project#notes#884" class="note-block">
+      <div id="mockup-project#notes#884" class="note-block Y435">
         <h3 class="note-header">
           <p class="note-text">Note 3</p>
           <i class="note-date">5/26/2024 10:47:40 AM</i>
