@@ -35,7 +35,10 @@ function init() {
     .getElementById("sort-notes-button")
     .addEventListener("click", () => sortNotes());
   document.getElementById("project-title").innerText = projectId;
-  loadNotesFromStorage();
+  loadNotesFromStorage("");
+  document
+    .getElementById('toggle-date-view')
+    .addEventListener("click", () => toggleDateView());
 }
 
 /**
@@ -61,10 +64,30 @@ function sortNotes() {
 
 /**
  * Retrieves notes related to current project from localstorage
+ * @param {string} date Date of notes to be displayed, empty string displays project
  */
-function loadNotesFromStorage() {
-  // if (projectId == null) return;
-  notes = JSON.parse(localStorage.getItem(`${projectId}#notes`) ?? "[]") ?? [];
+function loadNotesFromStorage(date) {
+  const projects = JSON.parse(localStorage.getItem("projects")) || [];
+  let notesGrid = document.querySelector('.notes-grid');
+  notesGrid.innerHTML = '';
+
+  if (date == "") {
+    // if (projectId == null) return;
+    notes = JSON.parse(localStorage.getItem(`${projectId}#notes`) ?? "[]") ?? [];
+  }
+  else {
+    notes = [];
+    for (let i = 0; i < projects.length; i++) {
+      let projectNotes = JSON.parse(localStorage.getItem(`${projects[i]}#notes`) ?? "[]") ?? [];
+      for (let j = 0; j < projectNotes.length; j++) {
+        let noteDate = new Date(projectNotes[j].updatedAt);
+        let formattedDate = localeToInputDate(noteDate);
+        if (formattedDate == date) {
+          notes.push(projectNotes[j]);
+        }
+      }
+    }
+  }
   for (const note of notes) {
     genNoteElement(note);
   }
@@ -341,4 +364,42 @@ export function createExpandButton(noteId) {
 export function formatTime(timeString) {
   const time = new Date(timeString);
   return time.toLocaleDateString() + " " + time.toLocaleTimeString();
+}
+
+function toggleDateView() {
+  const dateButton = document.getElementById('toggle-date-view');
+  if (dateButton.innerText == "Go back to project") {
+    dateButton.innerText = "Switch to date view";
+    document.querySelector('header>input').remove();
+    loadNotesFromStorage("");
+  }
+  else {
+    dateButton.innerText = "Go back to project";
+    let dateSelector = document.createElement('input');
+    dateSelector.type = "date";
+    let header = document.querySelector('header');
+    header.insertBefore(dateSelector, dateButton);
+    let today = new Date();
+
+    dateSelector.value = localeToInputDate(today);
+    dateSelector.addEventListener("input", () => updateDateNotes()); 
+    loadNotesFromStorage(dateSelector.value);
+  }
+}
+
+function updateDateNotes() {
+  let dateSelector = document.querySelector('header>input');
+  loadNotesFromStorage(dateSelector.value);
+}
+
+function localeToInputDate(date) {
+  let dateArr = date.toLocaleDateString().split('/');
+  if (Number(dateArr[0]) < 10) {
+    dateArr[0] = '0' + dateArr[0];
+  }
+  if (Number(dateArr[1]) < 10) {
+    dateArr[1] = '0' + dateArr[1];
+  }
+
+  return dateArr[2] + '-' + dateArr[0] + '-' + dateArr[1];
 }
