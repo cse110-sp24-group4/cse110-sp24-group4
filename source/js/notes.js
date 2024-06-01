@@ -185,15 +185,17 @@ function editNote(noteId) {
   const noteTextInput = document.createElement("textarea");
   if (noteText.innerText == "Put the contents of your note here!") {
     noteTextInput.placeholder = noteText.innerText;
+  } else {
+    noteTextInput.value = noteText.innerText;
   }
-  else {noteTextInput.value = noteText.innerText;}
   noteTextInput.classList.add("edit-note", "note-text");
 
   const noteTitleInput = document.createElement("input");
   if (noteTitle.innerText == "New note") {
     noteTitleInput.placeholder = noteTitle.innerText;
+  } else {
+    noteTitleInput.value = noteTitle.innerText;
   }
-  else {noteTitleInput.value = noteTitle.innerText;}
   noteTitleInput.classList = noteTitle.classList;
 
   noteTitle.replaceWith(noteTitleInput);
