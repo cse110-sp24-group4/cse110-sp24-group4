@@ -183,11 +183,19 @@ function editNote(noteId) {
   editIcon.innerText = "check";
 
   const noteTextInput = document.createElement("textarea");
-  noteTextInput.value = noteText.innerText;
+  if (noteText.innerText == "Put the contents of your note here!") {
+    noteTextInput.placeholder = noteText.innerText;
+  } else {
+    noteTextInput.value = noteText.innerText;
+  }
   noteTextInput.classList.add("edit-note", "note-text");
 
   const noteTitleInput = document.createElement("input");
-  noteTitleInput.value = noteTitle.innerText;
+  if (noteTitle.innerText == "New note") {
+    noteTitleInput.placeholder = noteTitle.innerText;
+  } else {
+    noteTitleInput.value = noteTitle.innerText;
+  }
   noteTitleInput.classList = noteTitle.classList;
 
   noteTitle.replaceWith(noteTitleInput);
