@@ -99,11 +99,11 @@ describe("Test suites for notes page end-to-end tests", () => {
       const textValue = await (
         await (await block.$("p.note-content")).getProperty("innerText")
       ).jsonValue();
-      expect(textValue).toBe(`Put the contents of your note here!${i}`);
+      expect(textValue).toBe(`${i}`);
       const titleValue = await (
         await (await block.$("p.note-title")).getProperty("innerText")
       ).jsonValue();
-      expect(titleValue).toBe(`New note${i}`);
+      expect(titleValue).toBe(`${i}`);
 
       i++;
     }
@@ -115,8 +115,8 @@ describe("Test suites for notes page end-to-end tests", () => {
     const contents = curLocalStorage.map((note) => note.content);
 
     expect(contents).toStrictEqual([
-      "Put the contents of your note here!0",
-      "Put the contents of your note here!1",
+      "0",
+      "1",
     ]);
 
     const noteTexts = await noteGrid.$$(".note-block > p.note-content");
@@ -133,11 +133,11 @@ describe("Test suites for notes page end-to-end tests", () => {
       const textValue = await (
         await (await block.$("p.note-content")).getProperty("innerText")
       ).jsonValue();
-      expect(textValue).toBe(`Put the contents of your note here!${i}`);
+      expect(textValue).toBe(`${i}`);
       const titleValue = await (
         await (await block.$("p.note-title")).getProperty("innerText")
       ).jsonValue();
-      expect(titleValue).toBe(`New note${i}`);
+      expect(titleValue).toBe(`${i}`);
       i--;
     }
 
@@ -148,8 +148,8 @@ describe("Test suites for notes page end-to-end tests", () => {
     const contents = curLocalStorage.map((note) => note.content);
 
     expect(contents).toStrictEqual([
-      "Put the contents of your note here!0",
-      "Put the contents of your note here!1",
+      "0",
+      "1",
     ]);
 
     expect(curLocalStorage.length).toBe(2);
