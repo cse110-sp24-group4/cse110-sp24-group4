@@ -12,6 +12,12 @@ window.addEventListener("load", () => init());
 const projectId = new URL(window.location).searchParams.get("projectId");
 
 /**
+ * Set to 't' if date mode is active, should not have any other value
+ * @constant {char}
+ */
+const dateView = new URL(window.location).searchParams.get("date"); 
+
+/**
  * @typedef {Object} Note
  * @property {string} id Unique ID for the note
  * @property {string} content The text contained in the note
@@ -35,10 +41,18 @@ function init() {
     .getElementById("sort-notes-button")
     .addEventListener("click", () => sortNotes());
   document.getElementById("project-title").innerText = projectId;
-  loadNotesFromStorage("");
-  document
-    .getElementById('toggle-date-view')
-    .addEventListener("click", () => toggleDateView());
+  if (dateView == 't') {
+    toggleDateView();
+    document.getElementById('toggle-date-view').style.display = 'none';
+    document.getElementById("project-title").innerText = 'Notes by Date';
+  }
+  else {
+    loadNotesFromStorage("");
+    document
+      .getElementById('toggle-date-view')
+      .addEventListener("click", () => toggleDateView());
+  }
+  
 }
 
 /**
@@ -377,6 +391,7 @@ function toggleDateView() {
     dateButton.innerText = "Go back to project";
     let dateSelector = document.createElement('input');
     dateSelector.type = "date";
+    dateSelector.classList = "date-selector";
     let header = document.querySelector('header');
     header.insertBefore(dateSelector, dateButton);
     let today = new Date();

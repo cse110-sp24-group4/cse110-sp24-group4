@@ -213,6 +213,11 @@
   }
 }
 
+.date-selector {
+  font-size: 2em;
+  margin-left: 10px;
+}
+
 /* Styles for smaller screens */
 @media (max-width: 768px) {
   #main-container {
