@@ -114,10 +114,7 @@ describe("Test suites for notes page end-to-end tests", () => {
 
     const contents = curLocalStorage.map((note) => note.content);
 
-    expect(contents).toStrictEqual([
-      "0",
-      "1",
-    ]);
+    expect(contents).toStrictEqual(["0", "1"]);
 
     const noteTexts = await noteGrid.$$(".note-block > p.note-content");
 
@@ -147,10 +144,7 @@ describe("Test suites for notes page end-to-end tests", () => {
 
     const contents = curLocalStorage.map((note) => note.content);
 
-    expect(contents).toStrictEqual([
-      "0",
-      "1",
-    ]);
+    expect(contents).toStrictEqual(["0", "1"]);
 
     expect(curLocalStorage.length).toBe(2);
   });
