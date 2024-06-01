@@ -380,12 +380,18 @@ export function formatTime(timeString) {
   return time.toLocaleDateString() + " " + time.toLocaleTimeString();
 }
 
+/**
+ * Changes toggle button switching between date view and projects
+ * Changes appropriate text, loads new notes
+ * Creates date picker element
+ */
 function toggleDateView() {
   const dateButton = document.getElementById('toggle-date-view');
   if (dateButton.innerText == "Go back to project") {
     dateButton.innerText = "Switch to date view";
     document.querySelector('header>input').remove();
     loadNotesFromStorage("");
+    document.getElementById("project-title").innerText = projectId;
   }
   else {
     dateButton.innerText = "Go back to project";
@@ -399,14 +405,23 @@ function toggleDateView() {
     dateSelector.value = localeToInputDate(today);
     dateSelector.addEventListener("input", () => updateDateNotes()); 
     loadNotesFromStorage(dateSelector.value);
+    document.getElementById("project-title").innerText = 'Notes by Date';
   }
 }
 
+/**
+ * Updates notes displayed whenever the date input is changed
+ */
 function updateDateNotes() {
   let dateSelector = document.querySelector('header>input');
   loadNotesFromStorage(dateSelector.value);
 }
 
+/**
+ * Converts a date object into a date string in the format YYYY-MM-DD
+ * @param {Date} date Input date ojbect
+ * @returns {string} date output string
+ */
 function localeToInputDate(date) {
   let dateArr = date.toLocaleDateString().split('/');
   if (Number(dateArr[0]) < 10) {
