@@ -152,9 +152,9 @@ function genNoteElement(noteObj) {
   buttonContainer.appendChild(noteDelete);
 
   const tagAndButtons = document.createElement("div");
-  tagAndButtons.classList.add("tag-and-buttons");
+  tagAndButtons.className = "tag-and-buttons";
 
-  const tagList = document.createElement("ul");
+  const tagList = document.createElement("p");
   tagList.classList.add("tag-list");
 
   const tagItem1 = document.createElement("li");
@@ -193,6 +193,7 @@ function editNote(noteId) {
   const noteBlock = document.getElementById(`${noteId}`);
   const noteTitle = noteBlock.querySelector(".note-title");
   const noteText = noteBlock.querySelector(".note-content");
+  const tagList = noteBlock.querySelector(".tag-list");
 
   const editButton = noteBlock.querySelector("button.edit");
   editButton.classList.replace("edit", "check");
@@ -209,8 +210,14 @@ function editNote(noteId) {
   noteTitleInput.value = noteTitle.innerText;
   noteTitleInput.classList = noteTitle.classList;
 
+  const tagListInput = document.createElement("input");//Create tag input edit
+  const noteTags = notes.find((note) => note.id == noteId).filters || [];//Get tag array
+  const noteTagsString = noteTags.join(", ");//Turn into csl
+  tagListInput.value = noteTagsString;
+
   noteTitle.replaceWith(noteTitleInput);
   noteBlock.replaceChild(noteTextInput, noteText);
+  tagList.replaceWith(tagListInput);
   const expandButton = noteBlock.querySelector(".note-overflow-button");
   if (expandButton) {
     noteBlock.removeChild(expandButton);
