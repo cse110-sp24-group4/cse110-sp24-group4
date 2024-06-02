@@ -63,6 +63,7 @@
   padding-top: 0px;
   animation: 1s create-note-animation;
   transition: height 1s;
+  overflow: hidden;
 }
 
 .delete-note {
@@ -107,6 +108,11 @@
   border-width: 0.5px;
   padding: 2px;
   padding-left: 4px;
+  white-space: nowrap;
+  width: 50%;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
 }
 
 .note-content {
