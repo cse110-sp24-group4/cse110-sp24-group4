@@ -8,5 +8,6 @@
 
  - Bug, service workers causing cache to not be cleared
  - Code freeze soon
- - Show and tell
  - Review Videos
+ - Show and tell
+ 
