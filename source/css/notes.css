@@ -18,12 +18,17 @@
 #sort-notes-button {
   border-width: 0.5px;
   border-radius: 4px;
+  /*margin-left: auto;*/
+  grid-column: 1 / -1; /* Span the button across all columns */
+  justify-self: end; /* Align the button to the end of the grid */
 }
 
 #notes-header {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  /*flex-direction: row;
+  align-items: center;*/
+  flex-direction: column; /* Change from row to column */
+  align-items: flex-start; /* Align items to the start of the column */
   justify-content: space-between;
   gap: 12px;
   margin-left: 8px;
@@ -35,11 +40,13 @@
   grid-template-columns: 3fr 1fr;
   padding: 0px 16px 0px 16px;
   gap: 12px;
+  
 }
 
 .notes-grid {
   display: grid;
-  grid-template-columns: auto;
+  /*grid-template-columns: auto;*/
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 10px;
 }
 
@@ -62,6 +69,8 @@
   padding-top: 0px;
   animation: 1s create-note-animation;
   transition: height 1s;
+  background-color: rgba(255, 255, 255, 0.75);
+  max-width: 450px;
 }
 
 .delete-note {
@@ -160,7 +169,6 @@
   opacity: 70%;
 }
 
-
 .note-text {
   margin: 0px;
   font-size: 1em;
@@ -184,7 +192,6 @@
   padding: 8px;
 }
 
-
 #todo-header {
   display: flex;
   justify-content: center;
@@ -203,7 +210,7 @@
 
 #task-list {
   list-style-type: none;
-  padding: 0px;
+  padding: 10px;
   padding-top: 5px;
   margin: 0px;
 }
