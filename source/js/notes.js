@@ -154,7 +154,7 @@ function genNoteElement(noteObj) {
   const tagAndButtons = document.createElement("div");
   tagAndButtons.className = "tag-and-buttons";
 
-  const tagList = document.createElement("p");
+  const tagList = document.createElement("ul");
   tagList.classList.add("tag-list");
 
   const tagItem1 = document.createElement("li");
@@ -214,6 +214,7 @@ function editNote(noteId) {
   const noteTags = notes.find((note) => note.id == noteId).filters || [];//Get tag array
   const noteTagsString = noteTags.join(", ");//Turn into csl
   tagListInput.value = noteTagsString;
+  tagListInput.class = "tag-list";
 
   noteTitle.replaceWith(noteTitleInput);
   noteBlock.replaceChild(noteTextInput, noteText);
@@ -232,6 +233,7 @@ function saveNote(noteId) {
   const noteBlock = document.getElementById(`${noteId}`);
   const noteTitleInput = noteBlock.querySelector(".note-title");
   const noteTextInput = noteBlock.querySelector(".edit-note");
+  const tagList = noteBlock.querySelector(".tag-list");
   const curTime = new Date().toISOString();
 
   const saveButton = noteBlock.querySelector("button.check");
