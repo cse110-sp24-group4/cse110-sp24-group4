@@ -18,9 +18,9 @@
 #sort-notes-button {
   border-width: 0.5px;
   border-radius: 4px;
-  /*margin-left: auto;*/
-  grid-column: 1 / -1; /* Span the button across all columns */
-  justify-self: end; /* Align the button to the end of the grid */
+  margin-left: auto;
+  grid-column: 1 / -1; 
+  justify-self: end; 
 }
 
 #notes-header {
