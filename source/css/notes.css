@@ -41,6 +41,7 @@
   display: grid;
   grid-template-columns: auto;
   gap: 10px;
+  align-items: flex-start;
 }
 
 .button-container {
@@ -227,32 +228,34 @@
   margin-right: 0;
   /* Remove margin from the last details element */
 }
+
 #todo-list {
-  flex: 0 0 300px; /* Adjust width as needed */
+  flex: 0 0 300px;
+  /* Adjust width as needed */
 }
 
 /* Styles for smaller screens */
 @media (max-width: 768px) {
   #main-container {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .notes-grid {
-      width: 100%;
+    width: 100%;
   }
 
   #todo-list {
-      display: none;
-      width: 100%;
+    display: none;
+    width: 100%;
   }
 
   #todo-list.open {
-      display: block;
+    display: block;
   }
 
   .toggle-button {
-      display: block;
-      margin: 10px 0;
+    display: block;
+    margin: 10px 0;
   }
 }
 
