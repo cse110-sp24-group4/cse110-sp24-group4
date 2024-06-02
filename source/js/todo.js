@@ -124,6 +124,7 @@ function loadTasksFromStorage(projectId) {
   renderTasks(projectId);
 }
 
+
 /**
  * Toggles the ToDo sidebar when the button is pressed
  */
@@ -137,3 +138,4 @@ function toggleSidebar() {
     collapseButton.querySelector("i").innerText = "chevron_left";
   }
 }
+
