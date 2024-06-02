@@ -151,9 +151,28 @@ function genNoteElement(noteObj) {
   buttonContainer.appendChild(noteEdit);
   buttonContainer.appendChild(noteDelete);
 
+  const tagAndButtons = document.createElement("div");
+  tagAndButtons.classList.add("tag-and-buttons");
+
+  const tagList = document.createElement("ul");
+  tagList.classList.add("tag-list");
+
+  const tagItem1 = document.createElement("li");
+  const tagItem2 = document.createElement("li");
+  tagItem1.innerText = "Tag 1";
+  tagItem1.classList.add("tag-item");
+  tagItem2.innerText = "Tag 2";
+  tagItem2.classList.add("tag-item");
+  tagList.appendChild(tagItem1);
+  tagList.appendChild(tagItem2);
+  
+
+  tagAndButtons.appendChild(tagList);
+  tagAndButtons.appendChild(buttonContainer);
+
   noteBlock.appendChild(noteHeader);
   noteBlock.appendChild(noteText);
-  noteBlock.appendChild(buttonContainer);
+  noteBlock.appendChild(tagAndButtons);
 
   let sortButton = document.getElementById("sort-notes-button");
   if (sortButton.innerText == "Sorted by most recent") {
