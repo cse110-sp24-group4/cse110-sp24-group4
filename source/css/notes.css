@@ -18,7 +18,7 @@
 #sort-notes-button {
   border-width: 0.5px;
   border-radius: 4px;
-  margin-left: auto;
+  /*margin-left: auto;*/
   grid-column: 1 / -1; 
   justify-self: end; 
 }
