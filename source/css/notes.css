@@ -41,6 +41,7 @@
   display: grid;
   grid-template-columns: auto;
   gap: 10px;
+  align-items: flex-start;
 }
 
 .button-container {
@@ -62,6 +63,7 @@
   padding-top: 0px;
   animation: 1s create-note-animation;
   transition: height 1s;
+  overflow: hidden;
 }
 
 .delete-note {
@@ -106,6 +108,11 @@
   border-width: 0.5px;
   padding: 2px;
   padding-left: 4px;
+  white-space: nowrap;
+  width: 50%;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
 }
 
 .note-content {
@@ -227,32 +234,34 @@
   margin-right: 0;
   /* Remove margin from the last details element */
 }
+
 #todo-list {
-  flex: 0 0 300px; /* Adjust width as needed */
+  flex: 0 0 300px;
+  /* Adjust width as needed */
 }
 
 /* Styles for smaller screens */
 @media (max-width: 768px) {
   #main-container {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .notes-grid {
-      width: 100%;
+    width: 100%;
   }
 
   #todo-list {
-      display: none;
-      width: 100%;
+    display: none;
+    width: 100%;
   }
 
   #todo-list.open {
-      display: block;
+    display: block;
   }
 
   .toggle-button {
-      display: block;
-      margin: 10px 0;
+    display: block;
+    margin: 10px 0;
   }
 }
 
