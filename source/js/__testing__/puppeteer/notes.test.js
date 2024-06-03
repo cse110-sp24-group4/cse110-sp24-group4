@@ -146,7 +146,7 @@ describe("Test suites for notes page end-to-end tests", () => {
       expect(titleValue).toBe(`${i}`);
 
       const tagValue = await (
-        await (await block.$("div.tag-and-buttons > ul > li")).getProperty("innerText")
+        await (await block.$("li")).getProperty("innerText")
       );
       expect(tagValue).toBe(`test${1}`);
       i--;
