@@ -154,18 +154,7 @@ function genNoteElement(noteObj) {
   const tagAndButtons = document.createElement("div");
   tagAndButtons.className = "tag-and-buttons";
 
-  const tagList = document.createElement("ul");
-  tagList.classList.add("tag-list");
-
-  const tagItem1 = document.createElement("li");
-  const tagItem2 = document.createElement("li");
-  tagItem1.innerText = "Tag 1";
-  tagItem1.classList.add("tag-item");
-  tagItem2.innerText = "Tag 2";
-  tagItem2.classList.add("tag-item");
-  tagList.appendChild(tagItem1);
-  tagList.appendChild(tagItem2);
-  
+  const tagList = generateTagList(noteObj.filters || []);
 
   tagAndButtons.appendChild(tagList);
   tagAndButtons.appendChild(buttonContainer);
@@ -214,7 +203,7 @@ function editNote(noteId) {
   const noteTags = notes.find((note) => note.id == noteId).filters || [];//Get tag array
   const noteTagsString = noteTags.join(", ");//Turn into csl
   tagListInput.value = noteTagsString;
-  tagListInput.class = "tag-list";
+  tagListInput.classList.add("tag-list");
 
   noteTitle.replaceWith(noteTitleInput);
   noteBlock.replaceChild(noteTextInput, noteText);
@@ -233,7 +222,7 @@ function saveNote(noteId) {
   const noteBlock = document.getElementById(`${noteId}`);
   const noteTitleInput = noteBlock.querySelector(".note-title");
   const noteTextInput = noteBlock.querySelector(".edit-note");
-  const tagList = noteBlock.querySelector(".tag-list");
+  const tagListInput = noteBlock.querySelector(".tag-list");
   const curTime = new Date().toISOString();
 
   const saveButton = noteBlock.querySelector("button.check");
@@ -253,6 +242,20 @@ function saveNote(noteId) {
   noteTitle.innerText = noteTitleInput.value;
   noteTitleInput.replaceWith(noteTitle);
 
+  const splitRegEx = /\s+/; // Looks for commas as delimiter and removes whitespace around split
+  const tagListArray = tagListInput.value.split(splitRegEx).filter(Boolean);
+  console.log(tagListArray);
+
+  const tagListElement = generateTagList(tagListArray);
+  
+  noteBlock.setAttribute("class", "note-block");
+
+  tagListArray.forEach(function(tagItem) {
+    noteBlock.classList.add(`filter-${tagItem}`);
+  });
+
+  tagListInput.replaceWith(tagListElement);
+
   if (noteText.scrollHeight > noteText.clientHeight) {
     const expandButton = createExpandButton(noteId);
     const buttonContainer = noteBlock.querySelector(".button-container");
@@ -262,6 +265,7 @@ function saveNote(noteId) {
   notes.find((note) => note.id == noteId).content = noteTextInput.value;
   notes.find((note) => note.id == noteId).title = noteTitleInput.value;
   notes.find((note) => note.id == noteId).updatedAt = curTime;
+  notes.find((note) => note.id == noteId).filters = tagListInput.value.split(',');
 
   saveToLocalStorage(notes);
 }
@@ -391,4 +395,24 @@ export function createExpandButton(noteId) {
 export function formatTime(timeString) {
   const time = new Date(timeString);
   return time.toLocaleDateString() + " " + time.toLocaleTimeString();
+}
+
+/**
+ * Generates the list element for displaying tags the user has added to the note
+ * 
+ * @param {string} commaSepList - A comma-separated list of tags the user wants to add
+ * @returns 'li' HTML element
+ */
+function generateTagList(tagListArray) {
+  const tagListElement = document.createElement("ul");
+  tagListElement.classList.add("tag-list");
+
+  tagListArray.forEach(function(tagItem) {
+    const listItem = document.createElement("li");
+    listItem.classList.add("tag-item");
+    listItem.innerText = tagItem;
+    tagListElement.appendChild(listItem);
+  });
+
+  return tagListElement;
 }
