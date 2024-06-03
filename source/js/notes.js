@@ -36,6 +36,18 @@ let notes = [];
 let filterSet = new Set();
 
 /**
+ * The default placeholder title of a new note
+ * @type {string}
+ */
+const DEFAULT_NOTE_TITLE = "New note";
+
+/**
+ * The default placeholder content of a new note
+ * @type {string}
+ */
+const DEFAULT_NOTE_CONTENT = "Put the contents of your note here!";
+
+/**
  * Initialization function for after the DOM loads
  */
 function init() {
@@ -47,7 +59,9 @@ function init() {
     .getElementById("sort-notes-button")
     .addEventListener("click", () => sortNotes());
   document.getElementById("project-title").innerText = projectId;
-  document.getElementById("filter-select").addEventListener("change", filterNotes);
+  document
+    .getElementById("filter-select")
+    .addEventListener("change", filterNotes);
   if (dateView == "t") {
     toggleDateView();
     document.getElementById("toggle-date-view").style.display = "none";
@@ -129,7 +143,7 @@ function loadNotesFromStorage(date) {
   for (const note of notes) {
     genNoteElement(note);
     const noteFilterList = note.filters || [];
-    noteFilterList.forEach(function(filter) {
+    noteFilterList.forEach(function (filter) {
       filterSet.add(filter);
       updateFilterSelect();
     });
@@ -148,8 +162,8 @@ function createNote() {
    */
   const newNote = {
     id: `${projectId}#notes#${rand}`,
-    title: "New note",
-    content: "Put the contents of your note here!",
+    title: "",
+    content: "",
     createdAt: time.toISOString(),
     updatedAt: time.toISOString(),
   };
@@ -174,7 +188,8 @@ function genNoteElement(noteObj) {
 
   const noteTitle = document.createElement("p");
   noteTitle.classList.add("note-text", "note-title");
-  noteTitle.innerText = noteObj.title;
+  noteTitle.innerText =
+    noteObj.title == "" ? DEFAULT_NOTE_TITLE : noteObj.title;
 
   const noteDate = document.createElement("i");
 
@@ -186,7 +201,9 @@ function genNoteElement(noteObj) {
   noteHeader.appendChild(noteTitle);
   noteHeader.appendChild(noteDate);
 
-  const noteText = createNoteText(noteObj.content);
+  const noteText = createNoteText(
+    noteObj.content == "" ? DEFAULT_NOTE_CONTENT : noteObj.content,
+  );
 
   const noteEdit = createNoteButton("edit", () => editNote(noteObj.id));
   const noteDelete = createNoteButton("delete", () => deleteNote(noteObj.id));
@@ -211,7 +228,7 @@ function genNoteElement(noteObj) {
   noteBlock.appendChild(tagAndButtons);
 
   const noteFilterList = noteObj.filters || [];
-  noteFilterList.forEach(function(filter) {
+  noteFilterList.forEach(function (filter) {
     noteBlock.classList.add(`filter-${filter}`);
   });
 
@@ -246,23 +263,21 @@ function editNote(noteId) {
   editIcon.innerText = "check";
 
   const noteTextInput = document.createElement("textarea");
-  if (noteText.innerText == "Put the contents of your note here!") {
-    noteTextInput.placeholder = noteText.innerText;
-  } else {
+  noteTextInput.placeholder = DEFAULT_NOTE_CONTENT;
+  if (noteText.innerText != DEFAULT_NOTE_CONTENT) {
     noteTextInput.value = noteText.innerText;
   }
   noteTextInput.classList.add("edit-note", "note-text");
 
   const noteTitleInput = document.createElement("input");
-  if (noteTitle.innerText == "New note") {
-    noteTitleInput.placeholder = noteTitle.innerText;
-  } else {
+  noteTitleInput.placeholder = DEFAULT_NOTE_TITLE;
+  if (noteTitle.innerText != DEFAULT_NOTE_TITLE) {
     noteTitleInput.value = noteTitle.innerText;
   }
   noteTitleInput.classList = noteTitle.classList;
 
-  const tagListInput = document.createElement("input");//Create tag input edit
-  const noteTags = notes.find((note) => note.id == noteId).filters || [];//Get tag array
+  const tagListInput = document.createElement("input"); //Create tag input edit
+  const noteTags = notes.find((note) => note.id == noteId).filters || []; //Get tag array
   const noteTagsString = noteTags.join(" ");
   tagListInput.value = noteTagsString;
   tagListInput.classList.add("tag-list");
@@ -303,28 +318,31 @@ function saveNote(noteId) {
   const editIcon = saveButton.querySelector("i");
   editIcon.innerText = "edit";
 
-  const noteText = createNoteText(noteTextInput.value);
+  const noteText = createNoteText(
+    noteTextInput.value == "" ? DEFAULT_NOTE_CONTENT : noteTextInput.value,
+  );
   const noteDate = noteBlock.querySelector(".note-date");
   noteDate.innerText = formatTime(curTime);
   noteBlock.replaceChild(noteText, noteTextInput);
 
   const noteTitle = document.createElement("p");
   noteTitle.classList = noteTitleInput.classList;
-  noteTitle.innerText = noteTitleInput.value;
+  noteTitle.innerText =
+    noteTitleInput.value == "" ? DEFAULT_NOTE_TITLE : noteTitleInput.value;
   noteTitleInput.replaceWith(noteTitle);
 
   const splitRegEx = /\s+/; // Looks for commas as delimiter and removes whitespace around split
   const tagListArray = tagListInput.value.split(splitRegEx).filter(Boolean);
-  tagListArray.forEach(function(tag) {
+  tagListArray.forEach(function (tag) {
     filterSet.add(tag);
     updateFilterSelect();
   });
 
   const tagListElement = generateTagList(tagListArray);
-  
+
   noteBlock.setAttribute("class", "note-block");
 
-  tagListArray.forEach(function(tagItem) {
+  tagListArray.forEach(function (tagItem) {
     noteBlock.classList.add(`filter-${tagItem}`);
   });
 
@@ -414,7 +432,7 @@ function saveToLocalStorage(notes) {
  */
 export function createNoteText(content) {
   const noteText = document.createElement("p");
-  noteText.innerText = content ?? "New note";
+  noteText.innerText = content ?? DEFAULT_NOTE_TITLE;
   noteText.classList.add("note-content", "note-text", "collapsed");
   return noteText;
 }
@@ -475,7 +493,7 @@ export function formatTime(timeString) {
 
 /**
  * Generates the list element for displaying tags the user has added to the note
- * 
+ *
  * @param {string} tagListArray - An array containing the list of tags for the note
  * @returns {HTMLLIElement} 'li' HTML element
  */
@@ -483,7 +501,7 @@ function generateTagList(tagListArray) {
   const tagListElement = document.createElement("ul");
   tagListElement.classList.add("tag-list");
 
-  tagListArray.forEach(function(tagItem) {
+  tagListArray.forEach(function (tagItem) {
     const listItem = document.createElement("li");
     listItem.classList.add("tag-item");
     listItem.innerText = tagItem;
@@ -499,7 +517,7 @@ function generateTagList(tagListArray) {
 function updateFilterSelect() {
   const filterSelect = document.getElementById("filter-select");
   filterSelect.innerHTML = "<option value='no-filter'>No Filter</option>";
-  filterSet.forEach(function(filter) {
+  filterSet.forEach(function (filter) {
     const filterSelectItem = document.createElement("option");
     filterSelectItem.value = `filter-${filter}`;
     filterSelectItem.innerText = filter;
@@ -513,8 +531,11 @@ function updateFilterSelect() {
 function filterNotes() {
   const selectedFilter = document.getElementById("filter-select").value;
   const noteBlocks = document.getElementsByClassName("note-block");
-  Array.from(noteBlocks).forEach(function(noteBlock) {
-    if (!noteBlock.classList.contains(selectedFilter) && selectedFilter != "no-filter") {
+  Array.from(noteBlocks).forEach(function (noteBlock) {
+    if (
+      !noteBlock.classList.contains(selectedFilter) &&
+      selectedFilter != "no-filter"
+    ) {
       noteBlock.classList.remove("filtered-in");
       noteBlock.classList.add("filtered-out");
     } else {
