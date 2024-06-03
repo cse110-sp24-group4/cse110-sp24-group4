@@ -4,8 +4,10 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project Page</title>
+    <link rel="manifest" href="../manifest.json" />
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/notes.css" />
+    <link rel="stylesheet" href="../css/todo.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <script src="../js/notes.js" type="module" defer></script>
     <script src="../js/todo.js" type="module" defer></script>
@@ -17,19 +19,17 @@
         <h1 id="project-title">Project</h1>
         <div></div>
     </header>
-    <section id="note-add">
+    <div id="main-container">
         <h2 id="notes-header">
             Notes
             <button id="create-note-button">Add new note</button>
             <button id="sort-notes-button">Sort by date</button>
         </h2>
+
         <h2 id="todo-header">
             <button id="toggle-sidebar-button"><i class="material-icons">chevron_left</i></button>
             <p>To-do</p>
         </h2>
-    </section>
-    <div id="main-container">
-
 
         <div class="notes-grid">
             <!-- <div id="mockup-project#notes#884" class="note-block">
@@ -88,27 +88,13 @@
                 
                 <section>
                     <ul id="task-list">
-                        <li class="task-item">
+                        <!-- <li class="task-item">
                             <input type="checkbox" />
                             <span>task 1</span>
                             <button>
                                 <i class="material-icons">delete</i>
                             </button>
-                        </li>
-                        <li class="task-item">
-                            <input type="checkbox" />
-                            <span>task 2</span>
-                            <button>
-                                <i class="material-icons">delete</i>
-                            </button>
-                        </li>
-                        <li class="task-item">
-                            <input type="checkbox" />
-                            <span>task 3</span>
-                            <button>
-                                <i class="material-icons">delete</i>
-                            </button>
-                        </li>
+                        </li> -->
                     </ul>
                 </section>
                 <button id="add-to-notes">Add completed tasks to notes</button>

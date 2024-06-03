@@ -1,5 +1,7 @@
 header>img {
     margin: 5px;
+    margin-left: 8px;
+    border-radius: 10px;
 }
 
 header>a {
@@ -13,7 +15,7 @@ header>a {
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 5px;
-    background-color:#ebd0b2;
+    background-color: #ebd0b2;
 
     &:hover {
         opacity: 50%;
@@ -87,6 +89,7 @@ footer {
     .info {
         display: block;
         justify-content: center;
+
         &>section {
             margin: 20px auto;
             width: 70vw;

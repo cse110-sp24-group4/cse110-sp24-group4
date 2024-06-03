@@ -30,8 +30,9 @@
 }
 
 #main-container {
+  position: relative;
   display: grid;
-  grid-template-columns: 0.8fr 0.2fr;
+  grid-template-columns: 3fr 1fr;
   padding: 0px 16px 0px 16px;
   gap: 12px;
 }
@@ -59,6 +60,35 @@
   gap: 8px;
   padding: 12px;
   padding-top: 0px;
+  animation: 1s create-note-animation;
+  transition: height 1s;
+}
+
+.delete-note {
+  animation: 1s delete-note-animation;
+}
+
+@keyframes create-note-animation {
+  from {
+    transform: scale(0);
+
+  }
+
+  to {
+    transform: scale(1.0);
+  }
+}
+
+@keyframes delete-note-animation {
+  from {
+    transform: scale(1.0);
+    max-height: 200px;
+  }
+
+  to {
+    max-height: 0;
+    transform: scale(0);
+  }
 }
 
 .note-header {
@@ -99,17 +129,16 @@
   transition: max-height 1s 0s;
 }
 
-.note-expand,
-.note-collapse {
+.note-overflow-button {
   align-self: flex-start;
-  background-color: white;
+  background-color: inherit;
+  border-radius: 12px;
   border: none;
   font-weight: 900;
 
 }
 
-.note-expand:hover,
-.note-collapse:hover {
+.note-overflow-button:hover {
   opacity: 50%;
 }
 
@@ -153,6 +182,13 @@
   height: 220px;
   resize: none;
   padding: 8px;
+}
+
+
+#todo-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .todo-grid {
