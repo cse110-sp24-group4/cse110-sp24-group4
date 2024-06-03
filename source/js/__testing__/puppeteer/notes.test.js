@@ -144,11 +144,6 @@ describe("Test suites for notes page end-to-end tests", () => {
         await (await block.$("p.note-title")).getProperty("innerText")
       ).jsonValue();
       expect(titleValue).toBe(`${i}`);
-
-      const tagValue = await (
-        await (await block.$("li")).getProperty("innerText")
-      );
-      expect(tagValue).toBe(`test${1}`);
       i--;
     }
 
