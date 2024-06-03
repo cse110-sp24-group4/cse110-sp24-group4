@@ -240,6 +240,30 @@
   /* Adjust width as needed */
 }
 
+
+#toggle-date-view {
+  text-decoration: none;
+  font-size: 2em;
+  border: 2px solid #674A2A;
+  border-radius: 10px;
+  color: black;
+  margin-left: auto;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: #ebd0b2;
+
+  &:hover {
+      opacity: 50%;
+  }
+}
+
+.date-selector {
+  font-size: 2em;
+  margin-left: 10px;
+}
+
 /* Styles for smaller screens */
 @media (max-width: 768px) {
   #main-container {

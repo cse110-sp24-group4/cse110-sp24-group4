@@ -12,6 +12,12 @@ window.addEventListener("load", () => init());
 const projectId = new URL(window.location).searchParams.get("projectId");
 
 /**
+ * Set to 't' if date mode is active, should not have any other value
+ * @constant {char}
+ */
+const dateView = new URL(window.location).searchParams.get("date");
+
+/**
  * @typedef {Object} Note
  * @property {string} id Unique ID for the note
  * @property {string} content The text contained in the note
@@ -41,8 +47,17 @@ function init() {
     .getElementById("sort-notes-button")
     .addEventListener("click", () => sortNotes());
   document.getElementById("project-title").innerText = projectId;
-  loadNotesFromStorage();
   document.getElementById("filter-select").addEventListener("change", filterNotes);
+  if (dateView == "t") {
+    toggleDateView();
+    document.getElementById("toggle-date-view").style.display = "none";
+    document.getElementById("project-title").innerText = "Notes by Date";
+  } else {
+    loadNotesFromStorage("");
+    document
+      .getElementById("toggle-date-view")
+      .addEventListener("click", () => toggleDateView());
+  }
 }
 
 /**
@@ -86,10 +101,31 @@ function sortNotes() {
 
 /**
  * Retrieves notes related to current project from localstorage
+ * @param {string} date Date of notes to be displayed, empty string displays project
  */
-function loadNotesFromStorage() {
-  // if (projectId == null) return;
-  notes = JSON.parse(localStorage.getItem(`${projectId}#notes`) ?? "[]") ?? [];
+function loadNotesFromStorage(date) {
+  const projects = JSON.parse(localStorage.getItem("projects")) || [];
+  let notesGrid = document.querySelector(".notes-grid");
+  notesGrid.innerHTML = "";
+
+  if (date == "") {
+    // if (projectId == null) return;
+    notes =
+      JSON.parse(localStorage.getItem(`${projectId}#notes`) ?? "[]") ?? [];
+  } else {
+    notes = [];
+    for (let i = 0; i < projects.length; i++) {
+      let projectNotes =
+        JSON.parse(localStorage.getItem(`${projects[i]}#notes`) ?? "[]") ?? [];
+      for (let j = 0; j < projectNotes.length; j++) {
+        let noteDate = new Date(projectNotes[j].updatedAt);
+        let formattedDate = localeToInputDate(noteDate);
+        if (formattedDate == date) {
+          notes.push(projectNotes[j]);
+        }
+      }
+    }
+  }
   for (const note of notes) {
     genNoteElement(note);
     const noteFilterList = note.filters || [];
@@ -486,4 +522,57 @@ function filterNotes() {
       noteBlock.classList.add("filtered-in");
     }
   });
+}
+
+/**
+ * Changes toggle button switching between date view and projects
+ * Changes appropriate text, loads new notes
+ * Creates date picker element
+ */
+function toggleDateView() {
+  const dateButton = document.getElementById("toggle-date-view");
+  if (dateButton.innerText == "Go back to project") {
+    dateButton.innerText = "Switch to date view";
+    document.querySelector("header>input").remove();
+    loadNotesFromStorage("");
+    document.getElementById("project-title").innerText = projectId;
+  } else {
+    dateButton.innerText = "Go back to project";
+    let dateSelector = document.createElement("input");
+    dateSelector.type = "date";
+    dateSelector.classList = "date-selector";
+    let header = document.querySelector("header");
+    header.insertBefore(dateSelector, dateButton);
+    let today = new Date();
+
+    dateSelector.value = localeToInputDate(today);
+    dateSelector.addEventListener("input", () => updateDateNotes());
+    loadNotesFromStorage(dateSelector.value);
+    document.getElementById("project-title").innerText = "Notes by Date";
+  }
+}
+
+/**
+ * Updates notes displayed whenever the date input is changed
+ */
+function updateDateNotes() {
+  let dateSelector = document.querySelector("header>input");
+  loadNotesFromStorage(dateSelector.value);
+}
+
+/**
+ * Converts a date object into a date string in the format YYYY-MM-DD
+ * @param {Date} date Input date ojbect
+ * @returns {string} date output string
+ */
+function localeToInputDate(date) {
+  let dateArr = date.toLocaleDateString().split("/");
+  if (Number(dateArr[0]) < 10) {
+    dateArr[0] = "0" + dateArr[0];
+  }
+  if (Number(dateArr[1]) < 10) {
+    dateArr[1] = "0" + dateArr[1];
+  }
+
+  return dateArr[2] + "-" + dateArr[0] + "-" + dateArr[1];
 }
