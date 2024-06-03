@@ -143,7 +143,7 @@ describe("Test suites for notes page end-to-end tests", () => {
       const titleValue = await (
         await (await block.$("p.note-title")).getProperty("innerText")
       ).jsonValue();
-      expect(titleValue).toBe(`New note${i}`);
+      expect(titleValue).toBe(`${i}`);
 
       const tagValue = await (
         await (await block.$("li.tag-item")).getProperty("innerText")
