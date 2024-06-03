@@ -25,6 +25,11 @@ const projectId = new URL(window.location).searchParams.get("projectId");
 let notes = [];
 
 /**
+ * @type {Set<string>}
+ */
+let filterSet = new Set();
+
+/**
  * Initialization function for after the DOM loads
  */
 function init() {
@@ -86,6 +91,11 @@ function loadNotesFromStorage() {
   notes = JSON.parse(localStorage.getItem(`${projectId}#notes`) ?? "[]") ?? [];
   for (const note of notes) {
     genNoteElement(note);
+    note.filters.forEach(function(filter) {
+      console.log(`adding ${filter}`);
+      filterSet.add(filter);
+      updateFilterSelect();
+    })
   }
   sortNotes();
 }
@@ -244,6 +254,10 @@ function saveNote(noteId) {
 
   const splitRegEx = /\s+/; // Looks for commas as delimiter and removes whitespace around split
   const tagListArray = tagListInput.value.split(splitRegEx).filter(Boolean);
+  tagListArray.forEach(function(tag) {
+    filterSet.add(tag);
+    updateFilterSelect();
+  });
   console.log(tagListArray);
 
   const tagListElement = generateTagList(tagListArray);
@@ -415,4 +429,15 @@ function generateTagList(tagListArray) {
   });
 
   return tagListElement;
+}
+
+function updateFilterSelect() {
+  const filterSelect = document.getElementById("filter-select");
+  filterSelect.innerHTML = "<option value='no-filter'>No Filter</option>";
+  filterSet.forEach(function(filter) {
+    const filterSelectItem = document.createElement("option");
+    filterSelectItem.value = `filter-${filter}`;
+    filterSelectItem.innerText = filter;
+    filterSelect.appendChild(filterSelectItem);
+  });
 }
