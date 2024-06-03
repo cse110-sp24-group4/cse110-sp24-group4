@@ -30,8 +30,8 @@ describe("Test suites for notes page end-to-end tests", () => {
     }
 
     for (const notes of curLocalStorage) {
-      expect(notes.content).toBe("Put the contents of your note here!");
-      expect(notes.title).toBe("New note");
+      expect(notes.content).toBe("");
+      expect(notes.title).toBe("");
     }
 
     expect(noteBlocks.length).toBe(2);
@@ -58,8 +58,8 @@ describe("Test suites for notes page end-to-end tests", () => {
     }
 
     for (const notes of curLocalStorage) {
-      expect(notes.content).toBe("Put the contents of your note here!");
-      expect(notes.title).toBe("New note");
+      expect(notes.content).toBe("");
+      expect(notes.title).toBe("");
     }
 
     expect(noteBlocks.length).toBe(2);

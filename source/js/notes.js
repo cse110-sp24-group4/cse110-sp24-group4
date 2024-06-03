@@ -36,6 +36,18 @@ let notes = [];
 let filterSet = new Set();
 
 /**
+ * The default placeholder title of a new note
+ * @type {string}
+ */
+const DEFAULT_NOTE_TITLE = "New note";
+
+/**
+ * The default placeholder content of a new note
+ * @type {string}
+ */
+const DEFAULT_NOTE_CONTENT = "Put the contents of your note here!";
+
+/**
  * Initialization function for after the DOM loads
  */
 function init() {
@@ -150,8 +162,8 @@ function createNote() {
    */
   const newNote = {
     id: `${projectId}#notes#${rand}`,
-    title: "New note",
-    content: "Put the contents of your note here!",
+    title: "",
+    content: "",
     createdAt: time.toISOString(),
     updatedAt: time.toISOString(),
   };
@@ -176,7 +188,8 @@ function genNoteElement(noteObj) {
 
   const noteTitle = document.createElement("p");
   noteTitle.classList.add("note-text", "note-title");
-  noteTitle.innerText = noteObj.title;
+  noteTitle.innerText =
+    noteObj.title == "" ? DEFAULT_NOTE_TITLE : noteObj.title;
 
   const noteDate = document.createElement("i");
 
@@ -188,7 +201,9 @@ function genNoteElement(noteObj) {
   noteHeader.appendChild(noteTitle);
   noteHeader.appendChild(noteDate);
 
-  const noteText = createNoteText(noteObj.content);
+  const noteText = createNoteText(
+    noteObj.content == "" ? DEFAULT_NOTE_CONTENT : noteObj.content,
+  );
 
   const noteEdit = createNoteButton("edit", () => editNote(noteObj.id));
   const noteDelete = createNoteButton("delete", () => deleteNote(noteObj.id));
@@ -248,17 +263,15 @@ function editNote(noteId) {
   editIcon.innerText = "check";
 
   const noteTextInput = document.createElement("textarea");
-  if (noteText.innerText == "Put the contents of your note here!") {
-    noteTextInput.placeholder = noteText.innerText;
-  } else {
+  noteTextInput.placeholder = DEFAULT_NOTE_CONTENT;
+  if (noteText.innerText != DEFAULT_NOTE_CONTENT) {
     noteTextInput.value = noteText.innerText;
   }
   noteTextInput.classList.add("edit-note", "note-text");
 
   const noteTitleInput = document.createElement("input");
-  if (noteTitle.innerText == "New note") {
-    noteTitleInput.placeholder = noteTitle.innerText;
-  } else {
+  noteTitleInput.placeholder = DEFAULT_NOTE_TITLE;
+  if (noteTitle.innerText != DEFAULT_NOTE_TITLE) {
     noteTitleInput.value = noteTitle.innerText;
   }
   noteTitleInput.classList = noteTitle.classList;
@@ -305,14 +318,17 @@ function saveNote(noteId) {
   const editIcon = saveButton.querySelector("i");
   editIcon.innerText = "edit";
 
-  const noteText = createNoteText(noteTextInput.value);
+  const noteText = createNoteText(
+    noteTextInput.value == "" ? DEFAULT_NOTE_CONTENT : noteTextInput.value,
+  );
   const noteDate = noteBlock.querySelector(".note-date");
   noteDate.innerText = formatTime(curTime);
   noteBlock.replaceChild(noteText, noteTextInput);
 
   const noteTitle = document.createElement("p");
   noteTitle.classList = noteTitleInput.classList;
-  noteTitle.innerText = noteTitleInput.value;
+  noteTitle.innerText =
+    noteTitleInput.value == "" ? DEFAULT_NOTE_TITLE : noteTitleInput.value;
   noteTitleInput.replaceWith(noteTitle);
 
   const splitRegEx = /\s+/; // Looks for commas as delimiter and removes whitespace around split
@@ -416,7 +432,7 @@ function saveToLocalStorage(notes) {
  */
 export function createNoteText(content) {
   const noteText = document.createElement("p");
-  noteText.innerText = content ?? "New note";
+  noteText.innerText = content ?? DEFAULT_NOTE_TITLE;
   noteText.classList.add("note-content", "note-text", "collapsed");
   return noteText;
 }
