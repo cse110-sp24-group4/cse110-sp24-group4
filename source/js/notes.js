@@ -440,7 +440,7 @@ function toggleDateView() {
 
     let style = document.createElement('style');
     style.id = 'hide-edit';
-    style.innerHTML = '.edit, #create-note-button, #add-to-notes  {display: none;}';
+    style.innerHTML = '.edit, .delete, #create-note-button, #add-to-notes  {display: none;}';
     document.head.appendChild(style);
   }
 }
