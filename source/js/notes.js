@@ -47,7 +47,9 @@ function init() {
     .getElementById("sort-notes-button")
     .addEventListener("click", () => sortNotes());
   document.getElementById("project-title").innerText = projectId;
-  document.getElementById("filter-select").addEventListener("change", filterNotes);
+  document
+    .getElementById("filter-select")
+    .addEventListener("change", filterNotes);
   if (dateView == "t") {
     toggleDateView();
     document.getElementById("toggle-date-view").style.display = "none";
@@ -129,7 +131,7 @@ function loadNotesFromStorage(date) {
   for (const note of notes) {
     genNoteElement(note);
     const noteFilterList = note.filters || [];
-    noteFilterList.forEach(function(filter) {
+    noteFilterList.forEach(function (filter) {
       filterSet.add(filter);
       updateFilterSelect();
     });
@@ -211,7 +213,7 @@ function genNoteElement(noteObj) {
   noteBlock.appendChild(tagAndButtons);
 
   const noteFilterList = noteObj.filters || [];
-  noteFilterList.forEach(function(filter) {
+  noteFilterList.forEach(function (filter) {
     noteBlock.classList.add(`filter-${filter}`);
   });
 
@@ -261,8 +263,8 @@ function editNote(noteId) {
   }
   noteTitleInput.classList = noteTitle.classList;
 
-  const tagListInput = document.createElement("input");//Create tag input edit
-  const noteTags = notes.find((note) => note.id == noteId).filters || [];//Get tag array
+  const tagListInput = document.createElement("input"); //Create tag input edit
+  const noteTags = notes.find((note) => note.id == noteId).filters || []; //Get tag array
   const noteTagsString = noteTags.join(" ");
   tagListInput.value = noteTagsString;
   tagListInput.classList.add("tag-list");
@@ -315,16 +317,16 @@ function saveNote(noteId) {
 
   const splitRegEx = /\s+/; // Looks for commas as delimiter and removes whitespace around split
   const tagListArray = tagListInput.value.split(splitRegEx).filter(Boolean);
-  tagListArray.forEach(function(tag) {
+  tagListArray.forEach(function (tag) {
     filterSet.add(tag);
     updateFilterSelect();
   });
 
   const tagListElement = generateTagList(tagListArray);
-  
+
   noteBlock.setAttribute("class", "note-block");
 
-  tagListArray.forEach(function(tagItem) {
+  tagListArray.forEach(function (tagItem) {
     noteBlock.classList.add(`filter-${tagItem}`);
   });
 
@@ -475,7 +477,7 @@ export function formatTime(timeString) {
 
 /**
  * Generates the list element for displaying tags the user has added to the note
- * 
+ *
  * @param {string} tagListArray - An array containing the list of tags for the note
  * @returns {HTMLLIElement} 'li' HTML element
  */
@@ -483,7 +485,7 @@ function generateTagList(tagListArray) {
   const tagListElement = document.createElement("ul");
   tagListElement.classList.add("tag-list");
 
-  tagListArray.forEach(function(tagItem) {
+  tagListArray.forEach(function (tagItem) {
     const listItem = document.createElement("li");
     listItem.classList.add("tag-item");
     listItem.innerText = tagItem;
@@ -499,7 +501,7 @@ function generateTagList(tagListArray) {
 function updateFilterSelect() {
   const filterSelect = document.getElementById("filter-select");
   filterSelect.innerHTML = "<option value='no-filter'>No Filter</option>";
-  filterSet.forEach(function(filter) {
+  filterSet.forEach(function (filter) {
     const filterSelectItem = document.createElement("option");
     filterSelectItem.value = `filter-${filter}`;
     filterSelectItem.innerText = filter;
@@ -513,8 +515,11 @@ function updateFilterSelect() {
 function filterNotes() {
   const selectedFilter = document.getElementById("filter-select").value;
   const noteBlocks = document.getElementsByClassName("note-block");
-  Array.from(noteBlocks).forEach(function(noteBlock) {
-    if (!noteBlock.classList.contains(selectedFilter) && selectedFilter != "no-filter") {
+  Array.from(noteBlocks).forEach(function (noteBlock) {
+    if (
+      !noteBlock.classList.contains(selectedFilter) &&
+      selectedFilter != "no-filter"
+    ) {
       noteBlock.classList.remove("filtered-in");
       noteBlock.classList.add("filtered-out");
     } else {
