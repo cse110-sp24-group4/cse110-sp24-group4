@@ -123,14 +123,7 @@ function loadTasksFromStorage(projectId) {
   tasks = JSON.parse(localStorage.getItem(`${projectId}#tasks`)) || [];
   renderTasks(projectId);
 }
-/*
-window.addEventListener("DOMContentLoaded", () => {
-  const sidebar = document.getElementById("todo-list");
 
-  window.addEventListener("scroll", () => {
-    todoList.classList.toggle("open");
-  });
-});*/
 
 /**
  * Toggles the ToDo sidebar when the button is pressed
