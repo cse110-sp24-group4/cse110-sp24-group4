@@ -31,6 +31,11 @@ const dateView = new URL(window.location).searchParams.get("date");
 let notes = [];
 
 /**
+ * @type {Set<string>}
+ */
+let filterSet = new Set();
+
+/**
  * Initialization function for after the DOM loads
  */
 function init() {
@@ -42,6 +47,7 @@ function init() {
     .getElementById("sort-notes-button")
     .addEventListener("click", () => sortNotes());
   document.getElementById("project-title").innerText = projectId;
+  document.getElementById("filter-select").addEventListener("change", filterNotes);
   if (dateView == "t") {
     toggleDateView();
     document.getElementById("toggle-date-view").style.display = "none";
@@ -122,6 +128,11 @@ function loadNotesFromStorage(date) {
   }
   for (const note of notes) {
     genNoteElement(note);
+    const noteFilterList = note.filters || [];
+    noteFilterList.forEach(function(filter) {
+      filterSet.add(filter);
+      updateFilterSelect();
+    });
   }
   sortNotes();
 }
@@ -187,9 +198,22 @@ function genNoteElement(noteObj) {
   buttonContainer.appendChild(noteEdit);
   buttonContainer.appendChild(noteDelete);
 
+  const tagAndButtons = document.createElement("div");
+  tagAndButtons.className = "tag-and-buttons";
+
+  const tagList = generateTagList(noteObj.filters || []);
+
+  tagAndButtons.appendChild(tagList);
+  tagAndButtons.appendChild(buttonContainer);
+
   noteBlock.appendChild(noteHeader);
   noteBlock.appendChild(noteText);
-  noteBlock.appendChild(buttonContainer);
+  noteBlock.appendChild(tagAndButtons);
+
+  const noteFilterList = noteObj.filters || [];
+  noteFilterList.forEach(function(filter) {
+    noteBlock.classList.add(`filter-${filter}`);
+  });
 
   let sortButton = document.getElementById("sort-notes-button");
   if (sortButton.innerText == "Sorted by most recent") {
@@ -210,6 +234,9 @@ function editNote(noteId) {
   const noteBlock = document.getElementById(`${noteId}`);
   const noteTitle = noteBlock.querySelector(".note-title");
   const noteText = noteBlock.querySelector(".note-content");
+  const tagList = noteBlock.querySelector(".tag-list");
+  const tagAndButtons = noteBlock.querySelector(".tag-and-buttons");
+  const buttonContainer = tagAndButtons.querySelector(".button-container");
 
   const editButton = noteBlock.querySelector("button.edit");
   editButton.classList.replace("edit", "check");
@@ -234,8 +261,23 @@ function editNote(noteId) {
   }
   noteTitleInput.classList = noteTitle.classList;
 
+  const tagListInput = document.createElement("input");//Create tag input edit
+  const noteTags = notes.find((note) => note.id == noteId).filters || [];//Get tag array
+  const noteTagsString = noteTags.join(" ");
+  tagListInput.value = noteTagsString;
+  tagListInput.classList.add("tag-list");
+  tagListInput.placeholder = "Keywords";
+
+  const tagListInputInstructions = document.createElement("p");
+  tagListInputInstructions.classList.add("instructions", "note-text");
+  tagListInputInstructions.innerText = "Separate keywords with spaces";
+  tagListInputInstructions.style = "font-size: 0.8em;";
+
+  tagAndButtons.insertBefore(tagListInputInstructions, buttonContainer);
+
   noteTitle.replaceWith(noteTitleInput);
   noteBlock.replaceChild(noteTextInput, noteText);
+  tagList.replaceWith(tagListInput);
   const expandButton = noteBlock.querySelector(".note-overflow-button");
   if (expandButton) {
     noteBlock.removeChild(expandButton);
@@ -250,7 +292,9 @@ function saveNote(noteId) {
   const noteBlock = document.getElementById(`${noteId}`);
   const noteTitleInput = noteBlock.querySelector(".note-title");
   const noteTextInput = noteBlock.querySelector(".edit-note");
+  const tagListInput = noteBlock.querySelector(".tag-list");
   const curTime = new Date().toISOString();
+  const tagListInputInstructions = noteBlock.querySelector(".instructions");
 
   const saveButton = noteBlock.querySelector("button.check");
   saveButton.classList.replace("check", "edit");
@@ -269,15 +313,35 @@ function saveNote(noteId) {
   noteTitle.innerText = noteTitleInput.value;
   noteTitleInput.replaceWith(noteTitle);
 
+  const splitRegEx = /\s+/; // Looks for commas as delimiter and removes whitespace around split
+  const tagListArray = tagListInput.value.split(splitRegEx).filter(Boolean);
+  tagListArray.forEach(function(tag) {
+    filterSet.add(tag);
+    updateFilterSelect();
+  });
+
+  const tagListElement = generateTagList(tagListArray);
+  
+  noteBlock.setAttribute("class", "note-block");
+
+  tagListArray.forEach(function(tagItem) {
+    noteBlock.classList.add(`filter-${tagItem}`);
+  });
+
+  tagListInput.replaceWith(tagListElement);
+
+  tagListInputInstructions.remove();
+
   if (noteText.scrollHeight > noteText.clientHeight) {
     const expandButton = createExpandButton(noteId);
-    const buttonContainer = noteBlock.querySelector(".button-container");
-    noteBlock.insertBefore(expandButton, buttonContainer);
+    const tagAndButtons = noteBlock.querySelector(".tag-and-buttons");
+    noteBlock.insertBefore(expandButton, tagAndButtons);
   }
 
   notes.find((note) => note.id == noteId).content = noteTextInput.value;
   notes.find((note) => note.id == noteId).title = noteTitleInput.value;
   notes.find((note) => note.id == noteId).updatedAt = curTime;
+  notes.find((note) => note.id == noteId).filters = tagListArray;
 
   saveToLocalStorage(notes);
 }
@@ -407,6 +471,57 @@ export function createExpandButton(noteId) {
 export function formatTime(timeString) {
   const time = new Date(timeString);
   return time.toLocaleDateString() + " " + time.toLocaleTimeString();
+}
+
+/**
+ * Generates the list element for displaying tags the user has added to the note
+ * 
+ * @param {string} tagListArray - An array containing the list of tags for the note
+ * @returns {HTMLLIElement} 'li' HTML element
+ */
+function generateTagList(tagListArray) {
+  const tagListElement = document.createElement("ul");
+  tagListElement.classList.add("tag-list");
+
+  tagListArray.forEach(function(tagItem) {
+    const listItem = document.createElement("li");
+    listItem.classList.add("tag-item");
+    listItem.innerText = tagItem;
+    tagListElement.appendChild(listItem);
+  });
+
+  return tagListElement;
+}
+
+/**
+ * Updates the select element to contain all available tags
+ */
+function updateFilterSelect() {
+  const filterSelect = document.getElementById("filter-select");
+  filterSelect.innerHTML = "<option value='no-filter'>No Filter</option>";
+  filterSet.forEach(function(filter) {
+    const filterSelectItem = document.createElement("option");
+    filterSelectItem.value = `filter-${filter}`;
+    filterSelectItem.innerText = filter;
+    filterSelect.appendChild(filterSelectItem);
+  });
+}
+
+/**
+ * Filters notes according to selected tag
+ */
+function filterNotes() {
+  const selectedFilter = document.getElementById("filter-select").value;
+  const noteBlocks = document.getElementsByClassName("note-block");
+  Array.from(noteBlocks).forEach(function(noteBlock) {
+    if (!noteBlock.classList.contains(selectedFilter) && selectedFilter != "no-filter") {
+      noteBlock.classList.remove("filtered-in");
+      noteBlock.classList.add("filtered-out");
+    } else {
+      noteBlock.classList.remove("filtered-out");
+      noteBlock.classList.add("filtered-in");
+    }
+  });
 }
 
 /**

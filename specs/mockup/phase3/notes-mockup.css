@@ -41,14 +41,15 @@
   display: grid;
   grid-template-columns: auto;
   gap: 10px;
-  align-items: flex-start;
 }
 
 .button-container {
   display: flex;
-  flex-direction: row;
   gap: 8px;
-  justify-content: space-between;
+  justify-content: flex-end;
+  &>p {
+    justify-self: flex-start;
+  }
 }
 
 .note-block {
@@ -63,7 +64,6 @@
   padding-top: 0px;
   animation: 1s create-note-animation;
   transition: height 1s;
-  overflow: hidden;
 }
 
 .delete-note {
@@ -108,11 +108,6 @@
   border-width: 0.5px;
   padding: 2px;
   padding-left: 4px;
-  white-space: nowrap;
-  width: 50%;
-  overflow: hidden;
-  display: block;
-  text-overflow: ellipsis;
 }
 
 .note-content {
@@ -234,58 +229,32 @@
   margin-right: 0;
   /* Remove margin from the last details element */
 }
-
 #todo-list {
-  flex: 0 0 300px;
-  /* Adjust width as needed */
-}
-
-
-#toggle-date-view {
-  text-decoration: none;
-  font-size: 2em;
-  border: 2px solid #674A2A;
-  border-radius: 10px;
-  color: black;
-  margin-left: auto;
-  margin-right: 5px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  padding: 5px;
-  background-color: #ebd0b2;
-
-  &:hover {
-      opacity: 50%;
-  }
-}
-
-.date-selector {
-  font-size: 2em;
-  margin-left: 10px;
+  flex: 0 0 300px; /* Adjust width as needed */
 }
 
 /* Styles for smaller screens */
 @media (max-width: 768px) {
   #main-container {
-    flex-direction: column;
+      flex-direction: column;
   }
 
   .notes-grid {
-    width: 100%;
+      width: 100%;
   }
 
   #todo-list {
-    display: none;
-    width: 100%;
+      display: none;
+      width: 100%;
   }
 
   #todo-list.open {
-    display: block;
+      display: block;
   }
 
   .toggle-button {
-    display: block;
-    margin: 10px 0;
+      display: block;
+      margin: 10px 0;
   }
 }
 
@@ -294,31 +263,34 @@
   display: none;
 }
 
-.tag-and-buttons {
+.note-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.tag-list {
+.label-list {
   display: flex;
   justify-content: flex-start;
   list-style-type: none;
-  padding-left: 0px;
+  padding-left: 0;
 }
 
-.tag-item {
+.label-item {
   margin: 5px;
   background-color: rgba(255, 255, 255, 0.3);
   border-style: solid;
-  border-color: rgba(255, 255, 255, 0);
+  border-color: rgba(0, 0, 0, 0);
   border-radius: 5px;
 }
 
-.filtered-in {
-  display: flex;
+label {
+  font-weight: 300;
+  font-size: 0.6em;
+  padding: 0px;
+  margin: 0px;
 }
 
-.filtered-out {
+.Y435 {
   display: none;
 }
