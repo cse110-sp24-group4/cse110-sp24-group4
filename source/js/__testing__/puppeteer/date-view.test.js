@@ -52,11 +52,9 @@ describe("Test the date view functionality of the notes page", () => {
     expect(notes.length).toBe(2);
   }, 100000);
 
-  it("", async () => {
-
-  });
-
-  it("", async () => {
-
+  it("Changing date with date picker", async () => {
+    await page.type('.date-selector', '19990104');
+    const notes = await page.$$('.note-block');
+    expect(notes.length).toBe(0);
   });
 });
