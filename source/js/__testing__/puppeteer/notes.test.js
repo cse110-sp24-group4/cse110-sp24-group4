@@ -89,6 +89,10 @@ describe("Test suites for notes page end-to-end tests", () => {
       }); // This ensures text is appended to end of content
       await titleInput.type(`${i}`);
 
+      const tagInput = await block.$(".tag-list");
+      await tagInput.click();
+      await tagInput.type(`test${i}`);
+
       const saveButton = await block.$("button.check");
       await saveButton.click();
       i++;
@@ -104,6 +108,11 @@ describe("Test suites for notes page end-to-end tests", () => {
         await (await block.$("p.note-title")).getProperty("innerText")
       ).jsonValue();
       expect(titleValue).toBe(`New note${i}`);
+
+      const tagValue = await (
+        await (await block.$("li.tag-item")).getProperty("innerText")
+      ).jsonValue();
+      expect(tagValue).toBe(`test${i}`);
 
       i++;
     }
@@ -138,6 +147,11 @@ describe("Test suites for notes page end-to-end tests", () => {
         await (await block.$("p.note-title")).getProperty("innerText")
       ).jsonValue();
       expect(titleValue).toBe(`New note${i}`);
+
+      const tagValue = await (
+        await (await block.$("li.tag-item")).getProperty("innerText")
+      );
+      expect(tagValue).toBe(`test${1}`);
       i--;
     }
 
