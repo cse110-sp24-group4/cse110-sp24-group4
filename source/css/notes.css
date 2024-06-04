@@ -110,26 +110,28 @@
   }
 }
 
+
 .note-header {
   position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: nowrap;
+  flex-direction: column; /* Change from row to column */
+  justify-content: flex-start; /* Align items to the start */
+  align-items: flex-start; /* Align items to the start */
   width: 100%;
   padding: 0px;
 }
 
 .note-title {
-  border-radius: 12px;
-  border-width: 0.5px;
-  padding: 10px;
-  padding-left: 4px;
-  white-space: nowrap;
-  width: 50%;
-  overflow: hidden;
-  display: block;
-  text-overflow: ellipsis;
+  font-size: 1.5em; /* Adjust the size of the header as needed */
+  font-weight: bold; /* Make the title bold */
+  margin: 8px 0; /* Add some margin for spacing */
+  width: 100%;
+}
+
+.note-date {
+  font-size: 0.9em; /* Adjust the size of the date */
+  color: grey; /* Change the color if needed */
+  margin-bottom: 8px; /* Add some margin for spacing */
 }
 
 .note-content {
@@ -187,11 +189,6 @@
 .note-text {
   margin: 0px;
   font-size: 1em;
-}
-
-.note-date {
-  font-size: 1em;
-  margin-left: auto;
 }
 
 .note-entry {
