@@ -16,7 +16,8 @@
 }
 
 #create-note-button:hover {
-  opacity: 0.6; /* Adjust opacity value as needed */
+  opacity: 0.6;
+  /* Adjust opacity value as needed */
 }
 
 #sort-notes-button {
@@ -24,8 +25,8 @@
   border-width: 0.5px;
   border-radius: 4px;
   margin-left: auto;
-  grid-column: 1 / -1; 
-  justify-self: end; 
+  grid-column: 1 / -1;
+  justify-self: end;
 }
 
 #filter-select {
@@ -36,11 +37,20 @@
   display: flex;
   /*flex-direction: row;
   align-items: center;*/
-  flex-direction: column; /* Change from row to column */
-  align-items: flex-start; /* Align items to the start of the column */
+  flex-direction: column;
+  /* Change from row to column */
+  align-items: flex-start;
+  /* Align items to the start of the column */
   justify-content: space-between;
   gap: 12px;
   margin-left: 8px;
+}
+
+#notes-header-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
 
 #main-container {
@@ -49,7 +59,7 @@
   grid-template-columns: 3fr 1fr;
   padding: 0px 16px 0px 16px;
   gap: 12px;
-  
+
 }
 
 .notes-grid {
@@ -80,8 +90,10 @@
   animation: 1s create-note-animation;
   transition: height 1s;
   background-color: rgba(255, 255, 255, 0.75);
+  overflow: hidden;
   /*max-width: 350px;*/
-  /*height: 400px;*/ /* Set a fixed height */
+  /*height: 400px;*/
+  /* Set a fixed height */
 }
 
 .delete-note {
@@ -102,11 +114,9 @@
 @keyframes delete-note-animation {
   from {
     transform: scale(1.0);
-    max-height: 200px;
   }
 
   to {
-    max-height: 0;
     transform: scale(0);
   }
 }
@@ -115,24 +125,35 @@
 .note-header {
   position: relative;
   display: flex;
-  flex-direction: column; /* Change from row to column */
-  justify-content: flex-start; /* Align items to the start */
-  align-items: flex-start; /* Align items to the start */
+  flex-direction: column;
+  /* Change from row to column */
+  justify-content: flex-start;
+  /* Align items to the start */
+  align-items: flex-start;
+  /* Align items to the start */
   width: 100%;
   padding: 0px;
 }
 
 .note-title {
-  font-size: 1.5em; /* Adjust the size of the header as needed */
-  font-weight: bold; /* Make the title bold */
-  margin: 8px 0; /* Add some margin for spacing */
+  font-size: 1.5em;
+  /* Adjust the size of the header as needed */
+  font-weight: bold;
+  /* Make the title bold */
+  margin: 8px 0;
+  /* Add some margin for spacing */
   width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .note-date {
-  font-size: 0.9em; /* Adjust the size of the date */
-  color: grey; /* Change the color if needed */
-  margin-bottom: 8px; /* Add some margin for spacing */
+  font-size: 0.9em;
+  /* Adjust the size of the date */
+  color: grey;
+  /* Change the color if needed */
+  margin-bottom: 8px;
+  /* Add some margin for spacing */
 }
 
 .note-content {
@@ -167,6 +188,10 @@
 
 .note-overflow-button:hover {
   opacity: 50%;
+}
+
+.instructions {
+  text-align: center;
 }
 
 .note-button {
@@ -271,7 +296,7 @@
   background-color: #b5cfaf;
 
   &:hover {
-      opacity: 50%;
+    opacity: 50%;
   }
 }
 
