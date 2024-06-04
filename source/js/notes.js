@@ -558,8 +558,8 @@ function toggleDateView() {
     document.querySelector("header>input").remove();
     loadNotesFromStorage("");
     document.getElementById("project-title").innerText = projectId;
-    document.getElementById('hide-edit').remove();
-  // If going into date view
+    document.getElementById("hide-edit").remove();
+    // If going into date view
   } else {
     dateButton.innerText = "Go back to project";
     let dateSelector = document.createElement("input");
@@ -574,9 +574,10 @@ function toggleDateView() {
     loadNotesFromStorage(dateSelector.value);
     document.getElementById("project-title").innerText = "Notes by Date";
 
-    let style = document.createElement('style');
-    style.id = 'hide-edit';
-    style.innerHTML = '.edit, .delete, #create-note-button, #add-to-notes  {display: none;}';
+    let style = document.createElement("style");
+    style.id = "hide-edit";
+    style.innerHTML =
+      ".edit, .delete, #create-note-button, #add-to-notes  {display: none;}";
     document.head.appendChild(style);
   }
 }
