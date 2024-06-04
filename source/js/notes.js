@@ -239,7 +239,7 @@ function genNoteElement(noteObj) {
     notesGrid.append(noteBlock);
   }
   if (noteText.scrollHeight > noteText.clientHeight) {
-    noteBlock.insertBefore(expandButton, buttonContainer);
+    noteBlock.insertBefore(expandButton, tagAndButtons);
   }
 }
 
