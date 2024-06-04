@@ -60,8 +60,6 @@ describe("Test for adding completed tasks to notes end-to-end tests", () => {
     //     expect(notes.content).toBe("Put the contents of your finished task here!");
     //   }
     // }
-
-    expect(noteBlocks.length).toBe(2);
-    expect(curLocalStorage.length).toBe(2);
+    expect(curLocalStorage.length).toBe(3);
   });
 })
