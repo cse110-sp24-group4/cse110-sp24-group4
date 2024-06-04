@@ -623,6 +623,6 @@ export function createNoteFromTask(taskId, taskName){
     updatedAt: new Date().toISOString(),
   };
   notes.push(newNote);
-  saveToLocalStorage(notes);
   genNoteElement(newNote);
+  saveToLocalStorage(notes);
 }

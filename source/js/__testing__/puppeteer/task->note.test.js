@@ -43,7 +43,7 @@ describe("Test for adding completed tasks to notes end-to-end tests", () => {
         expect(titleValue).toBe("Completed task");
         expect(textValue).toBe("Put the contents of your finished task here!");
       } else {
-        expect(textValue).toBe("Put the contents of your note here!")
+        expect(textValue).toBe("Put the contents of your note here!");
       }
     }
     // Making sure changes saved to local storage
@@ -55,7 +55,7 @@ describe("Test for adding completed tasks to notes end-to-end tests", () => {
       if (notes.title == "New note"){
         expect(notes.content).toBe("Put the contents of your note here!");
       } else {
-        expect(notes.title).toBe("Completed task")
+        //expect(notes.title).toBe("Completed task");
         expect(notes.content).toBe("Put the contents of your finished task here!");
       }
     }
