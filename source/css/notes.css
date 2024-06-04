@@ -327,3 +327,10 @@
   cursor: pointer;
   color: #556b2f;
 }
+
+.todo-grid {
+  background-color: inherit;
+  border: 1px solid #556b2f;
+  border-radius: 5px;
+  padding: 10px;
+}
