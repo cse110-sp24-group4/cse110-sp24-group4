@@ -127,6 +127,14 @@ function loadTasksFromStorage(projectId) {
   renderTasks(projectId);
 }
 
+// window.addEventListener("DOMContentLoaded", () => {
+//   const sidebar = document.getElementById("todo-list");
+
+//   window.addEventListener("scroll", () => {
+//     todoList.classList.toggle("open");
+//   });
+// });
+
 /**
  * Creates notes based on completed tasks. Calls on ./notes.js file to create note. 
  * Removes task from task list after added to notes
