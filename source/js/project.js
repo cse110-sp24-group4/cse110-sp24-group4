@@ -187,6 +187,9 @@ function setNamingErrorMessage(display, message = "Project naming error") {
   }
 }
 
+/**
+ * Displays message informing user that some features may not function if JS is disabled
+ */
 function handleGracefulDegradation() {
   document.addEventListener("DOMContentLoaded", function () {
     let toggleButton = document.getElementById("toggleButton");

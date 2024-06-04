@@ -48,13 +48,14 @@
   /*grid-template-columns: auto;*/
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 10px;
+  align-items: flex-start;
 }
 
 .button-container {
   display: flex;
+  flex-direction: row;
   gap: 8px;
-  justify-content: flex-end;
-  width: 100%;
+  justify-content: space-between;
 }
 
 .note-block {
@@ -71,6 +72,7 @@
   transition: height 1s;
   background-color: rgba(255, 255, 255, 0.75);
   max-width: 450px;
+  overflow: hidden;
 }
 
 .delete-note {
@@ -115,6 +117,11 @@
   border-width: 0.5px;
   padding: 2px;
   padding-left: 4px;
+  white-space: nowrap;
+  width: 50%;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
 }
 
 .note-content {
@@ -234,32 +241,58 @@
   margin-right: 0;
   /* Remove margin from the last details element */
 }
+
 #todo-list {
-  flex: 0 0 300px; /* Adjust width as needed */
+  flex: 0 0 300px;
+  /* Adjust width as needed */
+}
+
+
+#toggle-date-view {
+  text-decoration: none;
+  font-size: 2em;
+  border: 2px solid #674A2A;
+  border-radius: 10px;
+  color: black;
+  margin-left: auto;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: #ebd0b2;
+
+  &:hover {
+      opacity: 50%;
+  }
+}
+
+.date-selector {
+  font-size: 2em;
+  margin-left: 10px;
 }
 
 /* Styles for smaller screens */
 @media (max-width: 768px) {
   #main-container {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .notes-grid {
-      width: 100%;
+    width: 100%;
   }
 
   #todo-list {
-      display: none;
-      width: 100%;
+    display: none;
+    width: 100%;
   }
 
   #todo-list.open {
-      display: block;
+    display: block;
   }
 
   .toggle-button {
-      display: block;
-      margin: 10px 0;
+    display: block;
+    margin: 10px 0;
   }
 }
 
