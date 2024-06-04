@@ -309,3 +309,24 @@
 .toggle-button {
   display: none;
 }
+
+.tag-and-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tag-list {
+  display: flex;
+  justify-content: flex-start;
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.tag-item {
+  margin: 5px;
+  background-color: rgba(38, 53, 27, 0.1);
+  border-style: solid;
+  border-radius: 5px;
+  border-color: rgba(0, 0, 0, 0);
+}
