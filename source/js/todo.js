@@ -18,7 +18,6 @@ let tasks = [];
 function initTodoList() {
   const projectId = new URL(window.location).searchParams.get("projectId");
   if (!projectId) {
-    alert("No project ID provided");
     return;
   }
 

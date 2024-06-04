@@ -1,0 +1,122 @@
+#note-add {
+    display: grid;
+    grid-template-columns: 0.8fr 0.2fr;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+#note-add>* {
+    display: flex;
+    justify-content: center;
+}
+
+#main-container {
+    display: grid;
+    grid-template-columns: 0.8fr 0.2fr;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 10px;
+  margin: 0 20px;
+}
+
+.button-container {
+  display: flex;
+  gap: 5px;
+  margin-right: 5px;
+}
+
+.note-block {
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-left: 5px;
+  padding: 5px;
+}
+
+.note-button {
+  border-radius: 12px;
+  border: 1px solid black;
+}
+
+.note-button:hover {
+  opacity: 60%;
+}
+
+.note-button:active {
+  opacity: 70%;
+}
+
+.note-header {
+    position: relative;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+
+}
+
+.note-text {
+    flex-grow: 1;
+    font-size: 1em;
+    margin-left: 0px;
+    max-width: 25%;
+}
+
+.note-date {
+    font-size: 1em;
+    margin-left: auto;
+}
+
+.note-entry {
+    width: 90%;
+}
+
+.edit-note {
+    width: 90%;
+    height: 200px;
+}
+
+.todo-grid {
+    display: grid;
+    grid-template-columns: 1;
+}
+
+.todo-grid>* {
+    display: flex;
+    justify-content: center;
+}
+
+#task-list {
+    list-style-type: none;
+    padding: 0px;
+    padding-top: 5px;
+    margin: 0px;
+}
+
+.preview {
+    padding: 0px;
+    margin: 0px;
+}
+
+.horizontal-details {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .horizontal-details > details {
+    margin-right: 10px; /* Optional: Add space between details */
+  }
+  
+  .horizontal-details > details:last-child {
+    margin-right: 0; /* Remove margin from the last details element */
+  }
