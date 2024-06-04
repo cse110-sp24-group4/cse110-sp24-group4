@@ -7,6 +7,7 @@ self.addEventListener("install", function (event) {
       return cache.addAll([
         "./",
         "./index.html",
+        "./js/pwa-install.js",
         "./js/project.js",
         "./js/notes.js",
         "./js/todo.js",

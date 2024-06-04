@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="manifest" href="./manifest.json" />
     <title>DevDogs - Developer Journal</title>
+    <script src="./js/pwa-install.js" type="module" defer></script>
 </head>
 <body>
     <header>
@@ -41,7 +43,7 @@
         <section>
             <h2>Launch straight through your browser!</h2>
             <p>DevDog can be used directly in your browser or you can install the app below:</p>
-            <a href="">Download app</a>
+            <button id="pwa-install-button">Download app</button>
         </section>
         <img src="./assets/images/demoimage-transparent.png" alt="placeholder images">
         
