@@ -28,6 +28,10 @@
   justify-self: end; 
 }
 
+#filter-select {
+  margin-left: auto;
+}
+
 #notes-header {
   display: flex;
   /*flex-direction: row;
@@ -76,7 +80,7 @@
   animation: 1s create-note-animation;
   transition: height 1s;
   background-color: rgba(255, 255, 255, 0.75);
-  max-width: 350px;
+  /*max-width: 350px;*/
 }
 
 .delete-note {
