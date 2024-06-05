@@ -1,171 +1,206 @@
 /**
- * @fileoverview This file handles project page functionality including
- * - Creating, editing, deleting notes
- * - Saving/loading with localStorage
+ * @file
+ * This file handles functionality for the landing page including
+ * - Loading projects
+ * - Adding projects
+ * - Saving projects to localStorage
+ * - Navigating to the project page with proper project ID as a param
  */
 window.addEventListener("load", () => init());
 
-/**
- * The id for the project selected. Found from the search parameters of the URL with key "projectId"
- * @const {string}
- */
-const projectId = new URL(window.location).searchParams.get("projectId");
-let notes = [];
+export let projects = [];
 
 /**
- * Initialization function for after the DOM loads
+ * Initializes the page
  */
 function init() {
-  loadNotesFromStorage();
+  initializeServiceWorker();
+  getProjectsFromLocalStorage();
+  const createProjectButton = document.getElementById("project-create");
+  createProjectButton.addEventListener("click", createProject);
+  handleGracefulDegradation();
 }
 
 /**
- * Retrieves notes related to current project from localstorage
+ * Initializes service worker
  */
-function loadNotesFromStorage() {
-  // if (projectId == null) return;
-  notes = JSON.parse(localStorage.getItem(`${projectId}#notes`) ?? "[]") ?? [];
-  for (const note of notes) {
-    genNoteElement(note);
+async function initializeServiceWorker() {
+  if ("serviceWorker" in navigator) {
+    try {
+      const register = await navigator.serviceWorker.register("../sw.js");
+      if (register.active) {
+        // eslint-disable-next-line
+        console.log("Service worker successfully registered");
+      }
+    } catch (err) {
+      // eslint-disable-next-line
+      console.error("Service worker failed to register", err);
+    }
   }
 }
 
-// This function is called by the add button in the html page
-/* eslint-disable no-unused-vars */
 /**
- * Creates new blank note in localstorage as well as corresponding html element
+ * Takes the projectId and creates a project with it associated with its own project page as well as edit and delete buttons
+ * @param {string} projectId string identifier for project which we are creating an element for
+ * @returns {li} an HTML li element containing the name of the project, link to notes page, and delete button
  */
-function createNote() {
-  const rand = (Math.random() * 1000).toFixed(0).toString();
-  const newNote = {
-    id: `${projectId}#notes#${rand}`,
-    content: "new note",
-  };
-  notes.push(newNote);
-  saveToLocalStorage(notes);
-  genNoteElement(newNote);
-}
-/* eslint-enable no-unused-vars */
+export function createProjectItem(projectId) {
+  //creating the new variables for the project item shown on webpage
+  const newProject = document.createElement("li"); //list item
+  const newLink = document.createElement("a"); //link to project.html w/ project id.
+  const folderImage = document.createElement("img");
+  const linkText = document.createElement("p");
 
-/**
- * Generates html element for the corresponding note object and attaches it to the note grid
- * @param {Object} noteObj Note object to generate element for
- */
-function genNoteElement(noteObj) {
-  const addButton = document.querySelector("#create-note-button");
-  const notesGrid = document.querySelector(".notes-grid");
-  const noteBlock = document.createElement("div");
+  folderImage.src = "../assets/images/green-folder.png";
+  folderImage.alt = "folder";
 
-  noteBlock.id = noteObj.id;
-  noteBlock.className = "note-block";
+  linkText.innerText = `${projectId}`;
 
-  const noteText = createNoteText(noteObj.content);
-  noteBlock.appendChild(noteText);
+  newLink.classList.add("project-link");
+  linkText.classList.add("project-name");
 
-  const noteEdit = createNoteButton("edit", () => editNote(noteObj.id));
-  const noteDelete = createNoteButton("delete", () => deleteNote(noteObj.id));
+  const newDelete = document.createElement("button"); //delete button
+  newDelete.innerText = "Delete";
+  newDelete.addEventListener("click", () => {
+    deleteProject(projectId);
+  });
 
-  noteBlock.appendChild(noteEdit);
-  noteBlock.appendChild(noteDelete);
+  newLink.appendChild(folderImage);
+  newLink.href = `./notes.html?projectId=${encodeURI(projectId)}`; //setting embedded url
+  newProject.id = projectId;
 
-  notesGrid.insertBefore(noteBlock, addButton);
+  newProject.appendChild(newLink); //adding link to list item
+  newProject.appendChild(linkText);
+  newProject.appendChild(newDelete); //adding delete button to list item.
+
+  return newProject; //returning the new project.
 }
 
 /**
- * Generates a p element for the note html element
- * @param {string} content The content of the text element
- * @returns {Object} The html element for the text content
+ * Creates a new project upon the new project button being pressed
  */
-function createNoteText(content) {
-  const noteText = document.createElement("p");
-  noteText.innerText = content;
-  noteText.className = "note-text";
-  return noteText;
+function createProject() {
+  //gets value from textarea to be the projectId.
+  const newProjectName = document.getElementById("new-project-name").value;
+
+  // Try block to catch exceptions thrown by name check
+  try {
+    isValidProjectName(newProjectName); // Will throw an exception if project name is invalid
+    projects.push(newProjectName); //pushes new projectId to projects array
+
+    //steps to make new project item.
+    const newProjectItem = createProjectItem(newProjectName);
+    const projectList = document.getElementById("add-a-project");
+    projectList.after(newProjectItem);
+
+    localStorage.setItem("projects", JSON.stringify(projects)); // saves the projects in local storage
+    setNamingErrorMessage(false); // Hides naming error message
+  } catch (error) {
+    setNamingErrorMessage(true, error.message); // Displays naming error message under text area
+  }
+  document.getElementById("new-project-name").value = "";
 }
 
 /**
- * Callback for clicking buttons on the note blocks
- *
- * @callback onClickCallback
- * @param {string} noteId
+ * Removes the project from the website visually and in local storage
+ * Also removes associated notes from local storage
+ * @param {string} projectId string identifier of the project to be deleted
  */
+function deleteProject(projectId) {
+  if (
+    window.confirm(
+      `Are you sure you want to delete ${projectId} and associated notes? (This action cannot be undone)`,
+    )
+  ) {
+    let parentId = document.getElementById(projectId);
+    projects = projects.filter((project) => project != projectId); // removes project from projects array
 
-/**
- * Generates a button for the note html element
- * @param {string} iconName The name of the icon for the button
- * @param {onClickCallback} onClick The callback to use when clicked
- * @returns {Object} The html element for the button
- */
-function createNoteButton(iconName, onClick) {
-  const button = document.createElement("button");
-  button.onclick = onClick;
-  button.classList.add("note-button");
-  button.classList.add(iconName);
+    const projectList = document.getElementById("Project-List");
+    projectList.removeChild(parentId); // removing project visually from website
 
-  const icon = document.createElement("i");
-  icon.classList.add("material-icons");
-  icon.innerText = iconName;
-  button.appendChild(icon);
-  return button;
+    localStorage.setItem("projects", JSON.stringify(projects)); // saves the projects in local storage
+
+    localStorage.removeItem(`${projectId}#notes`); // removes associated notes from local storage
+  } else {
+    return;
+  }
 }
 
 /**
- * Changes the note text element to be an input and allow it to be edited
- * @param {string} noteId Id of the note to be changed
+ * When website is loaded, retrieve all of the projects from local storage
  */
-function editNote(noteId) {
-  const noteBlock = document.getElementById(`${noteId}`);
-  const noteText = noteBlock.querySelector("p");
+function getProjectsFromLocalStorage() {
+  const projectList = document.getElementById("add-a-project");
+  const storedProjects = JSON.parse(localStorage.getItem("projects")) || [];
 
-  const editButton = noteBlock.querySelector("button.edit");
-  const editIcon = editButton.querySelector("i");
-  editButton.onclick = () => saveNote(noteId);
-  editIcon.innerText = "check";
+  for (const projectId of storedProjects) {
+    let item = createProjectItem(projectId);
+    projectList.after(item);
+  }
 
-  const noteTextInput = document.createElement("input");
-  noteTextInput.type = "text";
-  noteTextInput.value = noteText.innerText;
-
-  noteBlock.replaceChild(noteTextInput, noteText);
+  projects = storedProjects;
 }
 
 /**
- * Saves the edits made using the input element and converts it back to a text element
- * @param {string} noteId Id of the note to be saved
+ * Verifies that project name is valid. Valid strings are structured as follows:
+ * Contains only the following characters:
+ * - Alphanumeric
+ * - '-'
+ * - '.'
+ * - '_'
+ * - '~'
+ * The name cannot be blank and must not be longer than 30 characters
+ * @param {string} name entered name of project
+ * @throws {Error} Throws an error with a message corresponding to fail condition
+ * @returns {boolean} true if name is valid
  */
-function saveNote(noteId) {
-  const noteBlock = document.getElementById(`${noteId}`);
-  const noteTextInput = noteBlock.querySelector("input");
+export function isValidProjectName(name) {
+  const validCharacters = /^[A-Za-z0-9\-._~ ]+$/;
 
-  const editButton = noteBlock.querySelector("button.edit");
-  const editIcon = editButton.querySelector("i");
-  editButton.onclick = () => editNote(noteId);
-  editIcon.innerText = "edit";
+  if (name.length < 1) {
+    throw new Error("Project name must not be blank."); // Disallow blank names
+  } else if (name.length > 30) {
+    throw new Error("Project name cannot exceed 30 characters"); // Names should be max 30 characters
+  } else if (projects.includes(name)) {
+    throw new Error(`${name} is already in use!`); // Disallow duplicate project names
+  } else if (!validCharacters.test(name)) {
+    throw new Error(
+      "Project names can only contain letters, numbers, spaces and '-', '.', '_', '~'",
+    ); // Disallow reserved URI characters
+  }
 
-  const noteText = createNoteText(noteTextInput.value);
-
-  noteBlock.replaceChild(noteText, noteTextInput);
-  notes.find((note) => note.id == noteId).content = noteTextInput.value;
-
-  saveToLocalStorage(notes);
+  return true; // Return true if all checks pass
 }
 
 /**
- * Deletes specified note from localstorage and the corresponding element
- * @param {string} noteId Id of the note to be deleted
+ * Sets project naming message to be displayed or hidden
+ * @param {boolean} display True if message should be displayed, false if message should be hidden
+ * @param {string} message Message to be displayed in case of error
  */
-function deleteNote(noteId) {
-  const notesGrid = document.querySelector(".notes-grid");
-  const noteBlock = document.getElementById(`${noteId}`);
-  notes = notes.filter((n) => n.id != noteId);
-  notesGrid.removeChild(noteBlock);
-  saveToLocalStorage(notes);
+function setNamingErrorMessage(display, message = "Project naming error") {
+  const errorMessage = document.getElementById("project-name-error-message"); // Get error message element
+  if (display) {
+    errorMessage.innerText = message; // Set specific error message
+    errorMessage.hidden = false; // Displays message
+  } else {
+    errorMessage.hidden = true; // Hides message
+  }
 }
 
 /**
- * Saves specified notes to localstorage
- * @param {Object[]} notes
+ * Displays message informing user that some features may not function if JS is disabled
  */
-function saveToLocalStorage(notes) {
-  localStorage.setItem(`${projectId}#notes`, JSON.stringify(notes));
+function handleGracefulDegradation() {
+  document.addEventListener("DOMContentLoaded", function () {
+    let toggleButton = document.getElementById("toggleButton");
+    let toggleSection = document.getElementById("toggleSection");
+
+    toggleButton.addEventListener("click", function () {
+      if (toggleSection.style.display === "none") {
+        toggleSection.style.display = "block";
+      } else {
+        toggleSection.style.display = "none";
+      }
+    });
+  });
 }

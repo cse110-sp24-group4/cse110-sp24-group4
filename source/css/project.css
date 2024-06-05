@@ -1,47 +1,114 @@
-#main-container {
-    padding-left: 16px;
+.container{
+    width: 80vw;
+    font-size: 1em;
+    font-weight: bold;
 }
 
-#grid-container {
+img {
+    max-width: 128px;
+}
+
+ul{
     display: grid;
-}
+    grid-template-columns: 0.2fr 0.2fr 0.2fr 0.2fr;
+    gap: 10%;
 
-#main-grid {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 12px;
-}
+    list-style-type: none;
 
-#notes-grid {
-    display: grid;
-    border: 1px solid black;
-    padding: 16px;
-    border-radius: 16px;
-    margin-bottom: 12px;
+    width: 80vw;
 
 }
 
-.note-block {
+li {
     display: flex;
-    flex-direction: row;
+    justify-items: center;
     align-items: center;
-    gap: 12px;
+    flex-direction: column;
+    position: relative;
 }
 
-.note-button {
-    border-radius: 12px;
-    border: 1px solid black;
+button {
+    border-color: #275734;
+    border-width: 2.5px;
+    border-style: line;
+    
+    background-color: #b5cfaf;
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    margin: 5px;
+
+    font-size: 80%;
 }
 
-.note-button:hover {
-    opacity: 60%;
+/*Styling for View Notes by Date*/
+#date-view {
+    text-decoration: none;
+    font-size: 2em;
+    font-weight: bold;
+    border: 2.5px none #275734;
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #275734;
+    margin-left: auto;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: #b5cfaf;
+  
+    &:hover {
+        opacity: 50%;
+    }
+  }
+
+#new-project-name{
+    width: auto;
 }
 
-.note-button:active {
-    opacity: 70%;
+h2{
+    margin-left: 20px;
+    font-size: 220%;
+    font-weight: bolder;
+    text-decoration: underline;
+    color: #275734;
 }
 
-.note-text {
-    font-size: 1.25em;
+.add-project-button{
+    font-size: 100%;
+}
 
+#project-name-error-message {
+    background-color: rgba(252, 31, 31, 0.5);
+    border-style: solid;
+    border-color: rgba(252, 31, 31, 0.5);
+    border-radius: 5px;
+    margin: 0px;
+}
+
+.project-name {
+    text-align: center;
+    color:#3D5D46;
+    margin: 0px;
+}
+
+.project-link {
+    margin: 0px;
+}
+.js-only {
+    display: none;
+}
+
+/*Keeping a different styling for the header for the project page 
+ * Also carried into the notes page.
+*/
+header{
+    background-color:#708B64;
+    color: white;
 }

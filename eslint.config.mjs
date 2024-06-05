@@ -12,6 +12,8 @@ export default [
     },
 
     rules: {
+      // Check for lingering debug logging
+      "no-console": "error",
       // Custom naming conventions
       "camelcase": ["error", {
         "properties": "always",
@@ -66,7 +68,7 @@ export default [
 
   },
   {
-    ignores: ["**/*.test.js"]
+    ignores: ["**/*.test.js", "**/__testing__/"]
   },
   {
     languageOptions: {
