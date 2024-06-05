@@ -22,6 +22,10 @@
     height: 3em;
     border-radius: 12px;
     border: 1px solid black;
+
+    &:hover {
+        cursor:pointer;
+    }
 }
 
 .todo-grid {

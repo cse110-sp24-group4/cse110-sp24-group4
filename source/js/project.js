@@ -51,7 +51,7 @@ export function createProjectItem(projectId) {
   const folderImage = document.createElement("img");
   const linkText = document.createElement("p");
 
-  folderImage.src = "../assets/images/folder.png";
+  folderImage.src = "../assets/images/green-folder.png";
   folderImage.alt = "folder";
 
   linkText.innerText = `${projectId}`;
