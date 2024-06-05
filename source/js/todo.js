@@ -29,7 +29,9 @@ function initTodoList() {
     .addEventListener("click", () => completedTasksToNotes());
   loadTasksFromStorage(projectId);
 
-  document.getElementById("toggle-sidebar-button").addEventListener("click", toggleSidebar);
+  document
+    .getElementById("toggle-sidebar-button")
+    .addEventListener("click", toggleSidebar);
 }
 
 /**
@@ -128,8 +130,6 @@ function loadTasksFromStorage(projectId) {
   renderTasks(projectId);
 }
 
-
-
 /**
  * Toggles the ToDo sidebar when the button is pressed
  */
@@ -141,7 +141,7 @@ function toggleSidebar() {
   } else {
     todoList.classList.replace("open", "closed");
     collapseButton.querySelector("i").innerText = "chevron_left";
-  }  
+  }
 }
 
 /**
@@ -157,4 +157,3 @@ function completedTasksToNotes() {
     }
   }
 }
-
