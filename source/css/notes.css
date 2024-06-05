@@ -33,6 +33,14 @@
   margin-left: auto;
 }
 
+.filtered-out {
+  display: none !important;
+}
+
+.filtered-in {
+  display: flex !important;
+}
+
 #notes-header {
   display: flex;
   /*flex-direction: row;

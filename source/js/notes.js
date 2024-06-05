@@ -208,8 +208,6 @@ function genNoteElement(noteObj) {
   const noteEdit = createNoteButton("edit", () => editNote(noteObj.id));
   const noteDelete = createNoteButton("delete", () => deleteNote(noteObj.id));
 
-  const expandButton = createExpandButton(noteObj.id);
-
   const buttonContainer = document.createElement("div");
   buttonContainer.className = "button-container";
   buttonContainer.appendChild(noteEdit);
@@ -238,9 +236,7 @@ function genNoteElement(noteObj) {
   } else {
     notesGrid.append(noteBlock);
   }
-  if (noteText.scrollHeight > noteText.clientHeight) {
-    noteBlock.insertBefore(expandButton, tagAndButtons);
-  }
+  processExpandButton(noteBlock);
 }
 
 /**
@@ -350,11 +346,7 @@ function saveNote(noteId) {
 
   tagListInputInstructions.remove();
 
-  if (noteText.scrollHeight > noteText.clientHeight) {
-    const expandButton = createExpandButton(noteId);
-    const tagAndButtons = noteBlock.querySelector(".tag-and-buttons");
-    noteBlock.insertBefore(expandButton, tagAndButtons);
-  }
+  processExpandButton(noteBlock);
 
   notes.find((note) => note.id == noteId).content = noteTextInput.value;
   notes.find((note) => note.id == noteId).title = noteTitleInput.value;
@@ -523,6 +515,7 @@ function updateFilterSelect() {
     filterSelectItem.innerText = filter;
     filterSelect.appendChild(filterSelectItem);
   });
+  filterNotes();
 }
 
 /**
@@ -543,6 +536,31 @@ function filterNotes() {
       noteBlock.classList.add("filtered-in");
     }
   });
+  // need to wait for grid to resize before checking
+  Array.from(noteBlocks).forEach(function (noteBlock) {
+    processExpandButton(noteBlock);
+  });
+}
+
+/**
+ * Checks and inserts or removes expand button when necessary
+ * @param {HTMLElement} noteBlock The noteBlock to modify
+ */
+function processExpandButton(noteBlock) {
+  const noteText = noteBlock.querySelector(".note-content");
+  const expandButton = noteBlock.querySelector(".note-overflow-button");
+
+  if (expandButton == null) {
+    if (noteText.scrollHeight > noteText.clientHeight) {
+      const newExpandButton = createExpandButton(noteBlock.id);
+      const tagAndButtons = noteBlock.querySelector(".tag-and-buttons");
+      noteBlock.insertBefore(newExpandButton, tagAndButtons);
+    }
+  } else {
+    if (noteText.scrollHeight <= noteText.clientHeight) {
+      noteBlock.removeChild(expandButton);
+    }
+  }
 }
 
 /**
