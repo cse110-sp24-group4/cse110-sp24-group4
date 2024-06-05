@@ -28,6 +28,8 @@ function initTodoList() {
     .getElementById("add-to-notes")
     .addEventListener("click", () => completedTasksToNotes());
   loadTasksFromStorage(projectId);
+
+  document.getElementById("toggle-sidebar-button").addEventListener("click", toggleSidebar);
 }
 
 /**
@@ -126,13 +128,21 @@ function loadTasksFromStorage(projectId) {
   renderTasks(projectId);
 }
 
-// window.addEventListener("DOMContentLoaded", () => {
-//   const sidebar = document.getElementById("todo-list");
 
-//   window.addEventListener("scroll", () => {
-//     todoList.classList.toggle("open");
-//   });
-// });
+
+/**
+ * Toggles the ToDo sidebar when the button is pressed
+ */
+function toggleSidebar() {
+  const todoList = document.getElementById("todo-list");
+  const collapseButton = document.getElementById("toggle-sidebar-button");
+  if (todoList.classList.replace("closed", "open")) {
+    collapseButton.querySelector("i").innerText = "chevron_right";
+  } else {
+    todoList.classList.replace("open", "closed");
+    collapseButton.querySelector("i").innerText = "chevron_left";
+  }  
+}
 
 /**
  * Creates notes based on completed tasks. Calls on ./notes.js file to create note.
@@ -148,7 +158,3 @@ function completedTasksToNotes() {
   }
 }
 
-//   window.addEventListener("scroll", () => {
-//     todoList.classList.toggle("open");
-//   });
-// });

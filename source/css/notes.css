@@ -49,6 +49,7 @@
   justify-content: space-between;
   gap: 12px;
   margin-left: 8px;
+  margin-right: 8px;
 }
 
 #main-container {
@@ -241,26 +242,15 @@
   margin: 0px;
 }
 
-.horizontal-details {
-  display: flex;
-  flex-direction: row;
-}
+@media screen and (min-width: 769px) {
+  #todo-list {
+    display: block !important;/* Ensure todo list is visible on larger screens */
+    position: relative !important; /* Reset position */
+    width: 100% !important; /* Reset width */
+    background-color: transparent !important; /* Reset background color */
 
-.horizontal-details>details {
-  margin-right: 10px;
-  /* Optional: Add space between details */
+  }
 }
-
-.horizontal-details>details:last-child {
-  margin-right: 0;
-  /* Remove margin from the last details element */
-}
-
-#todo-list {
-  flex: 0 0 300px;
-  /* Adjust width as needed */
-}
-
 
 #toggle-date-view {
   text-decoration: none;
@@ -289,34 +279,111 @@
   margin-left: 10px;
 }
 
+/* Hide the toggle button on larger screens */
+#toggle-sidebar-button {
+  display: none;
+}
+
+
 /* Styles for smaller screens */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   #main-container {
-    flex-direction: column;
+    position: relative;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-areas: "notes sidebar";
   }
 
-  .notes-grid {
-    width: 100%;
+  #notes-grid {
+    grid-area: notes;
   }
 
   #todo-list {
     display: none;
-    width: 100%;
+    position: absolute;
+    top: 0;
+    right: -200px;
+    width: 70vw;
+    background-color: beige;
+    grid-area: sidebar;
   }
 
   #todo-list.open {
     display: block;
+    right: 0;
   }
 
-  .toggle-button {
+  #toggle-sidebar-button {
     display: block;
-    margin: 10px 0;
+    top: 10px;
+    right: 10px;
   }
 }
 
-/* Hide the toggle button on larger screens */
-.toggle-button {
+#toggle-sidebar-button{
+  color: beige;
+
+}
+/*
+#todo-list.closed .todo-grid {
   display: none;
+}*/
+
+#toggle-sidebar-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #556b2f;
+  font-size: 24px;
+}
+
+.todo-grid {
+  background-color: inherit;
+  border: 1px solid #556b2f;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#new-task-name {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #556b2f;
+  border-radius: 5px;
+}
+
+#task-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 5px;
+  border: 1px solid #556b2f;
+  border-radius: 5px;
+  margin-bottom: 5px;
+
+}
+
+.task-item span {
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
+.task-item button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #556b2f;
+}
+
+.todo-grid {
+  background-color: inherit;
+  border: 1px solid #556b2f;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 header{
@@ -427,4 +494,10 @@ header{
     opacity: 75%;
     cursor: pointer;
   }
+}
+
+#header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
