@@ -136,14 +136,5 @@ function toggleSidebar() {
   } else {
     todoList.classList.replace("open", "closed");
     collapseButton.querySelector("i").innerText = "chevron_left";
-  }
-  collapseButton.addEventListener('click', ()=>{
-    if (todoList.classList.replace("closed", "open")) {
-      collapseButton.querySelector("i").innerText = "chevron_right";
-    } else {
-      todoList.classList.replace("open", "closed");
-      collapseButton.querySelector("i").innerText = "chevron_left";
-    }
-  });
-  
+  }  
 }
