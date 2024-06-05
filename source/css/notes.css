@@ -49,6 +49,7 @@
   justify-content: space-between;
   gap: 12px;
   margin-left: 8px;
+  margin-right: 8px;
 }
 
 #main-container {
@@ -241,26 +242,15 @@
   margin: 0px;
 }
 
-.horizontal-details {
-  display: flex;
-  flex-direction: row;
-}
+@media screen and (min-width: 769px) {
+  #todo-list {
+    display: block !important;/* Ensure todo list is visible on larger screens */
+    position: relative !important; /* Reset position */
+    width: 100% !important; /* Reset width */
+    background-color: transparent !important; /* Reset background color */
 
-.horizontal-details>details {
-  margin-right: 10px;
-  /* Optional: Add space between details */
+  }
 }
-
-.horizontal-details>details:last-child {
-  margin-right: 0;
-  /* Remove margin from the last details element */
-}
-
-#todo-list {
-  flex: 0 0 300px;
-  /* Adjust width as needed */
-}
-
 
 #toggle-date-view {
   text-decoration: none;
@@ -297,39 +287,36 @@
 
 /* Styles for smaller screens */
 @media screen and (max-width: 768px) {
-
   #main-container {
+    position: relative;
     display: grid;
-    grid-template-columns: auto;
-    padding: 0px 16px 0px 16px;
-    gap: 12px;
-
+    grid-template-columns: 100%;
+    grid-template-areas: "notes sidebar";
   }
 
-  .notes-grid {
-    width: 100%;
+  #notes-grid {
+    grid-area: notes;
   }
 
   #todo-list {
-      display: none;
-      position: fixed;
-      right: 0px;
-      background-color: beige;
-      width: 0.2fr;
-/*
     display: none;
-    width: 100%;
-*/
+    position: absolute;
+    top: 0;
+    right: -200px;
+    width: 70vw;
+    background-color: beige;
+    grid-area: sidebar;
   }
 
   #todo-list.open {
     display: block;
+    right: 0;
   }
 
-
   #toggle-sidebar-button {
-      display: inline-block;
-      margin: 10px;
+    display: block;
+    top: 10px;
+    right: 10px;
   }
 }
 
@@ -337,10 +324,10 @@
   color: beige;
 
 }
-
+/*
 #todo-list.closed .todo-grid {
   display: none;
-}
+}*/
 
 #toggle-sidebar-button {
   background: none;
@@ -509,3 +496,8 @@ header{
   }
 }
 
+#header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
