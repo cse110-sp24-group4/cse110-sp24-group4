@@ -18,7 +18,7 @@ body {
 }
 
 body {
-    background-color: #b5cfaf;
+    background-color: #c8e7aa;
     padding: 100px 0px 50px;
     /* 100px top to give space for sticky header can be adjusted as needed, 0px on side to allow header to occupy full screen 50px on bottom because I felt like it */
     margin: 0px;
@@ -40,11 +40,14 @@ header {
     position: fixed;
     /* Keeps header at top of screen through scrolling top sets it to top of screen */
     top: 0;
-    color: white;
+    color: #275734;
     z-index: 1000;
     /*background-color: #674A2A;*/
-    background-color: #708B64;
-    border-bottom: 5px solid #C4A179;
+    background-color: #c8e7aa;
+    /*border-bottom: 5px solid #275734;*/
+    /*background-color: #708B64;*/
+    /*border-bottom: 5px solid #C4A179;*/
+   /*border-bottom: 5px solid #708B64;*/
 
     /* Heading at top of specific page */
     &>h1 {

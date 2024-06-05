@@ -51,7 +51,7 @@ export function createProjectItem(projectId) {
   const folderImage = document.createElement("img");
   const linkText = document.createElement("p");
 
-  folderImage.src = "../assets/images/folder.png";
+  folderImage.src = "../assets/images/green-folder.png";
   folderImage.alt = "folder";
 
   linkText.innerText = `${projectId}`;
@@ -187,6 +187,9 @@ function setNamingErrorMessage(display, message = "Project naming error") {
   }
 }
 
+/**
+ * Displays message informing user that some features may not function if JS is disabled
+ */
 function handleGracefulDegradation() {
   document.addEventListener("DOMContentLoaded", function () {
     let toggleButton = document.getElementById("toggleButton");
