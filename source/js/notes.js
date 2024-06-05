@@ -515,6 +515,7 @@ function updateFilterSelect() {
     filterSelectItem.innerText = filter;
     filterSelect.appendChild(filterSelectItem);
   });
+  filterNotes();
 }
 
 /**
