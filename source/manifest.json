@@ -4,7 +4,7 @@
   "description": "A simple note-taking app!",
   "display": "standalone",
   "background_color": "white",
-  "theme_color": "cyan",
+  "theme_color": "#275734",
   "icons": [
     {
       "src": "./assets/images/newfolder.png",
