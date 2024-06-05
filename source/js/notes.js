@@ -531,6 +531,7 @@ function updateFilterSelect() {
 function filterNotes() {
   const selectedFilter = document.getElementById("filter-select").value;
   const noteBlocks = document.getElementsByClassName("note-block");
+  console.log(selectedFilter);
   Array.from(noteBlocks).forEach(function (noteBlock) {
     if (
       !noteBlock.classList.contains(selectedFilter) &&
@@ -542,6 +543,7 @@ function filterNotes() {
       noteBlock.classList.remove("filtered-out");
       noteBlock.classList.add("filtered-in");
     }
+    console.log(noteBlock.classList);
   });
 }
 
