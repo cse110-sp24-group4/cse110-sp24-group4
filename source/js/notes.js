@@ -629,7 +629,7 @@ function localeToInputDate(date) {
  * @param {string} taskId The id of the task we are adding
  * @param {string} taskName The name of the task we are adding
  */
-export function createNoteFromTask(taskId, taskName){
+export function createNoteFromTask(taskId, taskName) {
   /**
    * @type {Note}
    */
