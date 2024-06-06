@@ -516,7 +516,6 @@ header{
   list-style-type: none;
   padding-left: 0px;
 }
-<<<<<<< HEAD
 #progress-container {
   width: 100%;
   background-color: #e0e0e0;
@@ -546,7 +545,6 @@ header{
   height: auto;
 }
 
-=======
 
 .tag-item {
   margin: 5px;
@@ -555,4 +553,3 @@ header{
   border-color: rgba(255, 255, 255, 0);
   border-radius: 5px;
 }
->>>>>>> dev
