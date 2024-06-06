@@ -1,9 +1,17 @@
+/**
+ * @file
+ * This file handles pwa installation
+ */
 window.addEventListener("load", () => init());
 
 let installPrompt = null;
+
 const installText = document.getElementById('install-text');
 const installButton = document.getElementById('install-button');
 
+/**
+ * Initializes pwa functionality
+ */
 function init() {
   initializeServiceWorker();
 
@@ -28,6 +36,9 @@ function init() {
   });
 }
 
+/**
+ * Hides the install prompt after successful install
+ */
 function disableInAppInstallPrompt() {
   installPrompt = null;
   installButton.setAttribute("hidden", "");
