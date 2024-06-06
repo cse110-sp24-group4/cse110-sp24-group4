@@ -1,6 +1,6 @@
 {
   "name": "DevDog",
-  "start_url": "./pages/project.html",
+  "start_url": "./",
   "description": "A simple note-taking app!",
   "display": "standalone",
   "background_color": "white",
