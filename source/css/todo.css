@@ -33,3 +33,48 @@
     grid-template-columns: auto;
     gap: 10px;
 }
+/* Progress bar container */
+#progress-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 25px;
+    height: 30px;
+    margin-top: 20px;
+    position: relative;
+}
+
+/* Progress bar fill */
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #76c7c0;
+    border-radius: 25px;
+    transition: width 0.5s ease-in-out;
+    position: relative;
+}
+
+/* Dog icon */
+#dog {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -10px;
+    left: 0;
+    transition: left 0.5s ease-in-out;
+}
+
+/* Confetti animation */
+@keyframes confetti {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(200px); }
+}
+
+.confetti {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    position: absolute;
+    top: 0;
+    animation: confetti 2s linear infinite;
+    opacity: 0;
+}
