@@ -136,6 +136,8 @@
   font-weight: bold; /* Make the title bold */
   margin: 8px 0; /* Add some margin for spacing */
   width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .note-date {
