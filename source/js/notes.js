@@ -483,41 +483,6 @@ export function formatTime(timeString) {
   return time.toLocaleDateString() + " " + time.toLocaleTimeString();
 }
 
-<<<<<<< HEAD
-
-window.addEventListener("load", () => {
-  init();
-  updateProgressBar();
-});
-
-function updateProgressBar() {
-  const totalTasks = projects.length;
-  const completedTasks = projects.filter(project => project.completed).length; // Assuming you have a completed property
-  const progress = (completedTasks / totalTasks) * 100;
-  const progressBar = document.getElementById('progress-bar');
-  const dog = document.getElementById('dog');
-
-  progressBar.style.width = `${progress}%`;
-  dog.style.left = `${progress}%`;
-}
-
-// Call updateProgressBar() after creating or deleting a project/task
-function createProject() {
-  // Existing code...
-  updateProgressBar();
-}
-
-function deleteProject(projectId) {
-  // Existing code...
-  updateProgressBar();
-}
-
-// Example for marking a project as completed
-function markProjectAsCompleted(projectId) {
-  const project = projects.find(p => p.id === projectId);
-  project.completed = true; // Assuming you have a completed property
-  updateProgressBar();
-=======
 /**
  * Generates the list element for displaying tags the user has added to the note
  *
@@ -678,5 +643,4 @@ export function createNoteFromTask(taskId, taskName) {
   notes.push(newNote);
   genNoteElement(newNote);
   saveToLocalStorage(notes);
->>>>>>> dev
 }
