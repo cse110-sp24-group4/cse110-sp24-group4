@@ -157,92 +157,36 @@
      }
    }
  }
- // Initialize progress bar elements
+// Initialize progress bar elements
 const progressBar = document.getElementById('progress-bar');
 const dog = document.getElementById('dog');
 const progressContainer = document.getElementById('progress-container');
 
 // Function to update the progress bar
 function updateProgressBar() {
-    const totalTasks = tasks.length;
-    const completedTasks = tasks.filter(task => task.completed).length;
-    const progressPercentage = (completedTasks / totalTasks) * 100;
-    progressBar.style.width = `${progressPercentage}%`;
-    dog.style.left = `calc(${progressPercentage}% - 15px)`; // Adjust position for centering the dog
+  const totalTasks = tasks.length;
+  const completedTasks = tasks.filter(task => task.completed).length;
+  const progressPercentage = (completedTasks / totalTasks) * 100;
+  progressBar.style.width = `${progressPercentage}%`;
+  dog.style.left = `calc(${progressPercentage}% - 15px)`; // Adjust position for centering the dog
 }
 
 // Function to create confetti
 function createConfetti() {
-    const confettiContainer = document.createElement('div');
-    confettiContainer.classList.add('confetti');
-    confettiContainer.style.left = `${Math.random() * 100}%`;
-    confettiContainer.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-    progressContainer.appendChild(confettiContainer);
-    
-    setTimeout(() => {
-        confettiContainer.remove();
-    }, 2000);
+  const confettiContainer = document.createElement('div');
+  confettiContainer.classList.add('confetti');
+  confettiContainer.style.left = `${Math.random() * 100}%`;
+  confettiContainer.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+  progressContainer.appendChild(confettiContainer);
+  
+  setTimeout(() => {
+    confettiContainer.remove();
+  }, 2000);
 }
 
 // Function to show confetti when completed tasks are added to notes
 function showConfetti() {
-    for (let i = 0; i < 30; i++) {
-        setTimeout(createConfetti, i * 100);
-    }
-}
-
-// Modify the existing completedTasksToNotes function
-function completedTasksToNotes() {
-    for (const task of tasks) {
-        if (task.completed) {
-            let taskId = task.id;
-            createNoteFromTask(taskId, task.name); // calls ./notes.js file function to create note
-            deleteTask(taskId, taskId.split("#")[0]);
-        }
-    }
-    showConfetti(); // Show confetti after adding completed tasks to notes
-}
-
-// Update tasks rendering to include progress bar update
-function renderTasks(projectId) {
-    const taskList = document.getElementById("task-list");
-    taskList.innerHTML = ""; // Clear existing tasks
-
-    for (const task of tasks) {
-        const taskItem = document.createElement("li");
-        taskItem.classList.add("task-item");
-
-        const taskCheckbox = document.createElement("input");
-        taskCheckbox.type = "checkbox";
-        taskCheckbox.checked = task.completed;
-
-        const taskName = document.createElement("span");
-        taskName.innerText = task.name;
-
-        // Checkbox event listener needs to be added after span element
-        // Task needs to be marked completed in event listener or item will not update until tasks are re-rendered
-        taskCheckbox.addEventListener("change", () => {
-            task.completed = taskCheckbox.checked;
-            if (task.completed) {
-                taskName.classList.add("task-completed");
-            } else {
-                taskName.classList.remove("task-completed"); // Allows task to be unchecked
-            }
-            saveTasksToLocalStorage(projectId);
-            updateProgressBar(); // Update progress bar on task change
-        });
-
-        const deleteButton = document.createElement("button");
-        deleteButton.innerHTML = '<i class="material-icons">delete</i>';
-        deleteButton.addEventListener("click", () => {
-            deleteTask(task.id, projectId);
-            updateProgressBar(); // Update progress bar on task deletion
-        });
-
-        taskItem.appendChild(taskCheckbox);
-        taskItem.appendChild(taskName);
-        taskItem.appendChild(deleteButton);
-        taskList.appendChild(taskItem);
-    }
-    updateProgressBar(); // Initial progress bar update on render
+  for (let i = 0; i < 30; i++) {
+    setTimeout(createConfetti, i * 100);
+  }
 }
