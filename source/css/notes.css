@@ -516,35 +516,6 @@ header{
   list-style-type: none;
   padding-left: 0px;
 }
-#progress-container {
-  width: 100%;
-  background-color: #e0e0e0;
-  border-radius: 25px;
-  padding: 5px;
-  margin: 20px 0;
-}
-
-#progress-bar {
-  width: 0%;
-  height: 30px;
-  background-color: #76c7c0;
-  border-radius: 20px;
-  position: relative;
-  transition: width 0.5s ease-in-out;
-}
-
-#dog {
-  position: absolute;
-  top: -25px; /* Adjust based on the size of your dog image */
-  left: 0;
-  transition: left 0.5s ease-in-out;
-}
-
-#dog img {
-  width: 50px;
-  height: auto;
-}
-
 
 .tag-item {
   margin: 5px;
