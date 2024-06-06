@@ -16,6 +16,9 @@ describe("Task List Feature", () => {
       (el) => el.innerText,
     );
     expect(taskText).toBe("Test Task");
+    // Added to make sure taskCount is updated
+    const taskCount = await page.$$eval("#task-list li", (els) => els.length);
+    expect(taskCount).toBe(1);
   });
 
   test("should mark a task as completed", async () => {

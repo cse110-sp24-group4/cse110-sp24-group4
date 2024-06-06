@@ -43,9 +43,9 @@ header {
     color: #275734;
     z-index: 1000;
     /*background-color: #674A2A;*/
-    background-color: #b5cfaf;
+    background-color: #c8e7aa;
     /*border-bottom: 5px solid #275734;*/
-    background-color: #708B64;
+    /*background-color: #708B64;*/
     /*border-bottom: 5px solid #C4A179;*/
    /*border-bottom: 5px solid #708B64;*/
 
@@ -71,5 +71,11 @@ header {
         &:hover {
             opacity: 60%;
         }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        padding-top: 120px;
     }
 }

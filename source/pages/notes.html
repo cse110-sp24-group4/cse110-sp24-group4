@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/notes.css" />
     <link rel="stylesheet" href="../css/todo.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
     <script src="../js/notes.js" type="module" defer></script>
     <script src="../js/todo.js" type="module" defer></script>
     <style id="filter-style"></style>
@@ -20,8 +21,8 @@
         <h1 id="project-title">Project</h1>
         <button id="toggle-date-view">Date View</button>
     </header>
-    <div id="main-container">
-        <h2 id="notes-header">
+    <div id="header-container">
+    <h2 id="notes-header">
             Notes
             <div id="notes-header-buttons">
                 <button id="create-note-button">Add new note</button>
@@ -33,8 +34,12 @@
         </h2>
 
         <h2 id="todo-header">
-            To-do
+            <button id="toggle-sidebar-button"><i class="material-icons">chevron_left</i></button>
+            <p>To-do</p>
         </h2>
+    </div>
+    <div id="main-container">
+        
 
         <div class="notes-grid">
             <!-- <div id="mockup-project#notes#884" class="note-block">
@@ -83,12 +88,14 @@
 
             </div> -->
         </div>
-        <div id="todo-list">
-
+ 
+        <div id="todo-list" class="closed">
+            
             <div class="todo-grid">
+
                 <input type="textbox" id="new-task-name" placeholder="Enter new task"></textarea>
                 <button id="add-task-button">Add new task</button>
-                <!-- <button id="toggle-sidebar-button">Toggle To-do</button> -->
+                
                 <section>
                     <ul id="task-list">
                         <!-- <li class="task-item">

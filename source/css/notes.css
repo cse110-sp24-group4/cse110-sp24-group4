@@ -1,3 +1,15 @@
+button {
+  color: #275734;
+}
+
+select {
+  color: #275734;
+}
+
+i {
+  color: black;
+}
+
 #note-add {
   display: grid;
   grid-template-columns: 0.8fr 0.2fr;
@@ -16,8 +28,7 @@
 }
 
 #create-note-button:hover {
-  opacity: 0.6;
-  /* Adjust opacity value as needed */
+  opacity: 0.6; /* Adjust opacity value as needed */
 }
 
 #sort-notes-button {
@@ -25,32 +36,32 @@
   border-width: 0.5px;
   border-radius: 4px;
   margin-left: auto;
-  grid-column: 1 / -1;
-  justify-self: end;
+  grid-column: 1 / -1; 
+  justify-self: end; 
 }
 
 #filter-select {
   margin-left: auto;
 }
 
+.filtered-out {
+  display: none !important;
+}
+
+.filtered-in {
+  display: flex !important;
+}
+
 #notes-header {
   display: flex;
   /*flex-direction: row;
   align-items: center;*/
-  flex-direction: column;
-  /* Change from row to column */
-  align-items: flex-start;
-  /* Align items to the start of the column */
+  flex-direction: column; /* Change from row to column */
+  align-items: flex-start; /* Align items to the start of the column */
   justify-content: space-between;
   gap: 12px;
   margin-left: 8px;
-}
-
-#notes-header-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
+  margin-right: 8px;
 }
 
 #main-container {
@@ -59,7 +70,7 @@
   grid-template-columns: 3fr 1fr;
   padding: 0px 16px 0px 16px;
   gap: 12px;
-
+  
 }
 
 .notes-grid {
@@ -90,10 +101,8 @@
   animation: 1s create-note-animation;
   transition: height 1s;
   background-color: rgba(255, 255, 255, 0.75);
-  overflow: hidden;
   /*max-width: 350px;*/
-  /*height: 400px;*/
-  /* Set a fixed height */
+  /*height: 400px;*/ /* Set a fixed height */
 }
 
 .delete-note {
@@ -114,9 +123,11 @@
 @keyframes delete-note-animation {
   from {
     transform: scale(1.0);
+    max-height: 200px;
   }
 
   to {
+    max-height: 0;
     transform: scale(0);
   }
 }
@@ -125,35 +136,26 @@
 .note-header {
   position: relative;
   display: flex;
-  flex-direction: column;
-  /* Change from row to column */
-  justify-content: flex-start;
-  /* Align items to the start */
-  align-items: flex-start;
-  /* Align items to the start */
+  flex-direction: column; /* Change from row to column */
+  justify-content: flex-start; /* Align items to the start */
+  align-items: flex-start; /* Align items to the start */
   width: 100%;
   padding: 0px;
 }
 
 .note-title {
-  font-size: 1.5em;
-  /* Adjust the size of the header as needed */
-  font-weight: bold;
-  /* Make the title bold */
-  margin: 8px 0;
-  /* Add some margin for spacing */
+  font-size: 1.5em; /* Adjust the size of the header as needed */
+  font-weight: bold; /* Make the title bold */
+  margin: 8px 0; /* Add some margin for spacing */
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .note-date {
-  font-size: 0.9em;
-  /* Adjust the size of the date */
-  color: grey;
-  /* Change the color if needed */
-  margin-bottom: 8px;
-  /* Add some margin for spacing */
+  font-size: 0.9em; /* Adjust the size of the date */
+  color: grey; /* Change the color if needed */
+  margin-bottom: 8px; /* Add some margin for spacing */
 }
 
 .note-content {
@@ -188,10 +190,7 @@
 
 .note-overflow-button:hover {
   opacity: 50%;
-}
-
-.instructions {
-  text-align: center;
+  color: black;
 }
 
 .note-button {
@@ -258,26 +257,15 @@
   margin: 0px;
 }
 
-.horizontal-details {
-  display: flex;
-  flex-direction: row;
-}
+@media screen and (min-width: 769px) {
+  #todo-list {
+    display: block !important;/* Ensure todo list is visible on larger screens */
+    position: relative !important; /* Reset position */
+    width: 100% !important; /* Reset width */
+    background-color: transparent !important; /* Reset background color */
 
-.horizontal-details>details {
-  margin-right: 10px;
-  /* Optional: Add space between details */
+  }
 }
-
-.horizontal-details>details:last-child {
-  margin-right: 0;
-  /* Remove margin from the last details element */
-}
-
-#todo-list {
-  flex: 0 0 300px;
-  /* Adjust width as needed */
-}
-
 
 #toggle-date-view {
   text-decoration: none;
@@ -296,7 +284,8 @@
   background-color: #b5cfaf;
 
   &:hover {
-    opacity: 50%;
+      opacity: 75%;
+      cursor:pointer;
   }
 }
 
@@ -305,40 +294,247 @@
   margin-left: 10px;
 }
 
+/* Hide the toggle button on larger screens */
+#toggle-sidebar-button {
+  display: none;
+}
+
+
 /* Styles for smaller screens */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   #main-container {
-    flex-direction: column;
+    position: relative;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-areas: "notes sidebar";
   }
 
-  .notes-grid {
-    width: 100%;
+  #notes-grid {
+    grid-area: notes;
   }
 
   #todo-list {
     display: none;
-    width: 100%;
+    position: absolute;
+    top: 0;
+    right: -200px;
+    width: 70vw;
+    background-color: beige;
+    grid-area: sidebar;
   }
 
   #todo-list.open {
     display: block;
+    right: 0;
   }
 
-  .toggle-button {
+  #toggle-sidebar-button {
     display: block;
-    margin: 10px 0;
+    top: 10px;
+    right: 10px;
   }
 }
 
-/* Hide the toggle button on larger screens */
-.toggle-button {
+#toggle-sidebar-button{
+  color: beige;
+
+}
+/*
+#todo-list.closed .todo-grid {
   display: none;
+}*/
+
+#toggle-sidebar-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #556b2f;
+  font-size: 24px;
+}
+
+.todo-grid {
+  background-color: inherit;
+  border: 1px solid #556b2f;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#new-task-name {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #556b2f;
+  border-radius: 5px;
+}
+
+#task-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 5px;
+  border: 1px solid #556b2f;
+  border-radius: 5px;
+  margin-bottom: 5px;
+
+}
+
+.task-item span {
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
+.task-item button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #556b2f;
+}
+
+.todo-grid {
+  background-color: inherit;
+  border: 1px solid #556b2f;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+header{
+  background-color: #708B64;
+  color: white;
+  .back {
+    &>i {
+        font-size: 2em;
+        font-weight: 700;
+        letter-spacing: 5px;
+        margin: 3px;
+        margin-left: 8px;
+        color: white;
+    }
+
+    &:hover {
+        opacity: 60%;
+    }
+}
+}
+
+#notes-header{
+  font-size: 220%;
+  color: #275734;
+
+}
+
+#todo-header{
+  font-size: 220%;
+  font-weight: bold;
+  color: #275734;
+}
+
+#create-note-button {
+  border: 2.5px #275734;
+  border-style: groove;
+  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  background-color: #b5cfaf;
+
+  font-size: 55.5%;
+
+  &:hover {
+    opacity: 75%;
+    cursor: pointer;
+  }
+}
+
+#sort-notes-button{
+  border: 2.5px #275734;
+  border-style: groove;
+  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  background-color: #b5cfaf;
+
+  &:hover {
+    opacity: 75%;
+    cursor: pointer;
+  }
+
+  font-size: 55.5%
+}
+
+#filter-select {
+  border: 2.5px #275734;
+  border-style: groove;
+  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  background-color: #b5cfaf;
+
+  &:hover {
+    opacity: 75%;
+    cursor: pointer;
+  }
+
+  font-size: 55.5%
+}
+
+#add-to-notes{
+
+  border: 2.5px #275734;
+  border-style: groove;
+  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  background-color: #b5cfaf;
+
+  &:hover{
+    opacity: 75%;
+    cursor: pointer;
+  }
+
+}
+
+#add-task-button{
+  
+  border: 2.5px #275734;
+  border-style: groove;
+  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  background-color: #b5cfaf;
+  &:hover {
+    opacity: 75%;
+    cursor: pointer;
+  }
+}
+
+#header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .tag-and-buttons {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 .tag-list {
@@ -350,8 +546,8 @@
 
 .tag-item {
   margin: 5px;
-  background-color: rgba(38, 53, 27, 0.1);
+  background-color: rgba(98, 135, 69, 0.3);
   border-style: solid;
+  border-color: rgba(255, 255, 255, 0);
   border-radius: 5px;
-  border-color: rgba(0, 0, 0, 0);
 }

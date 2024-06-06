@@ -5,7 +5,9 @@
  * - Marking tasks as completed
  * - Deleting tasks
  * - Saving and loading tasks from localStorage
+ * - Adding notes of completed tasks when requested
  */
+import { createNoteFromTask } from "./notes.js"; // Needed for completedTasksToNotes()
 window.addEventListener("load", () => initTodoList());
 
 let tasks = [];
@@ -22,7 +24,14 @@ function initTodoList() {
   document
     .getElementById("add-task-button")
     .addEventListener("click", () => addTask(projectId));
+  document
+    .getElementById("add-to-notes")
+    .addEventListener("click", () => completedTasksToNotes());
   loadTasksFromStorage(projectId);
+
+  document
+    .getElementById("toggle-sidebar-button")
+    .addEventListener("click", toggleSidebar);
 }
 
 /**
@@ -121,10 +130,30 @@ function loadTasksFromStorage(projectId) {
   renderTasks(projectId);
 }
 
-// window.addEventListener("DOMContentLoaded", () => {
-//   const sidebar = document.getElementById("todo-list");
+/**
+ * Toggles the ToDo sidebar when the button is pressed
+ */
+function toggleSidebar() {
+  const todoList = document.getElementById("todo-list");
+  const collapseButton = document.getElementById("toggle-sidebar-button");
+  if (todoList.classList.replace("closed", "open")) {
+    collapseButton.querySelector("i").innerText = "chevron_right";
+  } else {
+    todoList.classList.replace("open", "closed");
+    collapseButton.querySelector("i").innerText = "chevron_left";
+  }
+}
 
-//   window.addEventListener("scroll", () => {
-//     todoList.classList.toggle("open");
-//   });
-// });
+/**
+ * Creates notes based on completed tasks. Calls on ./notes.js file to create note.
+ * Removes task from task list after added to notes
+ */
+function completedTasksToNotes() {
+  for (const task of tasks) {
+    if (task.completed) {
+      let taskId = task.id;
+      createNoteFromTask(taskId, task.name); // calls ./notes.js file function to create note
+      deleteTask(taskId, taskId.split("#")[0]);
+    }
+  }
+}
