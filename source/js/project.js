@@ -14,9 +14,29 @@ export let projects = [];
  * Initializes the page
  */
 function init() {
+  initializeServiceWorker();
   getProjectsFromLocalStorage();
   const createProjectButton = document.getElementById("project-create");
   createProjectButton.addEventListener("click", createProject);
+  handleGracefulDegradation();
+}
+
+/**
+ * Initializes service worker
+ */
+async function initializeServiceWorker() {
+  if ("serviceWorker" in navigator) {
+    try {
+      const register = await navigator.serviceWorker.register("../sw.js");
+      if (register.active) {
+        // eslint-disable-next-line
+        console.log("Service worker successfully registered");
+      }
+    } catch (err) {
+      // eslint-disable-next-line
+      console.error("Service worker failed to register", err);
+    }
+  }
 }
 
 /**
@@ -31,7 +51,7 @@ export function createProjectItem(projectId) {
   const folderImage = document.createElement("img");
   const linkText = document.createElement("p");
 
-  folderImage.src = "../assets/images/folder.png";
+  folderImage.src = "../assets/images/green-folder.png";
   folderImage.alt = "folder";
 
   linkText.innerText = `${projectId}`;
@@ -165,4 +185,22 @@ function setNamingErrorMessage(display, message = "Project naming error") {
   } else {
     errorMessage.hidden = true; // Hides message
   }
+}
+
+/**
+ * Displays message informing user that some features may not function if JS is disabled
+ */
+function handleGracefulDegradation() {
+  document.addEventListener("DOMContentLoaded", function () {
+    let toggleButton = document.getElementById("toggleButton");
+    let toggleSection = document.getElementById("toggleSection");
+
+    toggleButton.addEventListener("click", function () {
+      if (toggleSection.style.display === "none") {
+        toggleSection.style.display = "block";
+      } else {
+        toggleSection.style.display = "none";
+      }
+    });
+  });
 }
