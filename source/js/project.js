@@ -7,6 +7,7 @@
  * - Navigating to the project page with proper project ID as a param
  */
 window.addEventListener("load", () => init());
+window.addEventListener("focus", checkPWA);
 
 export let projects = [];
 
@@ -46,6 +47,8 @@ async function initializeServiceWorker() {
 function checkPWA() {
   if (window.matchMedia("(display-mode:standalone)").matches) {
     document.getElementById("home-button").style.display = "none";
+  } else {
+    document.getElementById("home-button").style.display = undefined;
   }
 }
 /**
