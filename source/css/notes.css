@@ -1,3 +1,15 @@
+button {
+  color: #275734;
+}
+
+select {
+  color: #275734;
+}
+
+i {
+  color: black;
+}
+
 #note-add {
   display: grid;
   grid-template-columns: 0.8fr 0.2fr;
@@ -178,6 +190,7 @@
 
 .note-overflow-button:hover {
   opacity: 50%;
+  color: black;
 }
 
 .note-button {
@@ -391,6 +404,20 @@
 header{
   background-color: #708B64;
   color: white;
+  .back {
+    &>i {
+        font-size: 2em;
+        font-weight: 700;
+        letter-spacing: 5px;
+        margin: 3px;
+        margin-left: 8px;
+        color: white;
+    }
+
+    &:hover {
+        opacity: 60%;
+    }
+}
 }
 
 #notes-header{

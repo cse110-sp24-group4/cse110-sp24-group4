@@ -32,6 +32,8 @@ button {
     border-width: 2.5px;
     border-style: line;
     
+    color: #275734;
+
     background-color: #b5cfaf;
 
     border-top-left-radius: 10px;
@@ -111,4 +113,18 @@ h2{
 header{
     background-color:#708B64;
     color: white;
+    .back {
+        &>i {
+            font-size: 2em;
+            font-weight: 700;
+            letter-spacing: 5px;
+            margin: 3px;
+            margin-left: 8px;
+            color: white;
+        }
+
+        &:hover {
+            opacity: 60%;
+        }
+    }
 }
