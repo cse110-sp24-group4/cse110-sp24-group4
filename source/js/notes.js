@@ -597,7 +597,6 @@ function toggleDateView() {
     style.innerHTML =
       ".edit, .delete, #create-note-button, #add-to-notes, .todo-grid, #todo-header  {display: none;}";
     document.head.appendChild(style);
-
   }
 }
 
