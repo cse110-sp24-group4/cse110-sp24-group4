@@ -501,3 +501,24 @@ header{
   flex-direction: row;
   justify-content: space-between;
 }
+
+.tag-and-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag-list {
+  display: flex;
+  justify-content: flex-start;
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.tag-item {
+  margin: 5px;
+  background-color: rgba(98, 135, 69, 0.3);
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0);
+  border-radius: 5px;
+}
