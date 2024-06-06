@@ -1,14 +1,37 @@
 window.addEventListener("load", () => init());
 
-const installSection = document.getElementById('install-section');
+let installPrompt = null;
+const installText = document.getElementById('install-text');
 const installButton = document.getElementById('install-button');
+
 function init() {
   initializeServiceWorker();
-  document.addEventListener('beforeinstallprompt', (event) => {
+
+  window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault();
     installPrompt = event;
-    installSection.removeAttribute("hidden");
+    installText.removeAttribute("hidden");
+    installButton.removeAttribute("hidden");
   });
+
+  installButton.addEventListener("click", async () => {
+    if (!installPrompt) {
+      return;
+    }
+    const result = await installPrompt.prompt();
+    console.log(`Install prompt was: ${result.outcome}`);
+    disableInAppInstallPrompt();
+  });
+
+  window.addEventListener("appinstalled", () => {
+    disableInAppInstallPrompt();
+  });
+}
+
+function disableInAppInstallPrompt() {
+  installPrompt = null;
+  installButton.setAttribute("hidden", "");
+  installText.setAttribute("hidden", "");
 }
 
 /**
