@@ -26,7 +26,6 @@ function init() {
     if (!installPrompt) {
       return;
     }
-    const result = await installPrompt.prompt();
     disableInAppInstallPrompt();
   });
 
