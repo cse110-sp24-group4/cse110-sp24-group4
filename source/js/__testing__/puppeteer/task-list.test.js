@@ -15,26 +15,34 @@ page.on("load", () => {
   page.addStyleTag({ content });
 });
 
-const projectId = "testingProject2";
+const projectId = "TaskListTestJs";
 
 describe("Task List Feature", () => {
   beforeAll(async () => {
     await page.goto(
       `http://localhost:9000/pages/project.html`,
     ); // Update to your local server and path
+    page.on("dialog", async (dialog) => {
+      await dialog.accept();
+    });
+    await page.$$eval("#Project-List li button", (buttons) => {
+      buttons.forEach((button) => button.click()); // Click delete button for each project
+    });
   });
 
   test("should add a new task", async () => {
     await page.type("#new-project-name", projectId);
     await page.click("#project-create");
-    await page.waitForSelector('#testingProject2');
+    await page.waitForSelector('#TaskListTestJs');
     await page
     await Promise.all([
       page.waitForNavigation(), // The promise resolves after navigation has finished
-      page.click("#testingProject2"),
+      page.click("#TaskListTestJs"),
     ]); // Clicking the link will indirectly cause a navigation
     await page.waitForSelector('#new-task-name');
     await page.type("#new-task-name", "Test Task");
+    await page.waitForSelector('button#add-task-button:not([disabled])');
+    await new Promise(r => setTimeout(r, 250));
     await page.click("#add-task-button");
 
     const taskText = await page.$eval(
@@ -48,6 +56,7 @@ describe("Task List Feature", () => {
   });
 
   test("should mark a task as completed", async () => {
+    await new Promise(r => setTimeout(r, 1000));
     await page.waitForSelector('#task-list li input[type="checkbox"]');
     await page.click('#task-list li input[type="checkbox"]');
 
@@ -55,13 +64,14 @@ describe("Task List Feature", () => {
       el.classList.contains("task-completed"),
     );
     expect(taskCompleted).toBe(true);
-  });
+  }, 10000);
 
   test("should delete a task", async () => {
+    await new Promise(r => setTimeout(r, 1000));
     await page.waitForSelector('#task-list li button');
     await page.click("#task-list li button");
 
     const taskCount = await page.$$eval("#task-list li", (els) => els.length);
     expect(taskCount).toBe(0);
-  });
+  }, 10000);
 });

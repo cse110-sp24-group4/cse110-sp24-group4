@@ -16,18 +16,24 @@ page.on("load", () => {
 });
 
 
-const projectId = "testingProject";
+const projectId = "NotesTestJs";
 
 describe("Test suites for notes page end-to-end tests", () => {
   beforeAll(async () => {
     await page.goto(
       `http://localhost:9000/pages/project.html`,
     );
+    page.on("dialog", async (dialog) => {
+      await dialog.accept();
+    });
+    await page.$$eval("#Project-List li button", (buttons) => {
+      buttons.forEach((button) => button.click()); // Click delete button for each project
+    });
   });
   it("Test adding notes", async () => {
-    await page.type("#new-project-name", projectId);
+    await page.type("#new-project-name", "NotesTestJs");
     await page.click("#project-create");
-    await page.click('.project-link');
+    await page.click('#NotesTestJs');
     const addNoteButton = await page.$("#create-note-button");
     await addNoteButton.click();
     await addNoteButton.click();
@@ -183,10 +189,6 @@ describe("Test suites for notes page end-to-end tests", () => {
   it("Test deleting a note", async () => {
     const noteGrid = await page.$(".notes-grid");
     const noteBlocks = await noteGrid.$$(".note-block");
-
-    page.on("dialog", async (dialog) => {
-      await dialog.accept();
-    });
 
     for (const block of noteBlocks) {
       await page.evaluate(async () => {
