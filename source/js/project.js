@@ -19,6 +19,12 @@ function init() {
   const createProjectButton = document.getElementById("project-create");
   createProjectButton.addEventListener("click", createProject);
   handleGracefulDegradation();
+  let dateView = document.getElementById('date-view');
+  localStorage.setItem('date-view', 'f');
+  dateView.addEventListener('click', () => {
+    localStorage.setItem('date-view', 't');
+    window.location.href = './notes.html';
+  });
 }
 
 /**
@@ -47,7 +53,7 @@ async function initializeServiceWorker() {
 export function createProjectItem(projectId) {
   //creating the new variables for the project item shown on webpage
   const newProject = document.createElement("li"); //list item
-  const newLink = document.createElement("button"); //link to project.html w/ project id.
+  const newLink = document.createElement("a"); //link to project.html w/ project id.
   const folderImage = document.createElement("img");
   const linkText = document.createElement("p");
 
@@ -60,6 +66,7 @@ export function createProjectItem(projectId) {
   linkText.classList.add("project-name");
 
   const newDelete = document.createElement("button"); //delete button
+  newDelete.classList.add('delete-button');
   newDelete.innerText = "Delete";
   newDelete.addEventListener("click", () => {
     deleteProject(projectId);

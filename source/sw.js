@@ -18,6 +18,13 @@ self.addEventListener("install", function (event) {
         "./css/todo.css",
         "./pages/project.html",
         "./pages/notes.html",
+        "./assets/favicon.ico",
+        "./assets/green-folder.png",
+        "./assets/green-newfolder.png",
+        "./assets/green-folder.png",
+        "./assets/new-folder.png",
+        "./assets/paw-print0.svg",
+        "./assets/possible-logo.png",
       ]);
     }),
   );

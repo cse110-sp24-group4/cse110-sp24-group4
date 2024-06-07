@@ -12,10 +12,10 @@ window.addEventListener("load", () => init());
 const projectId = localStorage.getItem('projectClicked');
 
 /**
- * Set to 't' if date mode is active, should not have any other value
+ * Set to 't' if date mode is active, 'f' otherwise
  * @constant {char}
  */
-const dateView = new URL(window.location).searchParams.get("date");
+const dateView = localStorage.getItem('dateView');
 
 /**
  * @typedef {Object} Note
