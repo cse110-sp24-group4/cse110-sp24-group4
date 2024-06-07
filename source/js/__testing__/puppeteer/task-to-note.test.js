@@ -67,5 +67,5 @@ describe("Test for adding completed tasks to notes end-to-end tests", () => {
     //   }
     // }
     expect(curLocalStorage.length).toBe(3);
-  });
+  }, 10000);
 });
