@@ -15,7 +15,7 @@ page.on("load", () => {
   page.addStyleTag({ content });
 });
 
-const projectId = "testingProject";
+const projectId = "testingProject2";
 
 describe("Task List Feature", () => {
   beforeAll(async () => {
