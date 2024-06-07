@@ -19,6 +19,7 @@ function init() {
   const createProjectButton = document.getElementById("project-create");
   createProjectButton.addEventListener("click", createProject);
   handleGracefulDegradation();
+  checkPWA();
 }
 
 /**
@@ -39,6 +40,29 @@ async function initializeServiceWorker() {
   }
 }
 
+/**
+ * Checks whether the current instance is running as PWA
+ */
+function checkPWA() {
+  handlePWATransfer(window.matchMedia("(display-mode:standalone)"));
+  window
+    .matchMedia("(display-mode:standalone)")
+    .addEventListener("change", (event) => {
+      handlePWATransfer(event);
+    });
+}
+
+/**
+ * Handles transferring to PWA
+ * @param {MediaQueryListEvent} event Event that fired this function
+ */
+function handlePWATransfer(event) {
+  if (event.matches) {
+    document.getElementById("home-button").style.display = "none";
+  } else {
+    document.getElementById("home-button").style.removeProperty("display");
+  }
+}
 /**
  * Takes the projectId and creates a project with it associated with its own project page as well as edit and delete buttons
  * @param {string} projectId string identifier for project which we are creating an element for

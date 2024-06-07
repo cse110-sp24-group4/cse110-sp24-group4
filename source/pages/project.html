@@ -12,29 +12,31 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
 </head>
-  <body>
-    <header>
-        <a href="../index.html" class="back"><i class="material-icons">home</i></a>
-        <h1>Projects</h1>
-        <a href="./notes.html?date=t" id="date-view">View Notes by Date</a>
-        <div></div>
-    </header>
-    <h2>List of Projects:</h2>
-    <div class="container" id="project-container">
-      <ul id="Project-List">
-        <li id="add-a-project">
-          <img src="../assets/images/green-newfolder.png" alt="new folder">
-          <input type="textbox" id="new-project-name">
-          <button class="add-project-button" id="project-create">Add New Project</button>
-          <p id="project-name-error-message" hidden>Invalid Project name. Project names are limited to max length of 30 and can only contain letters, numbers, spaces and '-', '.', '_', '~'</p>
+
+<body>
+  <header>
+    <a id="home-button" href="../index.html" class="back"><i class="material-icons">home</i></a>
+    <h1>Projects</h1>
+    <a href="./notes.html?date=t" id="date-view">View Notes by Date</a>
+    <div></div>
+  </header>
+  <h2>List of Projects:</h2>
+  <div class="container" id="project-container">
+    <ul id="Project-List">
+      <li id="add-a-project">
+        <img src="../assets/images/green-newfolder.png" alt="new folder">
+        <input type="textbox" id="new-project-name">
+        <button class="add-project-button" id="project-create">Add New Project</button>
+        <p id="project-name-error-message" hidden>Invalid Project name. Project names are limited to max length of 30
+          and can only contain letters, numbers, spaces and '-', '.', '_', '~'</p>
+      </li>
+      <noscript>
+        <li>
+          <p>JavaScript is disabled in your browser. Some features of this site may not work as intended.</p>
         </li>
-        <noscript>
-          <li>
-            <p>JavaScript is disabled in your browser. Some features of this site may not work as intended.</p>
-          </li>
-        </noscript>
-      </ul>
-    </div>
-  </body>
+      </noscript>
+    </ul>
+  </div>
+</body>
 
 </html>
