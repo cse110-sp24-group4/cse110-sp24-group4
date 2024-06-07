@@ -3,11 +3,18 @@ const projectId = "testingProject";
 describe("Test for adding completed tasks to notes end-to-end tests", () => {
   beforeAll(async () => {
     await page.goto(
-      `http://localhost:9000/pages/notes.html?projectId=${projectId}`,
+      `http://localhost:9000/pages/project.html`,
     );
   });
   test("Testing adding to notes feature", async () => {
     // setting up test, one completed task one uncomplete, 2 notes
+    await page.type("#new-project-name", projectId);
+    await page.click("#project-create");
+    await page.waitForSelector('.project-link');
+    await Promise.all([
+      page.waitForNavigation(), // The promise resolves after navigation has finished
+      page.click(".project-link"),
+    ]); // Clicking the link will indirectly cause a navigation
     await page.type("#new-task-name", "Completed task");
     await page.click("#add-task-button");
     await page.click('#task-list li input[type="checkbox"]');

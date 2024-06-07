@@ -22,7 +22,7 @@ function init() {
   let dateView = document.getElementById('date-view');
   localStorage.setItem('date-view', 'f');
   dateView.addEventListener('click', () => {
-    localStorage.setItem('date-view', 't');
+    localStorage.setItem('dateView', 't');
     window.location.href = './notes.html';
   });
 }
