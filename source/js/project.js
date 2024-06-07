@@ -7,7 +7,8 @@
  * - Navigating to the project page with proper project ID as a param
  */
 window.addEventListener("load", () => init());
-window.addEventListener("focus", checkPWA);
+
+let displayMode = "browser";
 
 export let projects = [];
 
@@ -45,12 +46,29 @@ async function initializeServiceWorker() {
  * Checks if app is launched as a PWA
  */
 function checkPWA() {
-  if (window.matchMedia("(display-mode:standalone)").matches) {
+  window
+    .matchMedia("(display-mode:standalone)")
+    .addEventListener("change", (event) => {
+      if (event.matches) {
+        displayMode = "standalone";
+      } else {
+        displayMode = "browser";
+      }
+      handlePWATransfer();
+    });
+}
+
+/**
+ * Handles any logic to run on PWA transfer
+ */
+function handlePWATransfer() {
+  if (displayMode == "standalone") {
     document.getElementById("home-button").style.display = "none";
   } else {
-    document.getElementById("home-button").style.display = undefined;
+    document.getElementById("home-button").style.removeProperty("display");
   }
 }
+
 /**
  * Takes the projectId and creates a project with it associated with its own project page as well as edit and delete buttons
  * @param {string} projectId string identifier for project which we are creating an element for
