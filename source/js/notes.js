@@ -9,7 +9,7 @@ window.addEventListener("load", () => init());
  * The id for the project selected. Found from the search parameters of the URL with key "projectId"
  * @constant {string}
  */
-const projectId = new URL(window.location).searchParams.get("projectId");
+const projectId = localStorage.getItem('projectClicked');
 
 /**
  * Set to 't' if date mode is active, should not have any other value

@@ -47,7 +47,7 @@ async function initializeServiceWorker() {
 export function createProjectItem(projectId) {
   //creating the new variables for the project item shown on webpage
   const newProject = document.createElement("li"); //list item
-  const newLink = document.createElement("a"); //link to project.html w/ project id.
+  const newLink = document.createElement("button"); //link to project.html w/ project id.
   const folderImage = document.createElement("img");
   const linkText = document.createElement("p");
 
@@ -66,7 +66,10 @@ export function createProjectItem(projectId) {
   });
 
   newLink.appendChild(folderImage);
-  newLink.href = `./notes.html?projectId=${encodeURI(projectId)}`; //setting embedded url
+  newLink.addEventListener('click', () => {
+    localStorage.setItem('projectClicked', projectId);
+    window.location.href = './notes.html';
+  });
   newProject.id = projectId;
 
   newProject.appendChild(newLink); //adding link to list item

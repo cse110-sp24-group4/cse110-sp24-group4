@@ -16,7 +16,7 @@ let tasks = [];
  * Initializes the to-do list
  */
 function initTodoList() {
-  const projectId = new URL(window.location).searchParams.get("projectId");
+  const projectId = localStorage.getItem('projectClicked');
   if (!projectId) {
     return;
   }
