@@ -8,7 +8,7 @@ sleep 5
 
 echo Running tests...
 
-node --experimental-vm-modules node_modules/jest/bin/jest.js source/js/__testing__/puppeteer/*
+node --experimental-vm-modules node_modules/jest/bin/jest.js --maxWorkers=1 source/js/__testing__/puppeteer/*
 
 kill $PID
 
