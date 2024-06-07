@@ -595,7 +595,7 @@ function toggleDateView() {
     let style = document.createElement("style");
     style.id = "hide-edit";
     style.innerHTML =
-      ".edit, .delete, #create-note-button, #add-to-notes  {display: none;}";
+      ".edit, .delete, #create-note-button, #add-to-notes, .todo-grid, #todo-header  {display: none;}";
     document.head.appendChild(style);
   }
 }
