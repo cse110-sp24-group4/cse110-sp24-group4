@@ -8,8 +8,6 @@
  */
 window.addEventListener("load", () => init());
 
-let displayMode = "browser";
-
 export let projects = [];
 
 /**
@@ -43,32 +41,28 @@ async function initializeServiceWorker() {
 }
 
 /**
- * Checks if app is launched as a PWA
+ * Checks whether the current instance is running as PWA
  */
 function checkPWA() {
+  handlePWATransfer(window.matchMedia("(display-mode:standalone)"));
   window
     .matchMedia("(display-mode:standalone)")
     .addEventListener("change", (event) => {
-      if (event.matches) {
-        displayMode = "standalone";
-      } else {
-        displayMode = "browser";
-      }
-      handlePWATransfer();
+      handlePWATransfer(event);
     });
 }
 
 /**
- * Handles any logic to run on PWA transfer
+ * Handles transferring to PWA
+ * @param {EventTarget} event Event that fired this function
  */
-function handlePWATransfer() {
-  if (displayMode == "standalone") {
+function handlePWATransfer(event) {
+  if (event.matches) {
     document.getElementById("home-button").style.display = "none";
   } else {
     document.getElementById("home-button").style.removeProperty("display");
   }
 }
-
 /**
  * Takes the projectId and creates a project with it associated with its own project page as well as edit and delete buttons
  * @param {string} projectId string identifier for project which we are creating an element for
