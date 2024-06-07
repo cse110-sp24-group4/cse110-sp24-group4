@@ -1,3 +1,15 @@
+button {
+  color: #275734;
+}
+
+select {
+  color: #275734;
+}
+
+i {
+  color: black;
+}
+
 #note-add {
   display: grid;
   grid-template-columns: 0.8fr 0.2fr;
@@ -135,7 +147,9 @@
   font-size: 1.5em; /* Adjust the size of the header as needed */
   font-weight: bold; /* Make the title bold */
   margin: 8px 0; /* Add some margin for spacing */
-  width: 100%;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .note-date {
@@ -176,6 +190,7 @@
 
 .note-overflow-button:hover {
   opacity: 50%;
+  color: black;
 }
 
 .note-button {
@@ -389,6 +404,20 @@
 header{
   background-color: #708B64;
   color: white;
+  .back {
+    &>i {
+        font-size: 2em;
+        font-weight: 700;
+        letter-spacing: 5px;
+        margin: 3px;
+        margin-left: 8px;
+        color: white;
+    }
+
+    &:hover {
+        opacity: 60%;
+    }
+}
 }
 
 #notes-header{
@@ -500,4 +529,25 @@ header{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.tag-and-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag-list {
+  display: flex;
+  justify-content: flex-start;
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.tag-item {
+  margin: 5px;
+  background-color: rgba(98, 135, 69, 0.3);
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0);
+  border-radius: 5px;
 }

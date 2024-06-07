@@ -1,4 +1,6 @@
 const CACHE_NAME = "devdog";
+/** Cache expires after 12 hours */
+const EXPIRATION_TIME = 12 * 60 * 60 * 1000;
 
 // Installs the service worker. Feed it some initial URLs to cache
 self.addEventListener("install", function (event) {
@@ -7,6 +9,7 @@ self.addEventListener("install", function (event) {
       return cache.addAll([
         "./",
         "./index.html",
+        "./js/pwa-install.js",
         "./js/project.js",
         "./js/notes.js",
         "./js/todo.js",
@@ -31,15 +34,19 @@ self.addEventListener("fetch", function (event) {
   event.respondWith(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.match(event.request).then((cachedResponse) => {
-        return (
-          cachedResponse ||
-          fetch(event.request).then((fetchedResponse) => {
-            cache
-              .put(event.request, fetchedResponse.clone())
-              .catch(() => console.log("Unsupported request to cache"));
-            return fetchedResponse;
-          })
-        );
+        if (cachedResponse) {
+          const cachedDate = new Date(cachedResponse.headers.get("date"));
+          const curDate = new Date();
+          if (curDate.getTime() - cachedDate.getTime() <= EXPIRATION_TIME) {
+            return cachedResponse;
+          }
+        }
+        return fetch(event.request).then((fetchedResponse) => {
+          cache
+            .put(event.request, fetchedResponse.clone())
+            .catch(() => console.log("Unsupported request to cache"));
+          return fetchedResponse;
+        });
       });
     }),
   );
