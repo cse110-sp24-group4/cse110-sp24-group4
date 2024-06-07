@@ -29,6 +29,7 @@ describe("Test the date view functionality of the notes page", () => {
       page.waitForNavigation(), // The promise resolves after navigation has finished
       page.click("#Hello"),
     ]); // Clicking the link will indirectly cause a navigation
+    await page.waitForSelector('#create-note-button');
     await page.click("#create-note-button");
 
     await page.click(".edit");

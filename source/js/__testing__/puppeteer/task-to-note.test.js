@@ -13,7 +13,7 @@ describe("Test for adding completed tasks to notes end-to-end tests", () => {
     await page.waitForSelector('.project-link');
     await Promise.all([
       page.waitForNavigation(), // The promise resolves after navigation has finished
-      page.click(".project-link"),
+      page.click("#testingProject"),
     ]); // Clicking the link will indirectly cause a navigation
     await page.type("#new-task-name", "Completed task");
     await page.click("#add-task-button");
