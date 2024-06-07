@@ -27,10 +27,11 @@ describe("Task List Feature", () => {
   test("should add a new task", async () => {
     await page.type("#new-project-name", projectId);
     await page.click("#project-create");
-    await page.waitForSelector('.project-link');
+    await page.waitForSelector('#testingProject2');
+    await page
     await Promise.all([
       page.waitForNavigation(), // The promise resolves after navigation has finished
-      page.click("#testingProject"),
+      page.click("#testingProject2"),
     ]); // Clicking the link will indirectly cause a navigation
     await page.waitForSelector('#new-task-name');
     await page.type("#new-task-name", "Test Task");
@@ -47,6 +48,7 @@ describe("Task List Feature", () => {
   });
 
   test("should mark a task as completed", async () => {
+    await page.waitForSelector('#task-list li input[type="checkbox"]');
     await page.click('#task-list li input[type="checkbox"]');
 
     const taskCompleted = await page.$eval("#task-list li span", (el) =>
@@ -56,6 +58,7 @@ describe("Task List Feature", () => {
   });
 
   test("should delete a task", async () => {
+    await page.waitForSelector('#task-list li button');
     await page.click("#task-list li button");
 
     const taskCount = await page.$$eval("#task-list li", (els) => els.length);
