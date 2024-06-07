@@ -2,33 +2,44 @@
 <html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8" />
     <title>Project Page</title>
     <link rel="manifest" href="../manifest.json" />
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/notes.css" />
     <link rel="stylesheet" href="../css/todo.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
     <script src="../js/notes.js" type="module" defer></script>
     <script src="../js/todo.js" type="module" defer></script>
+    <style id="filter-style"></style>
 </head>
 
 <body>
     <header>
         <a href="./project.html" class="back"><i class="material-icons">arrow_back</i></a>
         <h1 id="project-title">Project</h1>
-        <div></div>
+        <button id="toggle-date-view">Date View</button>
     </header>
-    <div id="main-container">
-        <h2 id="notes-header">
+    <div id="header-container">
+    <h2 id="notes-header">
             Notes
-            <button id="create-note-button">Add new note</button>
-            <button id="sort-notes-button">Sort by date</button>
+            <div id="notes-header-buttons">
+                <button id="create-note-button">Add new note</button>
+                <button id="sort-notes-button">Sort by date</button>
+            </div>
+            <select id="filter-select">
+                <option>No Filter</option>
+            </select>
         </h2>
 
         <h2 id="todo-header">
-            To-do
+            <button id="toggle-sidebar-button"><i class="material-icons">chevron_left</i></button>
+            <p>To-do</p>
         </h2>
+    </div>
+    <div id="main-container">
+        
 
         <div class="notes-grid">
             <!-- <div id="mockup-project#notes#884" class="note-block">
@@ -77,12 +88,14 @@
 
             </div> -->
         </div>
-        <div id="todo-list">
+ 
+        <div id="todo-list" class="closed">
             
             <div class="todo-grid">
+
                 <input type="textbox" id="new-task-name" placeholder="Enter new task"></textarea>
                 <button id="add-task-button">Add new task</button>
-                <!-- <button id="toggle-sidebar-button">Toggle To-do</button> -->
+                
                 <section>
                     <ul id="task-list">
                         <!-- <li class="task-item">

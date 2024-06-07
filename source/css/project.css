@@ -28,11 +28,13 @@ li {
 }
 
 button {
-    border-color: #4b3e30;
-    border-width: 5px;
-    border-style: none;
+    border-color: #275734;
+    border-width: 2.5px;
+    border-style: line;
     
-    background-color: #eac59a;
+    color: #275734;
+
+    background-color: #b5cfaf;
 
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -44,12 +46,40 @@ button {
     font-size: 80%;
 }
 
+/*Styling for View Notes by Date*/
+#date-view {
+    text-decoration: none;
+    font-size: 2em;
+    font-weight: bold;
+    border: 2.5px none #275734;
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #275734;
+    margin-left: auto;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: #b5cfaf;
+  
+    &:hover {
+        opacity: 50%;
+    }
+  }
+
 #new-project-name{
     width: auto;
 }
 
 h2{
     margin-left: 20px;
+    font-size: 220%;
+    font-weight: bolder;
+    text-decoration: underline;
+    color: #275734;
 }
 
 .add-project-button{
@@ -75,4 +105,32 @@ h2{
 }
 .js-only {
     display: none;
+}
+
+/*Keeping a different styling for the header for the project page 
+ * Also carried into the notes page.
+*/
+header{
+    background-color:#708B64;
+    color: white;
+    .back {
+        &>i {
+            font-size: 2em;
+            font-weight: 700;
+            letter-spacing: 5px;
+            margin: 3px;
+            margin-left: 8px;
+            color: white;
+        }
+
+        &:hover {
+            opacity: 60%;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    ul {
+        grid-template-columns: auto auto;
+    }
 }

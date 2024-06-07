@@ -1,3 +1,15 @@
+button {
+  color: #275734;
+}
+
+select {
+  color: #275734;
+}
+
+i {
+  color: black;
+}
+
 #note-add {
   display: grid;
   grid-template-columns: 0.8fr 0.2fr;
@@ -15,18 +27,41 @@
   border-radius: 4px;
 }
 
+#create-note-button:hover {
+  opacity: 0.6; /* Adjust opacity value as needed */
+}
+
 #sort-notes-button {
+  position: relative;
   border-width: 0.5px;
   border-radius: 4px;
+  margin-left: auto;
+  grid-column: 1 / -1; 
+  justify-self: end; 
+}
+
+#filter-select {
+  margin-left: auto;
+}
+
+.filtered-out {
+  display: none !important;
+}
+
+.filtered-in {
+  display: flex !important;
 }
 
 #notes-header {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  /*flex-direction: row;
+  align-items: center;*/
+  flex-direction: column; /* Change from row to column */
+  align-items: flex-start; /* Align items to the start of the column */
   justify-content: space-between;
   gap: 12px;
   margin-left: 8px;
+  margin-right: 8px;
 }
 
 #main-container {
@@ -35,25 +70,28 @@
   grid-template-columns: 3fr 1fr;
   padding: 0px 16px 0px 16px;
   gap: 12px;
+  
 }
 
 .notes-grid {
   display: grid;
-  grid-template-columns: auto;
+  /*grid-template-columns: auto;*/
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 10px;
+  align-items: flex-start;
 }
 
 .button-container {
   display: flex;
+  flex-direction: row;
   gap: 8px;
-  justify-content: flex-end;
-  width: 100%;
+  justify-content: space-between;
 }
 
 .note-block {
   position: relative;
   border-radius: 12px;
-  border: 2px solid black;
+  border: 2px solid #708B64;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -62,6 +100,9 @@
   padding-top: 0px;
   animation: 1s create-note-animation;
   transition: height 1s;
+  background-color: rgba(255, 255, 255, 0.75);
+  /*max-width: 350px;*/
+  /*height: 400px;*/ /* Set a fixed height */
 }
 
 .delete-note {
@@ -91,21 +132,30 @@
   }
 }
 
+
 .note-header {
   position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: nowrap;
+  flex-direction: column; /* Change from row to column */
+  justify-content: flex-start; /* Align items to the start */
+  align-items: flex-start; /* Align items to the start */
   width: 100%;
   padding: 0px;
 }
 
 .note-title {
-  border-radius: 12px;
-  border-width: 0.5px;
-  padding: 2px;
-  padding-left: 4px;
+  font-size: 1.5em; /* Adjust the size of the header as needed */
+  font-weight: bold; /* Make the title bold */
+  margin: 8px 0; /* Add some margin for spacing */
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.note-date {
+  font-size: 0.9em; /* Adjust the size of the date */
+  color: grey; /* Change the color if needed */
+  margin-bottom: 8px; /* Add some margin for spacing */
 }
 
 .note-content {
@@ -140,6 +190,7 @@
 
 .note-overflow-button:hover {
   opacity: 50%;
+  color: black;
 }
 
 .note-button {
@@ -160,15 +211,9 @@
   opacity: 70%;
 }
 
-
 .note-text {
   margin: 0px;
   font-size: 1em;
-}
-
-.note-date {
-  font-size: 1em;
-  margin-left: auto;
 }
 
 .note-entry {
@@ -183,7 +228,6 @@
   resize: none;
   padding: 8px;
 }
-
 
 #todo-header {
   display: flex;
@@ -203,7 +247,7 @@
 
 #task-list {
   list-style-type: none;
-  padding: 0px;
+  padding: 10px;
   padding-top: 5px;
   margin: 0px;
 }
@@ -213,50 +257,297 @@
   margin: 0px;
 }
 
-.horizontal-details {
-  display: flex;
-  flex-direction: row;
-}
-
-.horizontal-details>details {
-  margin-right: 10px;
-  /* Optional: Add space between details */
-}
-
-.horizontal-details>details:last-child {
-  margin-right: 0;
-  /* Remove margin from the last details element */
-}
-#todo-list {
-  flex: 0 0 300px; /* Adjust width as needed */
-}
-
-/* Styles for smaller screens */
-@media (max-width: 768px) {
-  #main-container {
-      flex-direction: column;
-  }
-
-  .notes-grid {
-      width: 100%;
-  }
-
+@media screen and (min-width: 769px) {
   #todo-list {
-      display: none;
-      width: 100%;
-  }
+    display: block !important;/* Ensure todo list is visible on larger screens */
+    position: relative !important; /* Reset position */
+    width: 100% !important; /* Reset width */
+    background-color: transparent !important; /* Reset background color */
 
-  #todo-list.open {
-      display: block;
   }
+}
 
-  .toggle-button {
-      display: block;
-      margin: 10px 0;
+#toggle-date-view {
+  text-decoration: none;
+  font-size: 2em;
+  /*border: 2px solid #674A2A;*/
+  border: 2px solid #b5cfaf;
+  border-radius: 10px;
+  color: #275734;
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 2px;
+  /*background-color: #ebd0b2;*/
+  background-color: #b5cfaf;
+
+  &:hover {
+      opacity: 75%;
+      cursor:pointer;
   }
+}
+
+.date-selector {
+  font-size: 2em;
+  margin-left: 10px;
 }
 
 /* Hide the toggle button on larger screens */
-.toggle-button {
+#toggle-sidebar-button {
   display: none;
+}
+
+
+/* Styles for smaller screens */
+@media screen and (max-width: 768px) {
+  #main-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-areas: "notes sidebar";
+  }
+
+  #notes-grid {
+    grid-area: notes;
+  }
+
+  #todo-list {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: -200px;
+    width: 70vw;
+    background-color: beige;
+    grid-area: sidebar;
+  }
+
+  #todo-list.open {
+    display: block;
+    right: 0;
+  }
+
+  #toggle-sidebar-button {
+    display: block;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+#toggle-sidebar-button{
+  color: beige;
+
+}
+/*
+#todo-list.closed .todo-grid {
+  display: none;
+}*/
+
+#toggle-sidebar-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #556b2f;
+  font-size: 24px;
+}
+
+.todo-grid {
+  background-color: inherit;
+  border: 1px solid #556b2f;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#new-task-name {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #556b2f;
+  border-radius: 5px;
+}
+
+#task-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 5px;
+  border: 1px solid #556b2f;
+  border-radius: 5px;
+  margin-bottom: 5px;
+
+}
+
+.task-item span {
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
+.task-item button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #556b2f;
+}
+
+.todo-grid {
+  background-color: inherit;
+  border: 1px solid #556b2f;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+header{
+  background-color: #708B64;
+  color: white;
+  .back {
+    &>i {
+        font-size: 2em;
+        font-weight: 700;
+        letter-spacing: 5px;
+        margin: 3px;
+        margin-left: 8px;
+        color: white;
+    }
+
+    &:hover {
+        opacity: 60%;
+    }
+}
+}
+
+#notes-header{
+  font-size: 220%;
+  color: #275734;
+
+}
+
+#todo-header{
+  font-size: 220%;
+  font-weight: bold;
+  color: #275734;
+}
+
+#create-note-button {
+  border: 2.5px #275734;
+  border-style: groove;
+  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  background-color: #b5cfaf;
+
+  font-size: 55.5%;
+
+  &:hover {
+    opacity: 75%;
+    cursor: pointer;
+  }
+}
+
+#sort-notes-button{
+  border: 2.5px #275734;
+  border-style: groove;
+  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  background-color: #b5cfaf;
+
+  &:hover {
+    opacity: 75%;
+    cursor: pointer;
+  }
+
+  font-size: 55.5%
+}
+
+#filter-select {
+  border: 2.5px #275734;
+  border-style: groove;
+  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  background-color: #b5cfaf;
+
+  &:hover {
+    opacity: 75%;
+    cursor: pointer;
+  }
+
+  font-size: 55.5%
+}
+
+#add-to-notes{
+
+  border: 2.5px #275734;
+  border-style: groove;
+  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  background-color: #b5cfaf;
+
+  &:hover{
+    opacity: 75%;
+    cursor: pointer;
+  }
+
+}
+
+#add-task-button{
+  
+  border: 2.5px #275734;
+  border-style: groove;
+  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  background-color: #b5cfaf;
+  &:hover {
+    opacity: 75%;
+    cursor: pointer;
+  }
+}
+
+#header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.tag-and-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag-list {
+  display: flex;
+  justify-content: flex-start;
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.tag-item {
+  margin: 5px;
+  background-color: rgba(98, 135, 69, 0.3);
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0);
+  border-radius: 5px;
 }

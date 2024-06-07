@@ -9,9 +9,11 @@ header>img {
 header>a {
     text-decoration: none;
     font-size: 2em;
+    font-weight: bold;
     border: 2px solid #275734;
     border-radius: 10px;
     color: #275734;
+    background-color: #b5cfaf;
     margin-left: auto;
     margin-right: 5px;
     margin-top: 5px;
@@ -20,7 +22,7 @@ header>a {
     /* background-color: #ebd0b2; */
 
     &:hover {
-        opacity: 50%;
+        opacity: 75%;
     }
 }
 
@@ -157,17 +159,17 @@ footer {
             font-size: 1.5em;
         }
 
-        &>a {
+        &>button {
             text-decoration: none;
             font-size: 1.5em;
-            border: 2px solid #674A2A;
+            border: 2px solid #275734;
             border-radius: 10px;
             color: white;
             padding: 5px;
-            background-color: #674A2A;
+            background-color: #275734;
 
             &:hover {
-                opacity: 50%;
+                opacity: 75%;
             }
         }
     }

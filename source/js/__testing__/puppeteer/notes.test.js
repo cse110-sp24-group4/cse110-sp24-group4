@@ -30,8 +30,8 @@ describe("Test suites for notes page end-to-end tests", () => {
     }
 
     for (const notes of curLocalStorage) {
-      expect(notes.content).toBe("Put the contents of your note here!");
-      expect(notes.title).toBe("New note");
+      expect(notes.content).toBe("");
+      expect(notes.title).toBe("");
     }
 
     expect(noteBlocks.length).toBe(2);
@@ -58,8 +58,8 @@ describe("Test suites for notes page end-to-end tests", () => {
     }
 
     for (const notes of curLocalStorage) {
-      expect(notes.content).toBe("Put the contents of your note here!");
-      expect(notes.title).toBe("New note");
+      expect(notes.content).toBe("");
+      expect(notes.title).toBe("");
     }
 
     expect(noteBlocks.length).toBe(2);
@@ -89,6 +89,10 @@ describe("Test suites for notes page end-to-end tests", () => {
       }); // This ensures text is appended to end of content
       await titleInput.type(`${i}`);
 
+      const tagInput = await block.$(".tag-list");
+      await tagInput.click();
+      await tagInput.type(`test${i}`);
+
       const saveButton = await block.$("button.check");
       await saveButton.click();
       i++;
@@ -104,6 +108,13 @@ describe("Test suites for notes page end-to-end tests", () => {
         await (await block.$("p.note-title")).getProperty("innerText")
       ).jsonValue();
       expect(titleValue).toBe(`${i}`);
+
+      const tagValue = await (
+        await (
+          await block.$("div.tag-and-buttons > ul > li.tag-item")
+        ).getProperty("innerText")
+      ).jsonValue();
+      expect(tagValue).toBe(`test${i}`);
 
       i++;
     }
