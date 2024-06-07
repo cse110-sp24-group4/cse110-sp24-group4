@@ -32,6 +32,7 @@ describe("Task List Feature", () => {
       page.waitForNavigation(), // The promise resolves after navigation has finished
       page.click("#testingProject"),
     ]); // Clicking the link will indirectly cause a navigation
+    await page.waitForSelector('#new-task-name');
     await page.type("#new-task-name", "Test Task");
     await page.click("#add-task-button");
 
