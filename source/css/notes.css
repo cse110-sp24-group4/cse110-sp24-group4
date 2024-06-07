@@ -518,7 +518,7 @@ header{
 }
 
 .tag-item {
-  margin: 5px;
+  margin: 5px; 
   background-color: rgba(98, 135, 69, 0.3);
   border-style: solid;
   border-color: rgba(255, 255, 255, 0);
