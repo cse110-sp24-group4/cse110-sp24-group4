@@ -29,7 +29,7 @@
 <nav >
     
     
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createNote">createNote</a></li><li><a href="global.html#createNoteButton">createNoteButton</a></li><li><a href="global.html#createNoteText">createNoteText</a></li><li><a href="global.html#deleteNote">deleteNote</a></li><li><a href="global.html#editNote">editNote</a></li><li><a href="global.html#genNoteElement">genNoteElement</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#loadNotesFromStorage">loadNotesFromStorage</a></li><li><a href="global.html#projectId">projectId</a></li><li><a href="global.html#saveNote">saveNote</a></li><li><a href="global.html#saveToLocalStorage">saveToLocalStorage</a></li><li><a href="global.html#ugly">ugly</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DEFAULT_NOTE_CONTENT">DEFAULT_NOTE_CONTENT</a></li><li><a href="global.html#DEFAULT_NOTE_TITLE">DEFAULT_NOTE_TITLE</a></li><li><a href="global.html#EXPIRATION_TIME">EXPIRATION_TIME</a></li><li><a href="global.html#addTask">addTask</a></li><li><a href="global.html#checkPWA">checkPWA</a></li><li><a href="global.html#collapseNote">collapseNote</a></li><li><a href="global.html#completedTasksToNotes">completedTasksToNotes</a></li><li><a href="global.html#createExpandButton">createExpandButton</a></li><li><a href="global.html#createNote">createNote</a></li><li><a href="global.html#createNoteButton">createNoteButton</a></li><li><a href="global.html#createNoteFromTask">createNoteFromTask</a></li><li><a href="global.html#createNoteText">createNoteText</a></li><li><a href="global.html#createProject">createProject</a></li><li><a href="global.html#createProjectItem">createProjectItem</a></li><li><a href="global.html#dateView">dateView</a></li><li><a href="global.html#deleteNote">deleteNote</a></li><li><a href="global.html#deleteProject">deleteProject</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#disableInAppInstallPrompt">disableInAppInstallPrompt</a></li><li><a href="global.html#editNote">editNote</a></li><li><a href="global.html#expandNote">expandNote</a></li><li><a href="global.html#filterNotes">filterNotes</a></li><li><a href="global.html#filterSet">filterSet</a></li><li><a href="global.html#formatTime">formatTime</a></li><li><a href="global.html#genNoteElement">genNoteElement</a></li><li><a href="global.html#generateTagList">generateTagList</a></li><li><a href="global.html#getProjectsFromLocalStorage">getProjectsFromLocalStorage</a></li><li><a href="global.html#handleGracefulDegradation">handleGracefulDegradation</a></li><li><a href="global.html#handlePWATransfer">handlePWATransfer</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initTodoList">initTodoList</a></li><li><a href="global.html#initializeServiceWorker">initializeServiceWorker</a></li><li><a href="global.html#isValidProjectName">isValidProjectName</a></li><li><a href="global.html#loadNotesFromStorage">loadNotesFromStorage</a></li><li><a href="global.html#loadTasksFromStorage">loadTasksFromStorage</a></li><li><a href="global.html#localeToInputDate">localeToInputDate</a></li><li><a href="global.html#notes">notes</a></li><li><a href="global.html#processExpandButton">processExpandButton</a></li><li><a href="global.html#projectId">projectId</a></li><li><a href="global.html#renderTasks">renderTasks</a></li><li><a href="global.html#saveNote">saveNote</a></li><li><a href="global.html#saveTasksToLocalStorage">saveTasksToLocalStorage</a></li><li><a href="global.html#saveToLocalStorage">saveToLocalStorage</a></li><li><a href="global.html#setNamingErrorMessage">setNamingErrorMessage</a></li><li><a href="global.html#sortNotes">sortNotes</a></li><li><a href="global.html#toggleDateView">toggleDateView</a></li><li><a href="global.html#toggleSidebar">toggleSidebar</a></li><li><a href="global.html#updateDateNotes">updateDateNotes</a></li><li><a href="global.html#updateFilterSelect">updateFilterSelect</a></li></ul>
     
 </nav>
 
@@ -45,171 +45,235 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>window.addEventListener("load", () => init());
-
-/**
- * The id for the project selected. Found from the search parameters of the URL with key "projectId"
- * @const {string}
+            <pre class="prettyprint source linenums"><code>/**
+ * @file
+ * This file handles functionality for the landing page including
+ * - Loading projects
+ * - Adding projects
+ * - Saving projects to localStorage
+ * - Navigating to the project page with proper project ID as a param
  */
-const projectId = new URL(window.location).searchParams.get("projectId");
-let notes = [];
+window.addEventListener("load", () => init());
+
+export let projects = [];
 
 /**
- * Initialization function for after the DOM loads
+ * Initializes the page
  */
 function init() {
-  loadNotesFromStorage();
+  initializeServiceWorker();
+  getProjectsFromLocalStorage();
+  const createProjectButton = document.getElementById("project-create");
+  createProjectButton.addEventListener("click", createProject);
+  handleGracefulDegradation();
+  checkPWA();
 }
 
 /**
- * Retrieves notes related to current project from localstorage
+ * Initializes service worker
  */
-function loadNotesFromStorage() {
-  // if (projectId == null) return;
-  notes = JSON.parse(localStorage.getItem(`${projectId}#notes`) ?? "[]") ?? [];
-  for (const note of notes) {
-    genNoteElement(note);
+async function initializeServiceWorker() {
+  if ("serviceWorker" in navigator) {
+    try {
+      const register = await navigator.serviceWorker.register("../sw.js");
+      if (register.active) {
+        // eslint-disable-next-line
+        console.log("Service worker successfully registered");
+      }
+    } catch (err) {
+      // eslint-disable-next-line
+      console.error("Service worker failed to register", err);
+    }
   }
 }
 
-// This function is called by the add button in the html page
-/* eslint-disable no-unused-vars */
 /**
- * Creates new blank note in localstorage as well as corresponding html element
+ * Checks whether the current instance is running as PWA
  */
-function createNote() {
-  const rand = (Math.random() * 1000).toFixed(0).toString();
-  const newNote = {
-    id: `${projectId}#notes#${rand}`,
-    content: "new note",
-  };
-  notes.push(newNote);
-  saveToLocalStorage(notes);
-  genNoteElement(newNote);
-}
-/* eslint-enable no-unused-vars */
-
-/**
- * Generates html element for the corresponding note object and attaches it to the note grid
- * @param {Object} noteObj Note object to generate element for
- */
-function genNoteElement(noteObj) {
-  const addButton = document.querySelector("#create-note-button");
-  const notesGrid = document.querySelector(".notes-grid");
-  const noteBlock = document.createElement("div");
-
-  noteBlock.id = noteObj.id;
-  noteBlock.className = "note-block";
-
-  const noteText = createNoteText(noteObj.content);
-  noteBlock.appendChild(noteText);
-
-  const noteEdit = createNoteButton("edit", () => editNote(noteObj.id));
-  const noteDelete = createNoteButton("delete", () => deleteNote(noteObj.id));
-
-  noteBlock.appendChild(noteEdit);
-  noteBlock.appendChild(noteDelete);
-
-  notesGrid.insertBefore(noteBlock, addButton);
+function checkPWA() {
+  handlePWATransfer(window.matchMedia("(display-mode:standalone)"));
+  window
+    .matchMedia("(display-mode:standalone)")
+    .addEventListener("change", (event) => {
+      handlePWATransfer(event);
+    });
 }
 
 /**
- * Generates a p element for the note html element
- * @param {string} content The content of the text element
- * @returns {Object} The html element for the text content
+ * Handles transferring to PWA
+ * @param {MediaQueryListEvent} event Event that fired this function
  */
-function createNoteText(content) {
-  const noteText = document.createElement("p");
-  noteText.innerText = content;
-  noteText.className = "note-text";
-  return noteText;
+function handlePWATransfer(event) {
+  if (event.matches) {
+    document.getElementById("home-button").style.display = "none";
+  } else {
+    document.getElementById("home-button").style.removeProperty("display");
+  }
+}
+/**
+ * Takes the projectId and creates a project with it associated with its own project page as well as edit and delete buttons
+ * @param {string} projectId string identifier for project which we are creating an element for
+ * @returns {li} an HTML li element containing the name of the project, link to notes page, and delete button
+ */
+export function createProjectItem(projectId) {
+  //creating the new variables for the project item shown on webpage
+  const newProject = document.createElement("li"); //list item
+  const newLink = document.createElement("a"); //link to project.html w/ project id.
+  const folderImage = document.createElement("img");
+  const linkText = document.createElement("p");
+
+  folderImage.src = "../assets/images/green-folder.png";
+  folderImage.alt = "folder";
+
+  linkText.innerText = `${projectId}`;
+
+  newLink.classList.add("project-link");
+  linkText.classList.add("project-name");
+
+  const newDelete = document.createElement("button"); //delete button
+  newDelete.innerText = "Delete";
+  newDelete.addEventListener("click", () => {
+    deleteProject(projectId);
+  });
+
+  newLink.appendChild(folderImage);
+  newLink.href = `./notes.html?projectId=${encodeURI(projectId)}`; //setting embedded url
+  newProject.id = projectId;
+
+  newProject.appendChild(newLink); //adding link to list item
+  newProject.appendChild(linkText);
+  newProject.appendChild(newDelete); //adding delete button to list item.
+
+  return newProject; //returning the new project.
 }
 
 /**
- * Callback for clicking buttons on the note blocks
- *
- * @callback onClickCallback
- * @param {string} noteId
+ * Creates a new project upon the new project button being pressed
  */
+function createProject() {
+  //gets value from textarea to be the projectId.
+  const newProjectName = document.getElementById("new-project-name").value;
 
-/**
- * Generates a button for the note html element
- * @param {string} iconName The name of the icon for the button
- * @param {onClickCallback} onClick The callback to use when clicked
- * @returns {Object} The html element for the button
- */
-function createNoteButton(iconName, onClick) {
-  const button = document.createElement("button");
-  button.onclick = onClick;
-  button.classList.add("note-button");
-  button.classList.add(iconName);
+  // Try block to catch exceptions thrown by name check
+  try {
+    isValidProjectName(newProjectName); // Will throw an exception if project name is invalid
+    projects.push(newProjectName); //pushes new projectId to projects array
 
-  const icon = document.createElement("i");
-  icon.classList.add("material-icons");
-  icon.innerText = iconName;
-  button.appendChild(icon);
-  return button;
+    //steps to make new project item.
+    const newProjectItem = createProjectItem(newProjectName);
+    const projectList = document.getElementById("add-a-project");
+    projectList.after(newProjectItem);
+
+    localStorage.setItem("projects", JSON.stringify(projects)); // saves the projects in local storage
+    setNamingErrorMessage(false); // Hides naming error message
+  } catch (error) {
+    setNamingErrorMessage(true, error.message); // Displays naming error message under text area
+  }
+  document.getElementById("new-project-name").value = "";
 }
 
 /**
- * Changes the note text element to be an input and allow it to be edited
- * @param {string} noteId Id of the note to be changed
+ * Removes the project from the website visually and in local storage
+ * Also removes associated notes from local storage
+ * @param {string} projectId string identifier of the project to be deleted
  */
-function editNote(noteId) {
-  const noteBlock = document.getElementById(`${noteId}`);
-  const noteText = noteBlock.querySelector("p");
+function deleteProject(projectId) {
+  if (
+    window.confirm(
+      `Are you sure you want to delete ${projectId} and associated notes? (This action cannot be undone)`,
+    )
+  ) {
+    let parentId = document.getElementById(projectId);
+    projects = projects.filter((project) => project != projectId); // removes project from projects array
 
-  const editButton = noteBlock.querySelector("button.edit");
-  const editIcon = editButton.querySelector("i");
-  editButton.onclick = () => saveNote(noteId);
-  editIcon.innerText = "check";
+    const projectList = document.getElementById("Project-List");
+    projectList.removeChild(parentId); // removing project visually from website
 
-  const noteTextInput = document.createElement("input");
-  noteTextInput.type = "text";
-  noteTextInput.value = noteText.innerText;
+    localStorage.setItem("projects", JSON.stringify(projects)); // saves the projects in local storage
 
-  noteBlock.replaceChild(noteTextInput, noteText);
+    localStorage.removeItem(`${projectId}#notes`); // removes associated notes from local storage
+  } else {
+    return;
+  }
 }
 
 /**
- * Saves the edits made using the input element and converts it back to a text element
- * @param {string} noteId Id of the note to be saved
+ * When website is loaded, retrieve all of the projects from local storage
  */
-function saveNote(noteId) {
-  const noteBlock = document.getElementById(`${noteId}`);
-  const noteTextInput = noteBlock.querySelector("input");
+function getProjectsFromLocalStorage() {
+  const projectList = document.getElementById("add-a-project");
+  const storedProjects = JSON.parse(localStorage.getItem("projects")) || [];
 
-  const editButton = noteBlock.querySelector("button.edit");
-  const editIcon = editButton.querySelector("i");
-  editButton.onclick = () => editNote(noteId);
-  editIcon.innerText = "edit";
+  for (const projectId of storedProjects) {
+    let item = createProjectItem(projectId);
+    projectList.after(item);
+  }
 
-  const noteText = createNoteText(noteTextInput.value);
-
-  noteBlock.replaceChild(noteText, noteTextInput);
-  notes.find((note) => note.id == noteId).content = noteTextInput.value;
-
-  saveToLocalStorage(notes);
+  projects = storedProjects;
 }
 
 /**
- * Deletes specified note from localstorage and the corresponding element
- * @param {string} noteId Id of the note to be deleted
+ * Verifies that project name is valid. Valid strings are structured as follows:
+ * Contains only the following characters:
+ * - Alphanumeric
+ * - '-'
+ * - '.'
+ * - '_'
+ * - '~'
+ * The name cannot be blank and must not be longer than 30 characters
+ * @param {string} name entered name of project
+ * @throws {Error} Throws an error with a message corresponding to fail condition
+ * @returns {boolean} true if name is valid
  */
-function deleteNote(noteId) {
-  const notesGrid = document.querySelector(".notes-grid");
-  const noteBlock = document.getElementById(`${noteId}`);
-  notes = notes.filter((n) => n.id != noteId);
-  notesGrid.removeChild(noteBlock);
-  saveToLocalStorage(notes);
+export function isValidProjectName(name) {
+  const validCharacters = /^[A-Za-z0-9\-._~ ]+$/;
+
+  if (name.length &lt; 1) {
+    throw new Error("Project name must not be blank."); // Disallow blank names
+  } else if (name.length > 30) {
+    throw new Error("Project name cannot exceed 30 characters"); // Names should be max 30 characters
+  } else if (projects.includes(name)) {
+    throw new Error(`${name} is already in use!`); // Disallow duplicate project names
+  } else if (!validCharacters.test(name)) {
+    throw new Error(
+      "Project names can only contain letters, numbers, spaces and '-', '.', '_', '~'",
+    ); // Disallow reserved URI characters
+  }
+
+  return true; // Return true if all checks pass
 }
 
 /**
- * Saves specified notes to localstorage
- * @param {Object[]} notes
+ * Sets project naming message to be displayed or hidden
+ * @param {boolean} display True if message should be displayed, false if message should be hidden
+ * @param {string} message Message to be displayed in case of error
  */
-function saveToLocalStorage(notes) {
-  localStorage.setItem(`${projectId}#notes`, JSON.stringify(notes));
+function setNamingErrorMessage(display, message = "Project naming error") {
+  const errorMessage = document.getElementById("project-name-error-message"); // Get error message element
+  if (display) {
+    errorMessage.innerText = message; // Set specific error message
+    errorMessage.hidden = false; // Displays message
+  } else {
+    errorMessage.hidden = true; // Hides message
+  }
+}
+
+/**
+ * Displays message informing user that some features may not function if JS is disabled
+ */
+function handleGracefulDegradation() {
+  document.addEventListener("DOMContentLoaded", function () {
+    let toggleButton = document.getElementById("toggleButton");
+    let toggleSection = document.getElementById("toggleSection");
+
+    toggleButton.addEventListener("click", function () {
+      if (toggleSection.style.display === "none") {
+        toggleSection.style.display = "block";
+      } else {
+        toggleSection.style.display = "none";
+      }
+    });
+  });
 }
 </code></pre>
         </article>
@@ -225,7 +289,7 @@ function saveToLocalStorage(notes) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Tue May 14 2024 23:24:19 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Fri Jun 07 2024 03:09:10 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
