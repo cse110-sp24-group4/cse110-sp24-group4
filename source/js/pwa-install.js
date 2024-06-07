@@ -6,8 +6,8 @@ window.addEventListener("load", () => init());
 
 let installPrompt = null;
 
-const installText = document.getElementById("install-text");
-const installButton = document.getElementById("install-button");
+const installText = document.getElementById('install-text');
+const installButton = document.getElementById('install-button');
 
 /**
  * Initializes pwa functionality
@@ -15,7 +15,7 @@ const installButton = document.getElementById("install-button");
 function init() {
   initializeServiceWorker();
 
-  window.addEventListener("beforeinstallprompt", (event) => {
+  window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault();
     installPrompt = event;
     installText.removeAttribute("hidden");
@@ -26,6 +26,7 @@ function init() {
     if (!installPrompt) {
       return;
     }
+    await installPrompt.prompt();
     disableInAppInstallPrompt();
   });
 
