@@ -54,7 +54,7 @@ function checkPWA() {
 
 /**
  * Handles transferring to PWA
- * @param {EventTarget} event Event that fired this function
+ * @param {MediaQueryListEvent} event Event that fired this function
  */
 function handlePWATransfer(event) {
   if (event.matches) {
