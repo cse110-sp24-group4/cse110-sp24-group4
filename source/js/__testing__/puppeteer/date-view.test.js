@@ -39,8 +39,10 @@ describe("Test the date view functionality of the notes page", () => {
     await page.waitFor;
     await page.click(".back");
 
-    await page.click("#project-create");
-    await page.click("#Goodbye");
+    await Promise.all([
+      page.waitForNavigation(), // The promise resolves after navigation has finished
+      page.click("#Goodbye"),
+    ]); // Clicking the link will indirectly cause a navigation
     await page.click("#create-note-button");
     await page.click(".edit");
     await page.type(".note-title", "Moon");
@@ -49,6 +51,7 @@ describe("Test the date view functionality of the notes page", () => {
 
     await page.click("#date-view");
     const notes = await page.$$(".note-block");
+    console.log(notes);
     expect(notes.length).toBe(2);
   }, 100000);
 
