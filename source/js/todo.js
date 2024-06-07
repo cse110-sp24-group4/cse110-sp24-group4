@@ -163,7 +163,6 @@
        deleteTask(taskId, taskId.split("#")[0]);
      }
    }
-   showConfetti(); // Show confetti after adding completed tasks to notes
  }
  
  // Initialize progress bar elements
@@ -171,13 +170,16 @@
  const dog = document.getElementById('dog');
  const progressContainer = document.getElementById('progress-container');
  
- // Function to update the progress bar
+/**
+ * Updates the progress bar based on the number of completed tasks.
+ * Calculates the progress percentage and adjusts the width of the progress bar
+ * and the position of the dog icon accordingly.
+ */
  function updateProgressBar() {
    const totalTasks = tasks.length;
    const completedTasks = tasks.filter(task => task.completed).length;
    const progressPercentage = (completedTasks / totalTasks) * 100;
    progressBar.style.width = `${progressPercentage}%`;
    dog.style.left = `calc(${progressPercentage}% - 20px)`; // Adjust position for centering the dog\
-
  }
  
