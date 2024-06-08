@@ -12,9 +12,7 @@ ul{
     display: grid;
     grid-template-columns: 0.2fr 0.2fr 0.2fr 0.2fr;
     gap: 10%;
-
     list-style-type: none;
-
     width: 80vw;
 
 }

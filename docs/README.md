@@ -50,6 +50,18 @@ Two primary branches will be maintained throughout the project.
 - `main` will serve as the release branch for the project.
 - `dev` will serve as the dev branch for the project. It will be protected by checks.
 
-When working on a feature, developers should branch off of `dev`. Linting and unit testing will occur upon merging the feature branch back with the `dev` branch.
+When working on a feature, developers should branch off of `dev`. Linting, unit, and puppeteer testing will occur upon merging the feature branch back with the `dev` branch.
 
 `dev` will be merged into `main` only when a new release needs to be published.
+
+## Style guide
+
+The [style guide](./styleguide-js.md) details all rules pertaining to how source code should be written. It covers everything from source file and internal naming conventions to when to use `let` vs `const` to what comments should be written and more. Adherence is enforced through linting and code review.
+
+## Script usage
+
+[This document](./npm-script-usage.md) describes how to use the scripts for linting, unit testing, puppeteer E2E testing, prettier, and JSDoc which are configured within our source folder. Team members can run these before making pull requests to ensure their contributions will satisfy the required status checks.
+
+## JSDoc
+
+JSDoc is generated upon merging feature branches with `dev`. JSDoc for the project can be viewed [here](./js/index.html).

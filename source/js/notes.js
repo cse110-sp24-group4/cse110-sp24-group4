@@ -123,7 +123,6 @@ function loadNotesFromStorage(date) {
   notesGrid.innerHTML = "";
 
   if (date == "") {
-    // if (projectId == null) return;
     notes =
       JSON.parse(localStorage.getItem(`${projectId}#notes`) ?? "[]") ?? [];
   } else {
