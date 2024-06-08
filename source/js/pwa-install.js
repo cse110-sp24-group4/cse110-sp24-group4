@@ -6,7 +6,6 @@ window.addEventListener("load", () => init());
 
 let installPrompt = null;
 
-const installText = document.getElementById("install-text");
 const installButton = document.getElementById("install-button");
 
 /**
