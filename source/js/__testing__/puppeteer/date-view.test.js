@@ -35,7 +35,7 @@ describe("Test the date view functionality of the notes page", () => {
       page.waitForNavigation(), // The promise resolves after navigation has finished
       page.click("#DateView1"),
     ]); // Clicking the link will indirectly cause a navigation
-    await page.waitForSelector('#create-note-button');
+    await page.waitForSelector("#create-note-button");
     await page.click("#create-note-button");
 
     await page.click(".edit");
@@ -43,7 +43,7 @@ describe("Test the date view functionality of the notes page", () => {
     await page.type(".note-title", "Sun");
     await page.click(".check");
     await page.click(".back");
-    await page.waitForSelector('#DateView2');
+    await page.waitForSelector("#DateView2");
     await Promise.all([
       page.waitForNavigation(), // The promise resolves after navigation has finished
       page.click("#DateView2"),
