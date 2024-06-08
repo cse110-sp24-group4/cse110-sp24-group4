@@ -39,7 +39,6 @@ function init() {
 function disableInAppInstallPrompt() {
   installPrompt = null;
   installButton.setAttribute("hidden", "");
-  installText.setAttribute("hidden", "");
 }
 
 /**
