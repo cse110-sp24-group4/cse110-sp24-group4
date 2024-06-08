@@ -1,18 +1,37 @@
-const projectId = "testingProject";
+const projectId = "TaskToNoteTestJs";
 
 describe("Test for adding completed tasks to notes end-to-end tests", () => {
   beforeAll(async () => {
     await page.goto(
-      `http://localhost:9000/pages/notes.html?projectId=${projectId}`,
+      `http://localhost:9000/pages/project.html`,
     );
+    page.on("dialog", async (dialog) => {
+      await dialog.accept();
+    });
+    await page.$$eval("#Project-List li button", (buttons) => {
+      buttons.forEach((button) => button.click()); // Click delete button for each project
+    });
   });
   test("Testing adding to notes feature", async () => {
+    await new Promise(r => setTimeout(r, 1000));
     // setting up test, one completed task one uncomplete, 2 notes
+    await page.type("#new-project-name", projectId);
+    await page.click("#project-create");
+    await page.waitForSelector('#TaskToNoteTestJs');
+    await Promise.all([
+      page.waitForNavigation(), // The promise resolves after navigation has finished
+      page.click("#TaskToNoteTestJs"),
+    ]); // Clicking the link will indirectly cause a navigation
+    await page.waitForSelector('#new-task-name');
     await page.type("#new-task-name", "Completed task");
-    await page.click("#add-task-button");
+    await page.waitForSelector('button#add-task-button:not([disabled])');
+    const newTaskButton = await page.$("#add-task-button");
+    await newTaskButton.evaluate(b => b.click());
+
+    await page.waitForSelector('#task-list li input[type="checkbox"]');
     await page.click('#task-list li input[type="checkbox"]');
     await page.type("#new-task-name", "Uncomplete task");
-    await page.click("#add-task-button");
+    await newTaskButton.evaluate(b => b.click());
     const addNoteButton = await page.$("#create-note-button");
     await addNoteButton.click();
     await addNoteButton.click();
@@ -50,5 +69,5 @@ describe("Test for adding completed tasks to notes end-to-end tests", () => {
       return JSON.parse(localStorage.getItem(`${projId}#notes`));
     }, projectId);
     expect(curLocalStorage.length).toBe(3);
-  });
+  }, 15000);
 });
