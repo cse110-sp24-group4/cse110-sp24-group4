@@ -1,4 +1,3 @@
-//TODO: ADD UNIT TESTING!
-test("Placeholder Test. Will pass", () => {
+test("Ensure Jest is configured correctly. Should pass", () => {
   expect(true).toBe(true);
 });

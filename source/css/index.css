@@ -19,7 +19,6 @@ header>a {
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 5px;
-    /* background-color: #ebd0b2; */
 
     &:hover {
         opacity: 75%;
@@ -125,7 +124,7 @@ footer {
 /* app descriptions */
 .info {
     display: flex;
-    justify-content: center;
+    justify-content: space-between ;
     align-items: center;
     flex-wrap: wrap;
     margin-top: 775px;
@@ -159,7 +158,7 @@ footer {
     align-items: center;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 768px) {
 
     h2 {
         font-size: 0.5em;
