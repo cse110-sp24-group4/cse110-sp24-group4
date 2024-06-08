@@ -20,7 +20,7 @@ function init() {
   createProjectButton.addEventListener("click", createProject);
   handleGracefulDegradation();
   let dateView = document.getElementById("date-view");
-  localStorage.setItem("date-view", "f");
+  localStorage.setItem("dateView", "f");
   dateView.addEventListener("click", () => {
     localStorage.setItem("dateView", "t");
     window.location.href = "./notes.html";
