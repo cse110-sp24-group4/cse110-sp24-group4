@@ -1,6 +1,12 @@
 describe("Test the functionality of the landing page", () => {
   beforeAll(async () => {
     await page.goto("http://localhost:9000/pages/project.html");
+    page.on("dialog", async (dialog) => {
+      await dialog.accept();
+    });
+    await page.$$eval("#Project-List li button", (buttons) => {
+      buttons.forEach((button) => button.click()); // Click delete button for each project
+    });
   });
 
   /**
@@ -8,18 +14,14 @@ describe("Test the functionality of the landing page", () => {
    * How do I click the specific button to delete
    */
   it("Delete project given a name", async () => {
-    await page.type("#new-project-name", "Project 1");
+    await page.type("#new-project-name", "ProjectPageTestJs");
     await page.click("#project-create");
-    await page.waitForSelector("#Project-List li");
+    await page.waitForSelector("#ProjectPageTestJs");
 
     const projectsBeforeDeletion = await page.$$eval(
       "#Project-List li",
       (items) => items.length,
     ); // Get number of projects before deletion
-
-    page.on("dialog", async (dialog) => {
-      await dialog.accept();
-    });
 
     await page.$$eval("#Project-List li button", (buttons) => {
       buttons.forEach((button) => button.click()); // Click delete button for each project

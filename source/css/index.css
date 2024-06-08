@@ -19,7 +19,6 @@ header>a {
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 5px;
-    /* background-color: #ebd0b2; */
 
     &:hover {
         opacity: 75%;
@@ -142,7 +141,6 @@ footer {
     color: white;
     padding: 5px;
     background-color: #275734;
-
     &:hover {
         opacity: 75%;
     }
@@ -183,7 +181,7 @@ footer {
     margin-left: 10px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 768px) {
 
     h2 {
         font-size: 0.5em;
