@@ -25,7 +25,6 @@ header>a {
     }
 }
 
-
 footer {
     text-align: center;
     font-size: 0.75em;
@@ -124,7 +123,7 @@ footer {
 /* app descriptions */
 .info {
     display: flex;
-    justify-content: space-between ;
+    justify-content: center ;
     align-items: center;
     flex-wrap: wrap;
     margin-top: 775px;
@@ -134,7 +133,7 @@ footer {
 }
 .launch h2 {
     font-size: 2em;
-    color:#628745
+    color:#275734
 }
 .demo-container {
     display: flex;
@@ -178,4 +177,25 @@ footer {
             display: none;
         }
     }
+}
+
+button {
+    text-decoration: none;
+    font-size: 2em;
+    font-weight: bold;
+    border: 2px solid #275734;
+    border-radius: 10px;
+    color: #275734;
+    background-color: #c8e7aa;
+
+    &:hover {
+        opacity: 75%;
+    }
+}
+
+.launch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
