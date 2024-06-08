@@ -19,6 +19,12 @@ function init() {
   const createProjectButton = document.getElementById("project-create");
   createProjectButton.addEventListener("click", createProject);
   handleGracefulDegradation();
+  let dateView = document.getElementById("date-view");
+  localStorage.setItem("dateView", "f");
+  dateView.addEventListener("click", () => {
+    localStorage.setItem("dateView", "t");
+    window.location.href = "./notes.html";
+  });
   checkPWA();
 }
 
@@ -84,13 +90,17 @@ export function createProjectItem(projectId) {
   linkText.classList.add("project-name");
 
   const newDelete = document.createElement("button"); //delete button
+  newDelete.classList.add("delete-button");
   newDelete.innerText = "Delete";
   newDelete.addEventListener("click", () => {
     deleteProject(projectId);
   });
 
   newLink.appendChild(folderImage);
-  newLink.href = `./notes.html?projectId=${encodeURI(projectId)}`; //setting embedded url
+  newLink.addEventListener("click", () => {
+    localStorage.setItem("projectClicked", projectId);
+    window.location.href = "./notes.html";
+  });
   newProject.id = projectId;
 
   newProject.appendChild(newLink); //adding link to list item

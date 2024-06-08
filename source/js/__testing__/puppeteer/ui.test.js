@@ -1,7 +1,5 @@
-describe("Simple Test", () => {
+describe("Ensure puppeteer is setup correctly with a simple passing test", () => {
   beforeAll(async () => {
-    // const browser = await puppeteer.launch();
-    // const page = await browser.newPage();
     await page.goto("http://localhost:9000/");
   });
 

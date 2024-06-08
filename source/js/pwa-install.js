@@ -6,7 +6,6 @@ window.addEventListener("load", () => init());
 
 let installPrompt = null;
 
-const installText = document.getElementById("install-text");
 const installButton = document.getElementById("install-button");
 
 /**
@@ -18,7 +17,6 @@ function init() {
   window.addEventListener("beforeinstallprompt", (event) => {
     event.preventDefault();
     installPrompt = event;
-    installText.removeAttribute("hidden");
     installButton.removeAttribute("hidden");
   });
 
@@ -41,7 +39,6 @@ function init() {
 function disableInAppInstallPrompt() {
   installPrompt = null;
   installButton.setAttribute("hidden", "");
-  installText.setAttribute("hidden", "");
 }
 
 /**

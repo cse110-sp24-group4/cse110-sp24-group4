@@ -20,6 +20,18 @@ self.addEventListener("install", function (event) {
         "./css/todo.css",
         "./pages/project.html",
         "./pages/notes.html",
+        "./assets/images/favicon.ico",
+        "./assets/images/green-folder.png",
+        "./assets/images/green-newfolder.png",
+        "./assets/images/green-folder.png",
+        "./assets/images/newfolder.png",
+        "./assets/images/paw-print0.svg",
+        "./assets/images/possible-logo.png",
+        "./assets/images/demoimage-transparent.png",
+        "./assets/images/final-logo.png",
+        "./assets/images/demoimage.png",
+        "./assets/images/project-page-demo.png",
+        "./assets/images/to-do.png"
       ]);
     }),
   );
