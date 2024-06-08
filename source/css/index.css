@@ -133,6 +133,21 @@ footer {
     position: relative;
     z-index: 1;
 }
+
+#install-button {
+    text-decoration: none;
+    font-size: 1.5em;
+    border: 2px solid #275734;
+    border-radius: 10px;
+    color: white;
+    padding: 5px;
+    background-color: #275734;
+
+    &:hover {
+        opacity: 75%;
+    }
+}
+
 .launch h2 {
     font-size: 2em;
     color:#628745
@@ -157,6 +172,15 @@ footer {
     font-size: 2.5em;
     color:#275734;
     align-items: center;
+}
+
+.install-section {
+    display: flex;
+    justify-content: center;
+}
+
+#install-button {
+    margin-left: 10px;
 }
 
 @media screen and (max-width: 1000px) {
