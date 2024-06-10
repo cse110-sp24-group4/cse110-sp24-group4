@@ -11,6 +11,8 @@ Team page Markdown file:
 
 **Link to deployed project:** [DevDog](https://cse110-sp24-group4.github.io/cse110-sp24-group4/source/)
 
+**Final Project Video:** [Repo tour](https://youtu.be/iqjh-5afyVg)
+
 **Source** 
 
 All resources required for app functioning are located within the `/source` directory.
