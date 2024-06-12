@@ -13,6 +13,8 @@ Team page Markdown file:
 
 **Final Project Video:** [Repo tour](https://youtu.be/iqjh-5afyVg)
 
+**DevDog Fun Video:** [Music Video](https://youtu.be/55iNgbNHMnA)
+
 **Source** 
 
 All resources required for app functioning are located within the `/source` directory.
